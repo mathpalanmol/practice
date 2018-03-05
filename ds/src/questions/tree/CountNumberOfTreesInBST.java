@@ -2,6 +2,9 @@ package questions.tree;
 
 // With given count n how many possible BST can be generated.
 // This problem can be solved using Dynamic Programming. 
+//       n
+//t(n) = E     t(i-1)t(n-i)   --> n is total no of nodes t(0)==t(1)==1
+//       i=1 
 public class CountNumberOfTreesInBST {
 
 	int countTreesRec(int numKeys) {
@@ -11,8 +14,8 @@ public class CountNumberOfTreesInBST {
 			int sum = 0;
 			int left, right, root;
 			for (root = 1; root <= numKeys; root++) {
-				left = countTreesRec(root - 1);
-				right = countTreesRec(numKeys - root);
+				left = countTreesRec(root - 1); // left
+				right = countTreesRec(numKeys - root); // right
 				sum += left * right;
 			}
 			return (sum);
@@ -77,8 +80,8 @@ public class CountNumberOfTreesInBST {
 	public static void main(String args[]) {
 		CountNumberOfTreesInBST ref = new CountNumberOfTreesInBST();
 
-		System.out.println(ref.countBst(50));
-		System.out.println(ref.countBst(50));
+		System.out.println(ref.countBst(4));
+//		System.out.println(ref.countBst(50));
 
 	}
 }

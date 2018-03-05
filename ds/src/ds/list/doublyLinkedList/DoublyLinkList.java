@@ -123,13 +123,13 @@ public class DoublyLinkList {
 			current.previous = newLink;
 			first = newLink;
 
-		} /*else if (current == last) {//not required we can't insert element at last.
-			newLink.next = current;
-			current.previous.next = newLink;
-			newLink.previous = current.previous;
-			current.previous = newLink;
-             
-		} */else {
+		} /*
+			 * else if (current == last) {//not required we can't insert element at last.
+			 * newLink.next = current; current.previous.next = newLink; newLink.previous =
+			 * current.previous; current.previous = newLink;
+			 * 
+			 * }
+			 */else {
 			newLink.next = current;
 			current.previous.next = newLink;
 			newLink.previous = current.previous;
@@ -138,5 +138,50 @@ public class DoublyLinkList {
 		}
 		return true;
 	}
+
+	public int getLength() {
+		Link current = first;
+		int len = 0;
+		while (current != null) {
+			len++;
+			current = current.next;
+		}
+		return len;
+	}
+
+	// linkedlist to binary tree
+	public void linkToBinary() {
+		int len = getLength();
+		Link root = linkToBinary(len);
+		inOrder(root);
+	}
+
+	
+	
+	
+	
+	private void inOrder(Link root) {
+		if (root == null)
+			return;
+		inOrder(root.previous);
+		System.out.println(root.key);
+		inOrder(root.next);
+	}
+
+	Link root;
+
+	private Link linkToBinary(int len) {
+		if (len == 0)
+			return null;
+		Link left = linkToBinary(len / 2);
+		Link current = first;
+		first = first.next;
+		current.previous = left;
+		Link right = linkToBinary(len - (len / 2) - 1);
+		current.next = right;
+		return current;
+	}
+	
+	
 
 }

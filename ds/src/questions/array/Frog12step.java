@@ -18,6 +18,7 @@ public class Frog12step {
 			// dist will still be 3 for walk(dist - 1) iteration.
 			// vise-versa for 2 and 1.
 			walk(dist - 2);
+//			walk(dist - 3);
 		}
 	}
 // initialze counter with any arbitary value
@@ -37,7 +38,8 @@ public class Frog12step {
 															// bit tricky but we
 															// want to update
 															// the array same
-															// time; consider
+					
+			// time; consider
 															// the case if after
 															// decrementing 1 or
 															// 2 the sum is zero
@@ -56,7 +58,7 @@ public class Frog12step {
 
 	public static void main(String[] args) {
 		Frog12step ref = new Frog12step();
-		// ref.walk(4);
+	    ref.walk(4);
 		int[] ary = new int[5];
 		ref.print(ary, 5, 0, -1);
 		System.out.println("No of ways: " + ref.count);

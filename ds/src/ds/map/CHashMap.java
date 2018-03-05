@@ -8,7 +8,7 @@ public class CHashMap<k, v> {
 	int capacity = 10;
 	int count = 0;
 	@SuppressWarnings("unchecked")
-	Entry<k,v>[] table = (Entry<k,v>[])new Entry[capacity];
+	Entry<k,v>[] table = new Entry[capacity];
 	class Entry<k, v> {
 		k Key;
 		v value;
@@ -24,9 +24,9 @@ public class CHashMap<k, v> {
 		public void put(k key, v value){
 			Entry<k,v> newEntry = new Entry<k,v>(key,value);
 			int index = calculateIndex(key);
-			Entry<k,v> entry = (Entry<k, v>) table[index];
+			Entry<k,v> entry = table[index];
 			if(entry == null){
-				table[index] = (Entry<k, v>)newEntry;
+				table[index] = newEntry;
 				return;}
 			Entry<k,v> pre = entry;
 			while(entry != null){

@@ -1,6 +1,7 @@
 package ds.tree;
 
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Queue;
 
 //          Average	 Worst case --> skewed tree)
@@ -61,7 +62,34 @@ public class BSTOperations {
 		node.display();
 		inOrder(node.rChild);
 	}
-//TODO distance from root
+
+	static boolean bst = true;
+	static int max = Integer.MIN_VALUE;
+
+	public List<Integer> validateBST(Node node, List<Integer> list) {
+		if (node == null)
+			return list;
+		validateBST(node.lChild, list);
+		list.add(node.key);
+		validateBST(node.rChild, list);
+		return list;
+	}
+
+	public boolean validateBst(List<Integer> list) {
+		int pre = Integer.MIN_VALUE;
+		boolean bst = true;
+		for (int next : list) {
+			if (next < pre) {
+				bst = false;
+				break;
+			}
+			pre = next;
+
+		}
+		return bst;
+	}
+
+	// TODO distance from root
 	public void findDepth(Node node) {
 
 		if (node == null)
@@ -166,46 +194,74 @@ public class BSTOperations {
 		}
 		return successor;
 	}
-	
-	
+
 	boolean output = true;
 
 	boolean checkBST(Node root) {
 		if (root == null)
 			return false;
-		
-//        boolean result = true;
-        if(output){
-		if ((root.lChild != null && root.lChild.key > root.key) || (root.rChild != null && root.rChild.key < root.key)){
-    //        result = false;
-            output = false;
-            return false;
-        }
-			
-		if ((root.rChild == null && root.lChild != null && root.lChild.key > root.key)){
-		//	  result = false;
-            output = false;
-            return false;
-        }
-		if (root.lChild == null && root.rChild != null && root.rChild.key < root.key){
-		//	  result = false;
-            output = false;
-            return false;
-        }
-        if (root.rChild == null && root.lChild== null){
-		//	  result = false;
-            return true;
-        }
-		if ((root.lChild != null && root.lChild.key < root.key) && (root.rChild != null && root.rChild.key > root.key)){
-//            result = true;
-            return true;
-  //          output = false;
-        }
-		checkBST(root.lChild);
-		checkBST(root.rChild);
-        }
-        
+
+		// boolean result = true;
+		if (output) {
+			if ((root.lChild != null && root.lChild.key > root.key)
+					|| (root.rChild != null && root.rChild.key < root.key)) {
+				// result = false;
+				output = false;
+				return false;
+			}
+
+			if ((root.rChild == null && root.lChild != null && root.lChild.key > root.key)) {
+				// result = false;
+				output = false;
+				return false;
+			}
+			if (root.lChild == null && root.rChild != null && root.rChild.key < root.key) {
+				// result = false;
+				output = false;
+				return false;
+			}
+			if (root.rChild == null && root.lChild == null) {
+				// result = false;
+				return true;
+			}
+			if ((root.lChild != null && root.lChild.key < root.key)
+					&& (root.rChild != null && root.rChild.key > root.key)) {
+				// result = true;
+				return true;
+				// output = false;
+			}
+			checkBST(root.lChild);
+			checkBST(root.rChild);
+		}
+
 		return output;
+	}
+
+	void printPathsRecur(Node node, int path[], int pathLen) {
+		if (node == null)
+			return;
+
+		/* append this node to the path array */
+		path[pathLen] = node.key;
+		pathLen++;
+
+		/* it's a leaf, so print the path that led to here */
+		if (node.lChild == null && node.rChild == null)
+			printArray(path, pathLen);
+		else {
+			/* otherwise try both subtrees */
+			printPathsRecur(node.lChild, path, pathLen);
+			printPathsRecur(node.rChild, path, pathLen);
+		}
+	}
+
+	/* Utility function that prints out an array on a line. */
+	void printArray(int ints[], int len) {
+		int i;
+		for (i = 0; i < len; i++) {
+			System.out.print(ints[i] + " ");
+		}
+		System.out.println("");
 	}
 
 }
