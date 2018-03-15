@@ -2,8 +2,8 @@ package questions.tree;
 
 // With given count n how many possible BST can be generated.
 // This problem can be solved using Dynamic Programming. 
-//       n
-//t(n) = E     t(i-1)t(n-i)   --> n is total no of nodes t(0)==t(1)==1
+//        n
+//t(n) =  E     t(i-1)t(n-i)   --> n is total no of nodes t(0)==t(1)==1
 //       i=1 
 public class CountNumberOfTreesInBST {
 

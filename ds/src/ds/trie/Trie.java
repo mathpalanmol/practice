@@ -5,7 +5,7 @@ package ds.trie;
 // each node in a trie represents a prefix of the stored strings
 // Tries are also called as Lexicographic Search trees.
 // The complexities of the search ,delete and insert operations were given by O(h) where the height h is dependent on the number of keys represented in the search tree
-// Auto-complete functionality is used widely over the internet and mobile apps. A lot of websites and apps try to complete your input as soon as you start typing.• All the descendants of a node have a common prefix of the string associated with that node.
+// Auto-complete functionality is used widely over the internet and mobile apps. A lot of websites and apps try to complete your input as soon as you start typing.ï¿½ All the descendants of a node have a common prefix of the string associated with that node.
 // Trie is also known as Prefix tree.
 // we can create suffix tree using trie... for word abab, first put abab(index 0) then bab(index 1) the ab(index 2) then b(index 3)
 // suffix tree is used to find common substring problem in linear time
@@ -59,7 +59,7 @@ public class Trie {
 		Node current = node;
 		int k = 0;//character count in given word.
 		while (k < chars.length) {
-			if (current.pointerAry[chars[k] - 'a'] == null) { //-a is equivalent to -65 to get 65-65=0 index for a, for b it is 66-65=1 and so on...
+			if (current.pointerAry[chars[k] - 'a'] == null) { //-a is equivalent to 97 to get 97-97=0 index for a, for b it is 66-65=1 and so on...
 				current.pointerAry[chars[k] - 'a'] = new Node();
 				current = current.pointerAry[chars[k] - 'a'];// remove it and
 																// remove else

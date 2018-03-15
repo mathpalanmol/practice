@@ -28,8 +28,8 @@ public class LowUpperBoundArray {
 		int[] ary = {0, 1, 15, 25, 6, 7, 30, 40, 50};
 		// int [] ary = {10, 20, 25, 35, 12, 11, 50, 60};
 		//int[] ary = { 1, 2, 3, 4, 5 };
-		//Node node = calculate(ary);
-		 Node node = compareSolution(ary);
+		Node node = calculate(ary);
+		// Node node = compareSolution(ary);
 		System.out.println("low: " + node.low + " high: " + node.high);
 	}
 

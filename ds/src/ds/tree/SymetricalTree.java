@@ -1,6 +1,7 @@
 package ds.tree;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 public class SymetricalTree {
 
@@ -53,15 +54,15 @@ public class SymetricalTree {
 		n60.left = n61;
 		n60.right = n62;
 
-//		TreeNode output = lca(root, n41, n51);
-//		System.out.println("lca: " + output.value);
-//		int[] ary = new int[50];
-//		processPath(n10, n50, ary, 0);
-//
-//		System.out.println("Distance: " + distance(root, n50, n41));
-		
-//		binaryToLinkedList(root);
-//		printLinkedList(start);
+		// TreeNode output = lca(root, n41, n51);
+		// System.out.println("lca: " + output.value);
+		// int[] ary = new int[50];
+		// processPath(n10, n50, ary, 0);
+		//
+		// System.out.println("Distance: " + distance(root, n50, n41));
+
+		// binaryToLinkedList(root);
+		// printLinkedList(start);
 
 		return root;
 	}
@@ -183,6 +184,79 @@ public class SymetricalTree {
 		}
 	}
 
+	// Convert a given tree to a tree where every node contains sum of
+    // values of nodes in left and right subtrees in the original tree
+    int toSumTree(TreeNode node) 
+    {
+        // Base case
+        if (node == null)
+            return 0;
+  
+        // Store the old value
+        int old_val = node.value;
+  
+        // Recursively call for left and right subtrees and store the sum
+        // as new value of this node
+        node.value = toSumTree(node.left) + toSumTree(node.right);
+  
+        // Return the sum of values of nodes in left and right subtrees
+        // and old_value of this node
+        return node.value + old_val;
+    }
+	
+	void printZigZagTraversal(TreeNode rootNode) {
+
+		// if null then return
+		if (rootNode == null) {
+			return;
+		}
+
+		// declare two stacks
+		Stack<TreeNode> currentLevel = new Stack<TreeNode>();
+		Stack<TreeNode> nextLevel = new Stack<TreeNode>();
+
+		// push the root
+		currentLevel.push(rootNode);
+		boolean leftToRight = true;
+
+		// check if stack is empty
+		while (!currentLevel.isEmpty()) {
+
+			// pop out of stack
+			TreeNode node = currentLevel.pop();
+
+			// print the data in it
+			System.out.print(node.value + " ");
+
+			// store data according to current
+			// order.
+			if (leftToRight) {
+				if (node.left != null) {
+					nextLevel.push(node.left);
+				}
+
+				if (node.right != null) {
+					nextLevel.push(node.right);
+				}
+			} else {
+				if (node.right != null) {
+					nextLevel.push(node.right);
+				}
+
+				if (node.left != null) {
+					nextLevel.push(node.left);
+				}
+			}
+
+			if (currentLevel.isEmpty()) {
+				leftToRight = !leftToRight;
+				Stack<TreeNode> temp = currentLevel;
+				currentLevel = nextLevel;
+				nextLevel = temp;
+			}
+		}
+	}
+
 	public static void main(String[] args) {
 		SymetricalTree tree = new SymetricalTree();
 
@@ -192,8 +266,8 @@ public class SymetricalTree {
 		 */
 		tree.createTree();
 
-//		System.out.println("tree is symmetric: " + tree.isSymmetric(tree.root));
-//		System.out.println("Diameter: " + tree.findDiameter(tree.root));
+		// System.out.println("tree is symmetric: " + tree.isSymmetric(tree.root));
+		// System.out.println("Diameter: " + tree.findDiameter(tree.root));
 	}
 
 }
