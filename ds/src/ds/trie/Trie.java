@@ -61,10 +61,9 @@ public class Trie {
 		while (k < chars.length) {
 			if (current.pointerAry[chars[k] - 'a'] == null) { //-a is equivalent to 97 to get 97-97=0 index for a, for b it is 66-65=1 and so on...
 				current.pointerAry[chars[k] - 'a'] = new Node();
-				current = current.pointerAry[chars[k] - 'a'];// remove it and
-																// remove else
-			} else
-				current = current.pointerAry[chars[k] - 'a'];
+			}
+			
+			current = current.pointerAry[chars[k] - 'a'];
 			k++;
 		}
 		current.end = true;

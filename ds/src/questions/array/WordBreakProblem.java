@@ -14,7 +14,11 @@ import java.util.Set;
  */
 public class WordBreakProblem {
  
-    private static final Set<String> dictionary = new HashSet<String>(Arrays.asList("arrays", "dynamic", "heaps", "IDeserve", "learn", "learning", "linked", "list", "platform", "understand", "understanding", "trees"));
+    private static final Set<String> dictionary = 
+    		new HashSet<String>(Arrays.asList(
+    				"arrays", "dynamic", "heaps", "IDeserve", 
+    				"learn", "learning", "linked", "list", "platform",
+    				"understand", "understanding", "trees"));
  
     public static boolean hasValidWords(String words) {
          
@@ -27,15 +31,19 @@ public class WordBreakProblem {
         boolean[] validWords = new boolean[n];
         for (int i = 0; i < n; i++) {
             if (dictionary.contains(words.substring(0, i + 1))) {
+            	System.out.println("outer: " + words.substring(0, i + 1));
                 validWords[i] = true;
             }
+            System.out.println("outer: " + words.substring(0, i + 1));
             if (validWords[i] == true && (i == n - 1))
                 return true;
             if (validWords[i] == true) {
                 for (int j = i + 1; j < n; j++) {
                     if (dictionary.contains(words.substring(i + 1, j + 1))) {
-                        validWords[j] = true;
+                    	validWords[j] = true;
                     }
+                    System.out.println("Inner: " + words.substring(i + 1, j + 1));
+                    
                     if (j == n - 1 && validWords[j] == true) {
                         return true;
                     }

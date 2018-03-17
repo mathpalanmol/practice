@@ -8,16 +8,18 @@ public class ArrayRotation {
 		if (ary[low] < ary[high])
 			return low;
 		int mid = (low + high) / 2; // find mid
-		int pre = (mid - 1 + ary.length) % ary.length; // mid=0,ary.length=5,pre
+		int pre = (mid - 1 + ary.length) % ary.length;  // mid=0,ary.length=5,pre
 														// =4(last
 														// element)-->first
 														// element prev is last
 														// element
 		int next = (mid + 1) % ary.length; // mid = 4, next = 0(first element)
+		
 		if (ary[mid] < ary[pre] && ary[mid] < ary[next]) // face 3,1,2; 1 is
 															// rotation point
 			return mid;
 		int index = -1;
+		
 		if (ary[low] <= ary[mid])// if (ary[low] <= ary[mid]); means from low to
 									// mid the list is in sorted order so
 									// rotating point should lie in next half
