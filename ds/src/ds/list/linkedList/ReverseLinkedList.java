@@ -34,7 +34,7 @@ public class ReverseLinkedList {
 		}
 		System.out.println("\n\n");
 	}
-
+// easy to understand and implement
 	static Link reverse(Link pre, Link current) {
 		if (current == null) {
 			return null;
@@ -44,7 +44,7 @@ public class ReverseLinkedList {
 		pre = current;
 		Link link = reverse(pre, temp);
 		if (link == null) {
-			head = temp;
+			head = current;
 		}
 		return head;
 	}

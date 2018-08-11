@@ -67,7 +67,7 @@ public class SymetricalTree {
 		return root;
 	}
 
-	// LCA
+	// LCA: lowest common ancestor
 	public static TreeNode lca(TreeNode root, TreeNode node1, TreeNode node2) {
 		if (null == root) {
 			return null;
@@ -83,7 +83,7 @@ public class SymetricalTree {
 		}
 		if (left != null)
 			return left;
-		else
+		else  // for null it will be returned null
 			return right;
 	}
 
@@ -94,7 +94,7 @@ public class SymetricalTree {
 		processPath(lca, node2, new int[50], 0);
 		int l2 = pathLen;
 
-		return l1 + l2 - 1;
+		return l1 + l2 - 1;// minus root
 	}
 
 	// path from root to a node
@@ -122,7 +122,7 @@ public class SymetricalTree {
 	boolean isSymmetric(TreeNode root) {
 		return isSymmetric(root, root);
 	}
-
+    // we are checking mirror image.. just make sure
 	private boolean isSymmetric(TreeNode root1, TreeNode root2) {
 		if (root1 == null && root2 == null)
 			return true;
@@ -161,7 +161,7 @@ public class SymetricalTree {
 
 	TreeNode start;
 	TreeNode current;
-
+    // inorder traversal.
 	void binaryToLinkedList(TreeNode root) {
 		if (root == null)
 			return;
@@ -203,7 +203,7 @@ public class SymetricalTree {
         // and old_value of this node
         return node.value + old_val;
     }
-	
+	// use 2 stack 
 	void printZigZagTraversal(TreeNode rootNode) {
 
 		// if null then return
@@ -250,7 +250,7 @@ public class SymetricalTree {
 
 			if (currentLevel.isEmpty()) {
 				leftToRight = !leftToRight;
-				Stack<TreeNode> temp = currentLevel;
+				Stack<TreeNode> temp = currentLevel; // this will be null always we can elimate this and directly apply null to nextLevel
 				currentLevel = nextLevel;
 				nextLevel = temp;
 			}

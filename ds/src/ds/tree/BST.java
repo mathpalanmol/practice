@@ -15,33 +15,9 @@ public class BST {
 		bsTree.insertNode(55, 2);
 		bsTree.insertNode(70, 7);
 		bsTree.insertNode(95, 2);
-		// root.rChild.lChild.key = 20;
-		System.out.println(bsTree.checkBST(root));
 		
-	    treeToDLinkList(root);
-	    display();
+		bsTree.inOrder(root);
 
-		// bsTree.findDepth(root); /* DEPTH */
-		// System.out.println("Depth: " + bsTree.depth);
-		// System.out.println("******");
-		//
-		// bsTree.inOrder(root); /* TRAVERSING */
-		// System.out.println("******");
-		// bsTree.printLeafNodes(root);
-		//
-		// System.out.println("******");
-		// bsTree.deleteNode(delNode1); /* DELETION:- having no childs */
-		// bsTree.inOrder(root);
-		//
-		// System.out.println("******");
-		// bsTree.printLeafNodes(root);
-		//
-		// System.out.println("******");
-		// bsTree.deleteNode(delNode2); /* DELETION:- having both the childs */
-		// bsTree.inOrder(root);
-		//
-		// System.out.println("******");
-		// bsTree.printLeafNodes(root);
 	}
 
 	static Node prev = null;

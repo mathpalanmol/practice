@@ -46,7 +46,7 @@ public class ReverseInGroups {
 			start.next= reverseKLinks(current, k);
 		}
 		
-		return pre;
+		return pre; // always return previous.
 	}
 
 	private static Link getLinkedList() {

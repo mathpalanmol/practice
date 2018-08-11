@@ -2,6 +2,8 @@ package ds.list.linkedList;
 
 public class LinkListApp {
 
+	private static Link reverseRec;
+
 	/**
 	 * @author: anmol.m
 	 * @category: LinkList Operations:- Insertion, Search, Deletion
@@ -20,7 +22,7 @@ public class LinkListApp {
 
 		theLink.displayList();
 		
-		theLink.reverse(theLink.first);
+		theLink.reverseRec(theLink.first);
 		theLink.displayList();
 		
 //		theLink.removeDuplicates(theLink.first);

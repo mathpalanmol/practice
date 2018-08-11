@@ -6,16 +6,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-//Direct Acyclic graph = no cycle + directed
+//Direct Acyclic graph = no cycle + directional
 public class DAG {
 
 	//map contains key as node key and values as list of adjacent nodes
+	//to facilitate search of Vertex object using keys.
 	private Map<Integer, Vertex<Integer>> vList = new HashMap<Integer, Vertex<Integer>>();
 
 	public class Vertex<k> {
 		public k key;
 		public int inDegree = 0; // For DAG; 0: no incoming 
-		int OutDegree = 0;// For DAG; 0: no outgoing
+		int OutDegree = 0;// For DAG; 0: no outgoing  // in this example we are not updating outdegree.
 		List<Vertex> adjList = new ArrayList<Vertex>();
 
 		Vertex(k key) {
@@ -49,10 +50,10 @@ public class DAG {
 		return vList.get(key);
 	}
 
-	public boolean addVertex(int key) {
+	public Vertex addVertex(int key) {
 		Vertex<Integer> newVertex = new Vertex<Integer>(key);
 		vList.put(key, newVertex);
-		return true;
+		return newVertex;
 	}
 
 	public void addEdges(int to, int from) {

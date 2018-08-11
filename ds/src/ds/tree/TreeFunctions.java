@@ -1,6 +1,9 @@
 package ds.tree;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 // BASIC operations
 // Traversals - DFS AND BFS
 // Height
@@ -9,10 +12,10 @@ import java.util.Arrays;
 // Path
 // Symmetrical
 
-
+import ds.tree.SymetricalTree.TreeNode;
 
 public class TreeFunctions {
-	
+
 	Node root;
 
 	public static int heightOfTree(Node root) {
@@ -22,7 +25,31 @@ public class TreeFunctions {
 		int hRightSub = heightOfTree(root.right);
 		return Math.max(hLeftSub, hRightSub) + 1;
 	}
-
+	int diameter(Node root)
+    {
+        /* base case if tree is empty */
+        if (root == null)
+            return 0;
+ 
+        /* get the height of left and right sub trees */
+        int lheight = heightOfTree(root.left);
+        int rheight = heightOfTree(root.right);
+ 
+        /* get the diameter of left and right subtrees */
+        int ldiameter = diameter(root.left);
+        int rdiameter = diameter(root.right);
+ 
+        /* Return max of following three
+          1) Diameter of left subtree
+         2) Diameter of right subtree
+         3) Height of left subtree + height of right subtree + 1 is the diameter of root 
+         4) Basically we are getting max out of root,leftsubtree and right subtree diameters.
+         */
+         
+        return Math.max(lheight + rheight + 1,
+                        Math.max(ldiameter, rdiameter));
+ 
+    }
 	// root to leaf
 	private static int nPath;
 
@@ -65,6 +92,7 @@ public class TreeFunctions {
 		}
 	}
 
+	// find path root to leaf and equal to given sum | OR condition
 	private static boolean sumInRoot2LeafPath(Node root, int[] path, int index, int sum) {
 		if (null == root) {
 			return false;
@@ -78,6 +106,9 @@ public class TreeFunctions {
 			}
 			return false;
 		}
+		//OR condition. else we can call both left and right seperatly.
+		//ultimately we need to return OR of both left and right recursive call
+		
 		return sumInRoot2LeafPath(root.left, path, index, sum) || sumInRoot2LeafPath(root.right, path, index, sum);
 	}
 
@@ -161,7 +192,8 @@ public class TreeFunctions {
 		if (root == null)
 			return;
 		System.out.println(root.data);
-		// to avoid duplicate entry of root we are dividing it to left and right sub tree.
+		// to avoid duplicate entry of root we are dividing it to left and right sub
+		// tree.
 		System.out.println("Left sub tree");
 		printleftSide(root.left); // exclude leaf nodes
 		System.out.println("leaf nodes");
@@ -169,19 +201,6 @@ public class TreeFunctions {
 		printleafNodes(root.right);
 		System.out.println("Right side");
 		printrightSide(root.right); // exclude leaf nodes
-
-	}
-
-	private void printrightSide(Node root) {
-		if (root == null)
-			return;
-		if(!(root.left == null && root.right == null))
-		System.out.println(root.data);
-		if (root.right != null) {
-			printrightSide(root.right);
-		} else if (root.left != null) {
-			printrightSide(root.left);
-		}
 
 	}
 
@@ -194,12 +213,13 @@ public class TreeFunctions {
 		printleafNodes(root.left);
 		printleafNodes(root.right);
 	}
+	
 
 	private void printleftSide(Node root) {
 		if (root == null)
 			return;
-		if(!(root.left == null && root.right == null))
-		System.out.println(root.data);
+		if (!(root.left == null && root.right == null)) // to avoid printing leaf nodes. 
+			System.out.println(root.data);
 		if (root.left != null) {
 			printleftSide(root.left);
 		} else if (root.right != null) {
@@ -208,12 +228,26 @@ public class TreeFunctions {
 
 	}
 	
+	private void printrightSide(Node root) {
+		if (root == null)
+			return;
+		if (!(root.left == null && root.right == null))
+			System.out.println(root.data);
+		if (root.right != null) {
+			printrightSide(root.right);
+		} else if (root.left != null) {
+			printrightSide(root.left);
+		}
+
+	}
+
 	
+
 	// With given count n how many possible BST can be generated.
-	// This problem can be solved using Dynamic Programming. 
-//	         n
-	//t(n) = E     t(i-1)t(n-i)   --> n is total no of nodes t(0)==t(1)==1
-//	         i=1
+	// This problem can be solved using Dynamic Programming.
+	//        n
+	// t(n) = E t(i-1)t(n-i) --> n is total no of nodes t(0)==t(1)==1
+	//        i=1
 	int countTreesRec(int numKeys) {
 		if (numKeys <= 1) {
 			return (1);
@@ -228,12 +262,70 @@ public class TreeFunctions {
 			return (sum);
 		}
 	}
-	
-	
+
+	public static int getHeight(Node root) {
+		if (root == null)
+			return 0;
+		return (1 + Math.max(getHeight(root.left), getHeight(root.right)));
+	}
+
+	public static boolean isBalancedNaive(Node root) {
+		if (root == null)
+			return true;
+		int heightdifference = getHeight(root.left) - getHeight(root.right);
+		if (Math.abs(heightdifference) > 1) {
+			return false;
+		} else {
+			return isBalancedNaive(root.left) && isBalancedNaive(root.right);
+		}
+	}
+
 	public static void main(String[] args) {
 		TreeFunctions tree = new TreeFunctions();
 		Node root = tree.createTree();
-		tree.boundaryTraverse(root);
+//		tree.boundaryTraverse(root);
+		tree.serialDeserialTree(root);
+	}
+	
+	
+	
+
+private void serialDeserialTree(Node root) {
+	     List<Integer> inOrder = inOrder(root);
+	     List<Integer> preOrder = preOrder(root);
+	     //Serialize
+	     Integer[] inOrderAry = (Integer[])inOrder.toArray();
+	     Object[] preOrderAry = preOrder.toArray();
+	     //Deserialize
+	     deserialize(inOrder,preOrder, 0, preOrderAry.length-1);
+	     
+	     }
+
+private void deserialize(List<Integer> inOrder, List<Integer> preOrder, int i, int j) {
+	
+}
+
+//  Program to store in order traversal
+	
+	static List<Integer> inOrderList  = new ArrayList<Integer>();
+	List<Integer> inOrder(Node root) {
+		if (root == null)
+			return null;
+		inOrder(root.left);
+		inOrderList.add(root.data);
+		inOrder(root.right);
+		return inOrderList;
+	}
+	
+//  Program to store pre order traversal - root, left, right
+	static List<Integer> preOrderList  = new ArrayList<Integer>();
+	List<Integer> preOrder(Node root) {
+		if (root == null)
+			return null;
+		preOrderList.add(root.data);
+		preOrder(root.left);
+		preOrder(root.right);
+		return preOrderList;
 	}
 	
 	private Node createTree() {
@@ -268,6 +360,7 @@ public class TreeFunctions {
 
 		return root;
 	}
+
 	class Node {
 		public int data;
 		public Node left;

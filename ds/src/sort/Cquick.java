@@ -75,7 +75,7 @@ public class Cquick {
 
 		}
 
-		swapValues(leftPointer, right);// this swap is for the pivot
+		swapValues(leftPointer, right);// this swap is for the pivot ie. swap left ptr with pivot index
 
 		return leftPointer;
 

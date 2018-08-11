@@ -63,7 +63,7 @@ public class Trie {
 				current.pointerAry[chars[k] - 'a'] = new Node();
 			}
 			
-			current = current.pointerAry[chars[k] - 'a'];
+			current = current.pointerAry[chars[k] - 'a']; // -a to make zero index.
 			k++;
 		}
 		current.end = true;

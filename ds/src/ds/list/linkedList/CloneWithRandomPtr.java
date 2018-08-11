@@ -5,8 +5,9 @@ import java.util.Map.Entry;
 
 public class CloneWithRandomPtr {
 	static LinkedHashMap<Link, Link> map = new LinkedHashMap<Link, Link>();
-	
-	// map key: orignal link ; value: clone link [created with next pointer and all values contain rdptr as null]
+
+	// map key: orignal link ; value: clone link [created with next pointer and all
+	// values contain rdptr as null]
 
 	public static void main(String[] args) {
 		Link listwithRandomPtr = getLinkedList();
@@ -28,7 +29,8 @@ public class CloneWithRandomPtr {
 		}
 		return listnextptrHead;
 	}
-
+    // create newList using next pointer
+	// populate map; Key: orignal LinkedList node, value: newNode
 	private static Link createListwithnextPointer(Link listwithRandomPtr) {
 		Link head = null;
 		Link current = null;
@@ -42,6 +44,7 @@ public class CloneWithRandomPtr {
 				continue;
 			} else
 				current.next = newLink;
+
 			map.put(listwithRandomPtr, newLink);
 			current = current.next;
 			listwithRandomPtr = listwithRandomPtr.next;
@@ -92,7 +95,7 @@ public class CloneWithRandomPtr {
 		public String toString() {
 			return "Link [key=" + key + ", next=" + next + ", rdPtr=" + rdPtr + "]";
 		}
-		
+
 	}
 
 }

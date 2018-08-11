@@ -4,6 +4,7 @@ package cache;
 
 import java.util.HashMap;
 //Doubly linklist node
+// or we can make it simple node by removing pre and next field. and keep seperate q for operations.
 class Node{
     int key;
     int value;

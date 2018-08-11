@@ -9,6 +9,8 @@ public class CHashMap<k, v> {
 	int count = 0;
 	@SuppressWarnings("unchecked")
 	Entry<k,v>[] table = new Entry[capacity];
+	
+	//Imp: Entry is linkedList
 	class Entry<k, v> {
 		k Key;
 		v value;
@@ -16,7 +18,7 @@ public class CHashMap<k, v> {
 
 		public Entry(k key, v value) {
 			super();
-			Key = key;
+			this.Key = key;
 			this.value = value;
 		}
 	}
@@ -27,8 +29,12 @@ public class CHashMap<k, v> {
 			Entry<k,v> entry = table[index];
 			if(entry == null){
 				table[index] = newEntry;
-				return;}
+				return;
+				}
 			Entry<k,v> pre = entry;
+			// we can add new entry at the start then y we are not doing it
+			// reason: we need to check all the links if given key exist or not. if exist override it's value
+			// otherwise add the new link at the end.
 			while(entry != null){
 				if(entry.Key.equals(key)){
 					entry.value = value;

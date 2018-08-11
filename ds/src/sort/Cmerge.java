@@ -19,7 +19,7 @@ public class Cmerge {
 	public static void partition(int low, int high) {
 		if (low >= high)
 			return;
-		int mid = (low + high) / 2;// low + (mid-high)/2
+		int mid = (low + high) / 2;// low + (high-low)/2
 		partition(low, mid);
 		partition(mid + 1, high);
 		 System.out.println("Low: " + low + " High: " + high + " Mid: " + mid); 

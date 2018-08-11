@@ -25,18 +25,52 @@ public class SortList {
 		middle.next = null;
 
 		Link left = mergeSort(start); // low to  middle
-		Link right = mergeSort(nextNode);//middle to high
-		Link head = merge(left, right); //merge = low + high
+		Link right = mergeSort(nextNode);//middle+1 to high
+		Link head = merge(left, right); //merge both the list
 		return head;
 
 	}
 
+	//imp
+	private static Link getMiddle(Link start) {
+		if(start == null || start.next == null)
+			return start;
+		Link slowPtr = start;
+		Link fastPtr = start;
+        
+		while (fastPtr != null && fastPtr.next != null) {
+			fastPtr = fastPtr.next.next;
+			if(fastPtr == null)
+				break;
+			slowPtr = slowPtr.next;
+			
+		}
+
+		return slowPtr;
+	}
+	/* Recursive */
+	static Link mergeLists(Link list1, Link list2) {
+		if (list1 == null)
+			return list2;
+		if (list2 == null)   //similar to lca
+			return list1;
+
+		if (list1.key <= list2.key) {
+			list1.next = mergeLists(list1.next, list2);
+			return list1; // important step
+		} else {
+			list2.next = mergeLists(list1, list2.next);
+			return list2; // important step
+		}
+	}
+	// iterative
 	private static Link merge(Link left, Link right) {
 		if (left == null) // both can't be null
 			return right;
 		if (right == null)
 			return left;
 		Link head = null;
+		// Setting Head
 		if (left.key <= right.key) { // decide head
 			head = left;
 			left = left.next;// increment it
@@ -69,22 +103,7 @@ public class SortList {
 		return head;
 	}
 
-	private static Link getMiddle(Link start) {
-		if(start == null || start.next == null)
-			return null;
-		Link slowPtr = start;
-		Link fastPtr = start;
-        
-		while (fastPtr != null && fastPtr.next != null) {
-			fastPtr = fastPtr.next.next;
-			if(fastPtr == null)
-				break;
-			slowPtr = slowPtr.next;
-			
-		}
-
-		return slowPtr;
-	}
+	
 
 	private static Link getLinkedList() {
 		Link l1 = new Link(1);

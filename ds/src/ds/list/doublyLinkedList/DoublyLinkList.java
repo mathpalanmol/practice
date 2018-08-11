@@ -139,8 +139,10 @@ public class DoublyLinkList {
 		return true;
 	}
 
-	public int getLength() {
-		Link current = first;
+	
+
+	public int getLength(Link start) {
+		Link current = start;
 		int len = 0;
 		while (current != null) {
 			len++;
@@ -149,17 +151,8 @@ public class DoublyLinkList {
 		return len;
 	}
 
-	// linkedlist to binary tree
-	public void linkToBinary() {
-		int len = getLength();
-		Link root = linkToBinary(len);
-		inOrder(root);
-	}
 
-	
-	
-	
-	
+
 	private void inOrder(Link root) {
 		if (root == null)
 			return;
@@ -168,7 +161,7 @@ public class DoublyLinkList {
 		inOrder(root.next);
 	}
 
-	Link root;
+	// Link root;
 
 	private Link linkToBinary(int len) {
 		if (len == 0)
@@ -180,6 +173,56 @@ public class DoublyLinkList {
 		Link right = linkToBinary(len - (len / 2) - 1);
 		current.next = right;
 		return current;
+	}
+	public Link getMiddle(Link start) {
+		Link slow = start;
+		Link fast = start;
+		while (fast != null && fast.next != null) {
+			fast = fast.next.next;
+			if (fast == null)
+				break;
+			slow = slow.next;
+		}
+		return slow;
+	}
+	// working fine
+	// len is actual length of linkedlist.
+	public Link linkToBinary(Link start, int len) {
+		if (len == 0 || start == null)
+			return null;
+        int mid = len/2;
+        //find middlelink: pass start node and len
+        // length will be reduced all the times
+		Link middleLink = getMiddle(start, len);
+		Link temp = middleLink.next;
+		middleLink.next = null;
+		
+		Link current = middleLink;
+		//start will end at middleLink. but we've to exclude middleLink, that'sy len-mid-1
+		// example len = 5 - actual length
+		// mid = 5/2= 2
+		// len-mid-1 = 5-2-1 = 2 nodes on left
+		// mid = 2 = 2 nodes on right
+		
+		current.previous = linkToBinary(start, len-mid-1);// len-mid-1 --> actual length
+		current.next = linkToBinary(temp, mid); // 6/2 or 7/2 = 3(len) towards right
+		
+
+		return current;
+	}
+
+	private Link getMiddle(Link start, int len) {
+		Link slow = start;
+		Link fast = start;
+		int counter =0;
+		// start with 0 and len is actual that's y <
+		while (counter < len && fast != null && fast.next != null) {
+			fast = fast.next.next;
+			if (fast == null)
+				break;
+			slow = slow.next;
+		}
+		return slow;
 	}
 	
 	

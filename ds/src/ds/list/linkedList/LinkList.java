@@ -24,27 +24,25 @@ public class LinkList {
 		}
 		Link start = reverse(current.next);
 		start.next = current;
-		if (start.next == current)
+		if (start.next == current) // otherwise 1st and 2nd node will always form a circular loop.
 			current.next = null;
 
 		return current;
 
 	}
-	//one more method for reverse practice
-	
-	/* Reverse - Recursion */
-	public Link reverse1(Link current) {
-		if (current == null) {
-			first = current;
-			return null;
-		}
-		Link temp = reverse1(current.next);
-		if(temp != null) {
-			temp.next = current;
-		}
-		current.next = null;
-		return current;
+	//or one more for reverse
+	public Link reverseRec(Link start) {
+		return reverse(null, start);
+	}
 
+	private Link reverse(Link pre, Link start) {
+		if(start == null) {
+			first = pre;
+			return pre;
+		}
+		Link last = reverse(start, start.next);
+		last.next = pre;
+		return pre;
 	}
 
 	/* To check whether the list is empty or not */
@@ -73,6 +71,16 @@ public class LinkList {
 		System.out.println("*************");
 	}
 
+	/* To display the elements of the list with given node */
+	public void displayList(Link start) {
+		Link current = start;
+		while (current != null) {
+			current.display();
+			current = current.next;
+		}
+		System.out.println("*************");
+	}
+	
 	/* To find the element in the list */
 	public Link find(int key) {
 		Link current = first;
@@ -116,7 +124,7 @@ public class LinkList {
 			while (current != null) {
 				if (start.key == current.key) {
 					pre.next = current.next;
-					current = pre.next; // no need to increment previous; prev will remain same when removal will h app
+					current = pre.next; // Imp: no need to increment previous; prev will remain same when removal will h app
 				} else {
 					pre = current;
 					current = current.next;

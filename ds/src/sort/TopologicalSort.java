@@ -26,7 +26,7 @@ public class TopologicalSort {
 			List<DAG.Vertex> adjList = v.getAdjList();
 			for (DAG.Vertex adjVertex : adjList) {
 				adjVertex.inDegree = adjVertex.inDegree - 1;
-				if (adjVertex.inDegree == 0)// after removal of every elment
+				if (adjVertex.inDegree == 0)// after removal of every element
 											// from q atleast one node will have
 											// 0 indegree in DAG
 					q.add(adjVertex);

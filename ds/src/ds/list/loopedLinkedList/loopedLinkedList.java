@@ -4,7 +4,6 @@ public class loopedLinkedList {
 	Link first = null;
 
 	public boolean findLoop() {
-		boolean loopExist = false;
 		Link slowLink = first;
 		Link fastLink = first;
 		while (true) {
@@ -14,11 +13,10 @@ public class loopedLinkedList {
 			else
 				fastLink = fastLink.next.next;
 			if (slowLink == fastLink) {
-				loopExist = true;
-				break;
+				return true;
 			}
 		}
-		return loopExist;
+		return false;
 	}
 
 	public void insert(int key, float value) {

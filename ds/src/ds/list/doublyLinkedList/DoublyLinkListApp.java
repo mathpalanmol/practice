@@ -7,39 +7,33 @@ public class DoublyLinkListApp {
 	 */
 	public static void main(String[] args) {
 			DoublyLinkList linkList = new DoublyLinkList();
-			linkList.insertFirst(1);
-			linkList.insertFirst(2);
-			linkList.insertFirst(3);
-//			linkList.insertFirst(4);
-//			linkList.insertFirst(5);
+			linkList.insertLast(1);
+			linkList.insertLast(2);
+			linkList.insertLast(3);
+			linkList.insertLast(4);
+			linkList.insertLast(5);
+			linkList.insertLast(6);
+			linkList.insertLast(7);
+			linkList.insertLast(8);
 			linkList.displayForward();
 			
-//			linkList.deleteFirst();
-//			linkList.displayForward();
-//			
-//			linkList.deleteLast();
-//			linkList.displayForward();
-//			
-//            linkList.deleteKey(3);
-//            linkList.displayForward();
-//
-//            linkList.deleteKey(5);
-//            linkList.displayForward();
-//
-//            linkList.deleteKey(1);
-//            linkList.displayForward();
-//			
-//			linkList.insertAfter(4, 41);
-//			linkList.displayForward();
-//			linkList.insertAfter(41, 42);
-//			linkList.displayForward();
-//			linkList.displayBackward();
-			
-			
-			linkList.linkToBinary();
+			//tested
+			Link root  = linkList.linkToBinary(linkList.first, 8);
+//			Link root  = linkList.linkToBinary(linkList.first);
+			inOrder(root);
 
           
        		
 	}
+
+	private static void inOrder(Link root) {
+		if(root == null)
+			return;
+		
+		inOrder(root.previous);
+		System.out.print(root.key + ", ");
+		inOrder(root.next);
+		
+	}	
 
 }

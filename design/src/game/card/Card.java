@@ -25,7 +25,6 @@ public class Card implements Comparable<Card> {
 		ccRank = ccRank == 1 ? 14 : ccRank;
 		ocRank = ocRank == 1 ? 14 : ocRank;
 		return ccRank - ocRank;
-
 	}
 
 	public int getRank() {
