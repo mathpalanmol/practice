@@ -17,6 +17,7 @@ public class ClosestK {
 
 	}
 
+	// here k defintly lies within the array.
 	private int findck(int[] ary, int low, int high, int k) {
 		if (low == high) { // this means we've reached to single number.
 			// Now either we have to check the left or right.

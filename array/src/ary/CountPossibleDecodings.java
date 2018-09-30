@@ -10,7 +10,7 @@ public class CountPossibleDecodings {
 
 	public static void main(String[] args) {
 		populate();
-		int[] ary = { 1, 2, 1 };
+		int[] ary = { 1, 2, 1,2,3,1,2 };
 		StringBuilder sb = new StringBuilder();
 		for (Integer value : ary) {
 			sb.append(value.toString());
@@ -35,6 +35,7 @@ public class CountPossibleDecodings {
 		printDecodings(str, count);
 
 		int val = Integer.parseInt(value);
+		System.out.println("val: " + val);
 		if (val < 26) {
 			StringBuilder sb = new StringBuilder();
 

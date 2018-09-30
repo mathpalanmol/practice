@@ -12,11 +12,12 @@ public class MultiThreadPrintArray {
 		MyThread threadB = new MyThread("B", obj);
 		threadA.start();
 		threadB.start();
+		
 	}// main thread ends here
 
 	public void print() {
-		synchronized (this.ary) { // taking lock on array object
-			if (index < ary.length) {
+		synchronized (ary) { // taking lock on array object
+			while (index < ary.length) {
 				System.out.println("Thread name: " + Thread.currentThread().getName() + " ; Value: " + ary[index++]);
 				try {
 					ary.notify();
@@ -31,22 +32,7 @@ public class MultiThreadPrintArray {
 
 }
 
-// This will also work but there is a chance of spurious call.
-/*public void print() {
-	synchronized (this.ary) { // taking lock on array object
-		if (index < ary.length) {
-			System.out.println("Thread name: " + Thread.currentThread().getName() + " ; Value: " + ary[index++]);
-			ary.wait();
-			try {
-				ary.wait(2000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
 
-		}
-	}
-}
-}*/
 
 
 class MyThread extends Thread {
@@ -59,13 +45,24 @@ class MyThread extends Thread {
 
 	@Override
 	public void run() {
-		// we can run for entire elements: just saving few calls to print
-		// as two thread are working so only half is required
-		// why < '=' for odd array size
-		// then for odd size what will happen to last thread call
-		// for that we have given check for index in print method.
-		for (int i = 0; i <= (obj.ary.length / 2); i++)
 			obj.print();
+			}
+	
+	
+	// This will also work but there is a chance of spurious call.
+	/*public void print() {
+		synchronized (this.ary) { // taking lock on array object
+			if (index < ary.length) {
+				System.out.println("Thread name: " + Thread.currentThread().getName() + " ; Value: " + ary[index++]);
+				ary.wait();
+				try {
+					ary.wait(2000);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
 
+			}
+		}
 	}
+	}*/
 }

@@ -50,7 +50,7 @@ public class CHashMap<k, v> {
 		
 		public v get(k key){
 			int index = calculateIndex(key);
-			Entry<k,v> entry = (Entry<k,v>)table[index];
+			Entry<k,v> entry = table[index];
 			while(entry != null){
 				if(entry.Key.equals(key))
 					break;

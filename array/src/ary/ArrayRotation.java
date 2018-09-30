@@ -40,8 +40,8 @@ public class ArrayRotation {
 	public static void main(String[] args) {
 		ArrayRotation obj = new ArrayRotation();
 		//int[] ary = { 2,3,1};
-		 int[] ary = { 1,2,3,4,5 };
-		// int[] ary = { 2,3,4,5,1 }; //if (ary[low] <= ary[mid]); // if low and
+		// int[] ary = { 1,2,3,4,5 };
+		 int[] ary = { 2,3,4,5,1 }; //if (ary[low] <= ary[mid]); // if low and
 		// mid both point to same index  findRotateIndex
 		int index = obj.findRotateIndex(ary, 0, ary.length - 1);		System.out.println("Rotated Index is: " + index);
 	

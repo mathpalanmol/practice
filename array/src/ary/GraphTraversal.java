@@ -1,6 +1,5 @@
 package ary;
 
-
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -35,6 +34,7 @@ public class GraphTraversal {
 			v.visited = false;// reset after traverse
 	}
 
+	// after this call visited should be marked as false.
 	public void traverseDFS(Vertex start) {
 		if (start.visited == false) {
 			start.visited = true;

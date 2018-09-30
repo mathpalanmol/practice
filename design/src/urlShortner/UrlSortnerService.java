@@ -56,9 +56,9 @@ public class UrlSortnerService {
 	private static final int BASE = ALPHABET.length();
 
 	public static void main(String[] args) {
-		System.out.println(encode(125));
+		System.out.println(encode(125));//cb
 		System.out.println(decode(encode(125)));
-		System.out.println(decodeNew("e9a"));
+		System.out.println(decodeNew("cb"));
 
 	}
 

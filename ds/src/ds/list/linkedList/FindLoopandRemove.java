@@ -1,5 +1,15 @@
 package ds.list.linkedList;
 
+//m => length from starting of list to starting of loop (i.e 1-2-3-4)
+//l => length of loop (i.e. 4-5-6-7-8-9)
+//k => length between starting of loop to meeting point (i.e. 4-5-6-7)
+//m + q(l) + k = 2 * ( m + p(l) +k )
+//or, m + k = q(l) - p(l)
+//or, m + k = (q-p) l
+//or, m = (q-p) l - k
+
+// If slowPtr starts from beginning of list and travels "m" length then, it will reach to starting point of loop.
+
 public class FindLoopandRemove {
 	
 	public static void main(String[] args) {

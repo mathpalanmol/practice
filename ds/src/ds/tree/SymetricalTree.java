@@ -197,7 +197,9 @@ public class SymetricalTree {
   
         // Recursively call for left and right subtrees and store the sum
         // as new value of this node
-        node.value = toSumTree(node.left) + toSumTree(node.right);
+        int left = toSumTree(node.left);
+        int right = toSumTree(node.right);
+        node.value = left + right;
   
         // Return the sum of values of nodes in left and right subtrees
         // and old_value of this node
@@ -250,7 +252,7 @@ public class SymetricalTree {
 
 			if (currentLevel.isEmpty()) {
 				leftToRight = !leftToRight;
-				Stack<TreeNode> temp = currentLevel; // this will be null always we can elimate this and directly apply null to nextLevel
+				Stack<TreeNode> temp = currentLevel; // this will be null always we can eliminate this and directly apply null to nextLevel
 				currentLevel = nextLevel;
 				nextLevel = temp;
 			}

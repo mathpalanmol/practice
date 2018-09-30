@@ -36,7 +36,7 @@ public class KFrequentWords {
 			public int compare(HNode o1, HNode o2) {
 				return o1.occurance - o2.occurance;
 			}
-		});
+		}); // min heap minimum at the top.
 		Trie tri = new Trie();
 		for (String word : words) {
 			TNode tNode = tri.add(word);

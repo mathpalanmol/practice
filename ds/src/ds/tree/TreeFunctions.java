@@ -143,7 +143,7 @@ public class TreeFunctions {
 		if (root1 == null || root2 == null)
 			return false;
 
-		if (root1.data == root2.data) {
+		if (root1.data == root2.data) {//first check the root. left-->right and right-->left should be same.
 			return checkSymetrical(root1.left, root2.right) && checkSymetrical(root1.right, root2.left);
 		}
 
@@ -176,6 +176,7 @@ public class TreeFunctions {
 	}
 
 	// delete tree
+	// del child first then root... postorder
 	public static Node deleteTree(Node root) {
 		if (null == root) {
 			return null;
@@ -291,9 +292,10 @@ public class TreeFunctions {
 	
 
 private void serialDeserialTree(Node root) {
+	    //Serialize
 	     List<Integer> inOrder = inOrder(root);
 	     List<Integer> preOrder = preOrder(root);
-	     //Serialize
+	    
 	     Integer[] inOrderAry = (Integer[])inOrder.toArray();
 	     Object[] preOrderAry = preOrder.toArray();
 	     //Deserialize

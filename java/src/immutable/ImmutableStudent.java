@@ -1,7 +1,7 @@
 package immutable;
 
 // For immutability mark class as final.
-// mark variables as private and don't provide public getter method.
+// mark variables as private and don't provide public setter method.
 
 //Advantage:
 // Immutable objects are thread safe.

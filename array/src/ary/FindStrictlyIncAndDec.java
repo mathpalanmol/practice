@@ -5,6 +5,7 @@ package ary;
 //O(log n) time. A Bitonic Sequence is a sequence of numbers which is first strictly increasing then after a point strictly decreasing
 
 //Input :  arr[] = {-3, 9, 8, 20, 17, 5, 1};
+//{-3, 9, 8, 20,30,40, 17, 5, 1, 0}
 //key = 20
 //Output : Found at index 3
 

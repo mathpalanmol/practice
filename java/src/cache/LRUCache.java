@@ -81,7 +81,7 @@ public class LRUCache {
 	 
 	            }else{
 	                setHead(created);
-	            }    
+	            }  
 	 
 	            map.put(key, created);
 	        }

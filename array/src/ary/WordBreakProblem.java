@@ -31,7 +31,7 @@ public class WordBreakProblem {
 		// it will start with first character a
 		for (int i = 0; i < n; i++) {
 			
-			if (dictionary.contains(words.substring(0, i + 1))) {
+			if (dictionary.contains(words.substring(0, i + 1))) { //0
 				System.out.println("outer: " + words.substring(0, i + 1));
 				validWords[i] = true;
 				System.out.println("true1");
@@ -46,7 +46,7 @@ public class WordBreakProblem {
 
 				for (int j = i + 1; j < n; j++) {
 					if (dictionary.contains(words.substring(i + 1, j + 1))) {
-						validWords[j] = true;
+						validWords[j] = true; //j
 						System.out.println("true2");
 					}
 					System.out.println("Inner: " + words.substring(i + 1, j + 1));

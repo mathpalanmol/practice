@@ -13,6 +13,39 @@ public class BstNodeSwap {
 		}
 	}
 
+	
+	
+//	 void correctBST( Node root ) 
+//	    { 
+//	        // Initialize pointers needed  
+//	        // for correctBSTUtil() 
+//	        first = middle = last = prev = null; 
+//	  
+//	        // Set the poiters to find out  
+//	        // two nodes 
+//	        correctBSTUtil( root ); 
+//	  
+//	        // Fix (or correct) the tree 
+//	        if( first != null && last != null ) 
+//	        { 
+//	            int temp = first.data; 
+//	            first.data = last.data; 
+//	            last.data = temp;  
+//	        } 
+//	        // Adjacent nodes swapped 
+//	        else if( first != null && middle != 
+//	                                    null )  
+//	        { 
+//	            int temp = first.data; 
+//	            first.data = middle.data; 
+//	            middle.data = temp; 
+//	        } 
+//	  
+//	        // else nodes have not been swapped, 
+//	        // passed tree is really BST. 
+//	    }
+	
+	
 	Node<Integer> root = null;
 
 	public static void main(String[] args) {
@@ -21,22 +54,23 @@ public class BstNodeSwap {
 		ref.inOrder(ref.root);
 		ref.fixBst(ref.root);
 		System.out.println();
-		if(ref.n1 != null)
-		System.out.println(ref.n1.data);
-		if(ref.n2 != null)
-		System.out.println(ref.n2.data);
+		if (ref.n1 != null)
+			System.out.println(ref.n1.data);
+		if (ref.n2 != null)
+			System.out.println(ref.n2.data);
 	}
 
 	// do the inorder scan. while doing so keep track of previous element.
 	// n1 and n2 are two misplaced nodes that has to be identified.
 	// if scanned value is less than pre value
-	// capture the previous : for first time and current scanned node for second time. y? 
-	// 10, 25, 35, 30, 40, 50, 75, 100, 120, 
-	//35
-	//30
-    //	10, 25, 100, 35, 40, 50, 75, 30, 120, 
-    //	100
-    //	30
+	// capture the previous : for first time and current scanned node for second
+	// time. y?
+	// 10, 25, 35, 30, 40, 50, 75, 100, 120,
+	// 35
+	// 30
+	// 10, 25, 100, 35, 40, 50, 75, 30, 120,
+	// 100
+	// 30
 	private void inOrder(Node<Integer> root) {
 		if (root == null)
 			return;
@@ -47,6 +81,7 @@ public class BstNodeSwap {
 
 	Node<Integer> n1 = null;
 	Node<Integer> n2 = null;
+	Node<Integer> mid = null;
 	Node<Integer> pre = null;
 
 	void fixBst(Node<Integer> root) {
@@ -55,9 +90,11 @@ public class BstNodeSwap {
 
 		fixBst(root.left);
 		if (pre != null && root.data < pre.data) {
-			if (n1 == null)
+			if (n1 == null) {
 				n1 = pre;
-			n2 = root;
+				mid = root;
+			} else
+				n2 = root;
 		}
 		pre = root; // correct location to track previous
 		fixBst(root.right);
@@ -78,6 +115,7 @@ public class BstNodeSwap {
 		root.right.left = new Node<Integer>(75);
 		root.right.right = new Node<Integer>(120);
 	}
+
 	// adjacent misplaced nodes 30,35
 	private void createTreev2() {
 		if (root == null) {

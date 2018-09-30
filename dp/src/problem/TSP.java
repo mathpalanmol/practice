@@ -18,11 +18,11 @@ public class TSP {
 	public static void main(String[] args) {
 
 		// initialize dp array with -1.
-		for(int i=0;i<(1<<n);i++){
-	        for(int j=0;j<n;j++){
-	            dp[i][j] = -1;
-	        }
-	    }
+	//		for(int i=0;i<(1<<n);i++){
+	//	        for(int j=0;j<n;j++){
+	//	            dp[i][j] = -1;
+	//	        }
+	//	    }
 		int cost = tsp(1, 0);
 		System.out.println(cost);
 	}
@@ -32,9 +32,9 @@ public class TSP {
 		if (mask == VISITED_ALL) {
 			return dist[pos][0];
 		}
-		if (dp[mask][pos] != -1) {
-			return dp[mask][pos];
-		}
+//		if (dp[mask][pos] != -1) {
+//			return dp[mask][pos];
+//		}
 
 		// Now from current node, we will try to go to every other node and take the min
 		// ans
@@ -50,6 +50,7 @@ public class TSP {
 			}
 
 		}
-		return dp[mask][pos] = ans;
+//		return dp[mask][pos] = ans;
+		return ans;
 	}
 }

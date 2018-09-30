@@ -7,7 +7,7 @@ public class BinarySearch {
 		int[] ary = { 2, 4, 6, 8, 10, 12, 14, 16, 18, 20 };
 		boolean output = binarySearch(ary, 0, ary.length - 1, 3);
         System.out.println(output);
-	}
+	}	
 
 	private static boolean binarySearch(int[] ary, int l, int h, int key) {
 		System.out.println("low: " + l + " high " + h);
