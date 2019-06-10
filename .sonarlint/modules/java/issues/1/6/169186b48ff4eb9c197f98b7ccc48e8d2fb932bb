@@ -1,0 +1,14 @@
+
+~squid:S4065"FReplace this anonymous class with a call to "ThreadLocal.withInitial".(“ûÛ‚ÿÿÿÿÿ8Ûæ÷µç,H$RMINORZ
+CODE_SMELL
+~squid:CommentedOutCodeLine
+"<This block of commented-out lines of code should be removed.(ÒÖø¤8Ûæ÷µç,H%RMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥øút8šÏ«µç,H&RMAJORZ
+CODE_SMELL
+ƒsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(éØ»Úûÿÿÿÿ8Ûæ÷µç,H'RMAJORZ
+CODE_SMELL
+‡squid:S00120"ZRename this package name to match the regular expression '^[a-z_]+(\.[a-z_][a-z0-9_]*)*$'.(¼ìîÑH(RMINORZ
+CODE_SMELL
+ƒsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(òä¯Öýÿÿÿÿ8šÏ«µç,H)RMAJORZ
+CODE_SMELL

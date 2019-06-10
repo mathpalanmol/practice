@@ -1,0 +1,34 @@
+
+Isquid:S1643 "Use a StringBuilder instead.(–šÍíH–FRMINORZ
+CODE_SMELL
+¸%squid:RedundantThrowsDeclarationCheck"qRemove the declaration of thrown exception 'java.text.ParseException', as it cannot be thrown from method's body.(ˆ…­ÅH—FRMINORZ
+CODE_SMELL
+‹squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(×™ñúÿÿÿÿH˜FRMINORZ
+CODE_SMELL
+}squid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(µÇÒøÿÿÿÿH™FRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLine6"<This block of commented-out lines of code should be removed.(µÇÒøÿÿÿÿHšFRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLineA"<This block of commented-out lines of code should be removed.(¬§™…øÿÿÿÿH›FRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLineI"<This block of commented-out lines of code should be removed.(ñÌ¬¯úÿÿÿÿHœFRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLineV"<This block of commented-out lines of code should be removed.(’”ÕÏúÿÿÿÿHFRMAJORZ
+CODE_SMELL
+xsquid:CommentedOutCodeLineb"<This block of commented-out lines of code should be removed.(°ïÁàHFRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLinef"<This block of commented-out lines of code should be removed.(¬§™…øÿÿÿÿHŸFRMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ø‚úÓşÿÿÿÿH FRMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(³ÄéÇúÿÿÿÿH¡FRMAJORZ
+CODE_SMELL
+e
+squid:S106""9Replace this use of System.out or System.err by a logger.(¢àóÄH¢FRMAJORZ
+CODE_SMELL
+Wsquid:S1481"*Remove this unused "line2" local variable.(Ê‚›‚H£FRMINORZ
+CODE_SMELL
+fsquid:S1854"9Remove this useless assignment to local variable "line2".(Ê‚›‚H¤FRMAJORZ
+CODE_SMELL

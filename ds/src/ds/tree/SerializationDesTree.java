@@ -124,7 +124,7 @@ public class SerializationDesTree {
 				Node root = new Node(value);
 				int rootIndex = getIndex(inOrderArray, value);
 				root.lchild = deserialize(inOrderArray, preOrderArray, low, rootIndex - 1, index);
-				root.lchild = deserialize(inOrderArray, preOrderArray, rootIndex + 1, high, index);
+				root.rchild = deserialize(inOrderArray, preOrderArray, rootIndex + 1, high, index);
 			}
 			return root;
 

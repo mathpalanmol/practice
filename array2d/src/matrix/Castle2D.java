@@ -16,7 +16,7 @@ import java.util.Scanner;
 
 //3
 //.X.
-//.X.
+//.X.```
 //...
 
 //Note: You can move the castle from cell (a, b)  to any (c,d)  in a single step if there is a straight horizontal line or a straight vertical line between 

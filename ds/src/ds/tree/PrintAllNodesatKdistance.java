@@ -111,7 +111,7 @@ public class PrintAllNodesatKdistance
          // Else go to right subtree and print all k-dl-2 distant nodes
          // Note that the right child is 2 edges away from left child
          else
-             printkdistanceNodeDown(Node2.right, k - dl - 2);
+             printkdistanceNodeDown(Node2.right, k - (dl + 2));
 
          // Add 1 to the distance and return value for parent calls
          return 1 + dl;
@@ -129,7 +129,7 @@ public class PrintAllNodesatKdistance
              System.out.println("");
          } 
          else
-             printkdistanceNodeDown(Node2.left, k - dr - 2);
+             printkdistanceNodeDown(Node2.left, k - (dr + 2));
          return 1 + dr;
      }
 

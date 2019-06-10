@@ -56,6 +56,7 @@ public class FindStrictlyIncAndDec {
 	static int findBitonicPoint(int arr[], int n) {
 		int low = 0, high = n - 1;
 		while (low <= high) {
+			// need to cheeck with different input if below conditions are really required.
 			if (low == high) // for one element
 				return arr[low];
 			if (high == low + 1) // for two element... otherwise u need to check edge condition in below 

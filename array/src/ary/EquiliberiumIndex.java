@@ -1,6 +1,7 @@
 package ary;
 
-//Equilibrium index of an array is an index such that the sum of elements at lower indexes is equal to the sum of elements at higher indexes. For example, in an array A:
+//Equilibrium index of an array is an index such that the sum of elements at lower indexes 
+// is equal to the sum of elements at higher indexes. For example, in an array A:
 //
 //A[0] = -7, A[1] = 1, A[2] = 5, A[3] = 2, A[4] = -4, A[5] = 3, A[6]=0
 //

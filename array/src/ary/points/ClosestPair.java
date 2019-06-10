@@ -1,4 +1,4 @@
-package ary;
+package ary.points;
 
 import java.util.*;
 

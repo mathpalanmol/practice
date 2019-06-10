@@ -1,0 +1,12 @@
+
+}squid:S1192"HDefine a constant instead of duplicating this literal "mathpal" 3 times.(êıçøÿÿÿÿH’LRCRITICALZ
+CODE_SMELL
+†squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(§ïó·H“LRMINORZ
+CODE_SMELL
+†squid:S2293""YReplace the type specification in this constructor call with the diamond operator ("<>").(à¹H”LRMINORZ
+CODE_SMELL
+†squid:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(õÃØ‚H•LRMINORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(¬Š÷H–LRMAJORZ
+CODE_SMELL

@@ -33,7 +33,7 @@ public class WordBreakProblem {
 			
 			if (dictionary.contains(words.substring(0, i + 1))) { //0
 				System.out.println("outer: " + words.substring(0, i + 1));
-				validWords[i] = true;
+				validWords[i] = true;//i
 				System.out.println("true1");
 			}
 
@@ -45,7 +45,7 @@ public class WordBreakProblem {
 			if (validWords[i] == true) {
 
 				for (int j = i + 1; j < n; j++) {
-					if (dictionary.contains(words.substring(i + 1, j + 1))) {
+					if (dictionary.contains(words.substring(i + 1, j + 1))) {// i+1 is where we left above.
 						validWords[j] = true; //j
 						System.out.println("true2");
 					}

@@ -1,0 +1,75 @@
+
+esquid:S1197!"8Move the array designator from the variable to the type.(‚öŸÃH½bRMINORZ
+CODE_SMELL
+vsquid:S1192-"FDefine a constant instead of duplicating this literal "hello" 3 times.(È·šH¾bRCRITICALZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(ò°ÿºH¿bRMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(ùì–ÅıÿÿÿÿHÀbRMAJORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(§›´‘HÁbRMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(Ä²‰ôüÿÿÿÿHÂbRMAJORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(·Ğ “HÃbRMAJORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(ØÈ‰ıHÄbRMAJORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(úÔšHÅbRMAJORZ
+CODE_SMELL
+e
+squid:S106$"9Replace this use of System.out or System.err by a logger.(Î’ÛÚHÆbRMAJORZ
+CODE_SMELL
+d
+squid:S106%"9Replace this use of System.out or System.err by a logger.(œ™ÀHÇbRMAJORZ
+CODE_SMELL
+e
+squid:S106&"9Replace this use of System.out or System.err by a logger.(ëë¢ØHÈbRMAJORZ
+CODE_SMELL
+e
+squid:S106)"9Replace this use of System.out or System.err by a logger.(ƒ±ŒÍHÉbRMAJORZ
+CODE_SMELL
+j
+squid:S106*"9Replace this use of System.out or System.err by a logger.(ÓîøêÿÿÿÿÿHÊbRMAJORZ
+CODE_SMELL
+j
+squid:S106+"9Replace this use of System.out or System.err by a logger.(”‚—ÖøÿÿÿÿHËbRMAJORZ
+CODE_SMELL
+d
+squid:S1062"9Replace this use of System.out or System.err by a logger.(ëÀÛtHÌbRMAJORZ
+CODE_SMELL
+e
+squid:S1064"9Replace this use of System.out or System.err by a logger.(õŞ°¦HÍbRMAJORZ
+CODE_SMELL
+j
+squid:S1065"9Replace this use of System.out or System.err by a logger.(Ù¿ÈæıÿÿÿÿHÎbRMAJORZ
+CODE_SMELL
+e
+squid:S1066"9Replace this use of System.out or System.err by a logger.(¿†ÜŸHÏbRMAJORZ
+CODE_SMELL
+e
+squid:S1068"9Replace this use of System.out or System.err by a logger.(ıĞÅHĞbRMAJORZ
+CODE_SMELL
+j
+squid:S1069"9Replace this use of System.out or System.err by a logger.(şÄ¢µùÿÿÿÿHÑbRMAJORZ
+CODE_SMELL
+j
+squid:S106="9Replace this use of System.out or System.err by a logger.(ß‹œ½ıÿÿÿÿHÒbRMAJORZ
+CODE_SMELL
+j
+squid:S106B"9Replace this use of System.out or System.err by a logger.(´‹¹öşÿÿÿÿHÓbRMAJORZ
+CODE_SMELL
+e
+squid:S106E"9Replace this use of System.out or System.err by a logger.(¡ó¸éHÔbRMAJORZ
+CODE_SMELL
+Rsquid:S2129#" Remove this "String" constructor(ÿå¥ëûÿÿÿÿHÕbRMAJORZ
+CODE_SMELL
+Rsquid:S21290" Remove this "String" constructor(İ¯·şøÿÿÿÿHÖbRMAJORZ
+CODE_SMELL

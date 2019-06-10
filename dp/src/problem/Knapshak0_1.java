@@ -27,7 +27,7 @@ public class Knapshak0_1 {
 		for (int i = 1; i < auxAry.length; i++) {
 			for (int j = 1; j < auxAry[0].length; j++) {
 
-				int sol = auxAry[i - 1][j];// assume current weight doesn't contribute... anyways
+				int sol = auxAry[i - 1][j];// above cell value, assume current weight doesn't contribute... anyways
 				                           // we need this value for sum
 				int diff = j - weights[i-1]; // j is equivalent to total weight for this iteration, or you can keep a
 											// separate array from 0 to capacity. here j is always equal to this value

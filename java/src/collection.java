@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.management.RuntimeErrorException;
+public class collection implements Cloneable {
 
-public class collection {
-
-	public static void main(String[] args) {
+	public static void main(String[] args) throws CloneNotSupportedException {
+		collection obj = new collection();
+		obj.clone();
 //		Map<String, Integer> map = new HashMap<String, Integer>();
 //		
 //		 map.put("sd", 1);
@@ -13,7 +13,7 @@ public class collection {
 //		 map.put("gh", 3);
 //		 map.put("bs", 4);
 //		//
-//		// map.put(5, 4);
+//		// map.put(5, 4);s
 //		// map.put(6, 4);
 //		// map.put(7, 4);
 //		// map.put(8, 4);
@@ -42,10 +42,10 @@ public class collection {
 //		 q.offer(5);
 //		 while(q.size() != 0)
 //			 System.out.println();
-		 m1(null); // null.intValue(); in unboxing
-		 Number numb = new Integer(2);
-		 List<Number> list = new ArrayList<Number>();
-		 list.add(numb);
+//		 m1(null); // null.intValue(); in unboxing
+//		 Number numb = new Integer(2);
+//		 List<Number> list = new ArrayList<Number>();
+//		 list.add(numb);
 
 	}
 	

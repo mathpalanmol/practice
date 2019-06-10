@@ -32,7 +32,7 @@ public class ClosestK {
 					return (low + 1);
 			} else {
 				int dif1 = ary[low] - k; // k is small
-				int dif2 = ary[low - 1] - k;
+				int dif2 = k- ary[low - 1]; // 
 				if (dif1 < dif2)
 					return low;
 				else

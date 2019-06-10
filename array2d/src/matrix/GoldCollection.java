@@ -1,4 +1,4 @@
-package cabfinder;
+package matrix;
 
 //Given a gold mine of n*m dimensions. 
 //Each field in this mine contains an integer which is the amount of gold in tons. 
@@ -29,11 +29,11 @@ public class GoldCollection {
 			System.out.println();
 		}
 	}
-
+// Fill: right to left column wise... ie. nxt last col to first col.
 	static void collectGold() {
-		for (int j = colSize - 1; j >= 0; j--) {
+		for (int j = colSize - 2; j >= 0; j--) {
 			for (int i = 0; i < rowSize; i++) {
-				int right = (i + 1) == rowSize || (j + 1) == colSize ? 0 : ary[i][j + 1];
+				int right = (j + 1) == colSize ? 0 : ary[i][j + 1];
 				int rdown = (i + 1) == rowSize || (j + 1) == colSize ? 0 : ary[i + 1][j + 1];
 				int rup = (i - 1) < 0 || (j + 1) == colSize ? 0 : ary[i - 1][j + 1];
 				int mValue = Math.max(Math.max(right, rdown), rup);

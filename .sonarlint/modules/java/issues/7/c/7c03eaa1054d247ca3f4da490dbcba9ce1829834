@@ -1,0 +1,7 @@
+
+Œsquid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(ÛÚŸøÿÿÿÿHî„RMINORZ
+CODE_SMELL
+usquid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(›â Hï„RMAJORZ
+CODE_SMELL
+o
+squid:S899":Do something with the "boolean" value returned by "offer".(«¡çîûÿÿÿÿHğ„RMINORZVULNERABILITY

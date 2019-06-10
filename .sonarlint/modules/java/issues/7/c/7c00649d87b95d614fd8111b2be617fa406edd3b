@@ -1,0 +1,12 @@
+
+`squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¯Ä²€â,Hù„RMINORZVULNERABILITY
+Wsquid:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ8¯Ä²€â,Hú„RBLOCKERZBUG
+tsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¯Ä²€â,Hû„RMAJORZBUG
+]squid:S1604"(Make this anonymous inner class a lambda(Á´½ä8šë¦€â,Hü„RMAJORZ
+CODE_SMELL
+`squid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿ8¯Ä²€â,Hý„RMINORZVULNERABILITY
+]squid:S1604"(Make this anonymous inner class a lambda(²óŒÒ8šë¦€â,Hþ„RMAJORZ
+CODE_SMELL
+Wsquid:S2189
+""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿ8¯Ä²€â,Hÿ„RBLOCKERZBUG
+tsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€8¯Ä²€â,H€…RMAJORZBUG

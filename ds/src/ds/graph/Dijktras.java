@@ -74,7 +74,7 @@ public class Dijktras {
 			System.out.println("End " + end.key);
 			if (start.key == end.key)
 				return start.tempweight;
-			List<Edge> edges = start.getList();
+			List<Edge> edges = start.getList();// getting adj
 			if (edges.size() > 0) {
 				for (Edge edge : edges) {
 					

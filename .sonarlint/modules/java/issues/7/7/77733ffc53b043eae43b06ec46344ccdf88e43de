@@ -1,0 +1,29 @@
+
+Ysquid:S1444")Make this "public static ASC" field final(º•Ý†HÝ~RMINORZVULNERABILITY
+{squid:S3008"NRename this field "ASC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(º•Ý†HÞ~RMINORZ
+CODE_SMELL
+|squid:S3008"ORename this field "DESC" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ŸúÅ¨Hß~RMINORZ
+CODE_SMELL
+‹squid:S2293'"YReplace the type specification in this constructor call with the diamond operator ("<>").(Ê´Ü•üÿÿÿÿHà~RMINORZ
+CODE_SMELL
+‹squid:S22936"YReplace the type specification in this constructor call with the diamond operator ("<>").(ŠØË±ýÿÿÿÿHá~RMINORZ
+CODE_SMELL
+Zsquid:S1444"*Make this "public static DESC" field final(ŸúÅ¨Hâ~RMINORZVULNERABILITY
+‹squid:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(¸¨¹áýÿÿÿÿHã~RMINORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(´“º¿Hä~RMAJORZ
+CODE_SMELL
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(‹¶§…úÿÿÿÿHå~RMAJORZ
+CODE_SMELL
+j
+squid:S106@"9Replace this use of System.out or System.err by a logger.(•ã¼„øÿÿÿÿHæ~RMAJORZ
+CODE_SMELL
+–"squid:ClassVariableVisibilityCheck"OMake ASC a static final constant or non-public and provide accessors if needed.(º•Ý†Hç~RMINORZVULNERABILITY
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(Í‘¢»ùÿÿÿÿHè~RMAJORZ
+CODE_SMELL
+Usquid:S1604*"(Make this anonymous inner class a lambda(Ä›ÑÿHé~RMAJORZ
+CODE_SMELL
+—"squid:ClassVariableVisibilityCheck"PMake DESC a static final constant or non-public and provide accessors if needed.(ŸúÅ¨Hê~RMINORZVULNERABILITY

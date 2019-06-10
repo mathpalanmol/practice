@@ -21,9 +21,12 @@ public class Graph {
 	public static void main(String[] args) {
 		Graph graph1 = new Graph();
 		Node start = graph1.create();
-	    graph1.bfs(start);
-	    System.out.println();
-		graph1.dfs(start);
+		graph1.bfs(start);
+		System.out.println();
+		graph1.bfs1(start);
+		// graph1.dfs(start);
+		// graph1.set = new HashSet<Node>();
+		// graph1.dfs1(start);
 	}
 
 	// return start node.... it can be any node... in our example it's node 1
@@ -49,25 +52,15 @@ public class Graph {
 		nodeLookUp.put(9, n8);
 		// create 3X3 matrix. moves allowed: left, right, up and down
 		setEdge(n1, n2);
-		setEdge(n1, n4);
-		setEdge(n2, n3);
-		setEdge(n3, n6);
+		setEdge(n1, n3);
+		setEdge(n2, n4);
 		setEdge(n2, n5);
-		setEdge(n4, n1);
-		setEdge(n4, n5);
+
+		setEdge(n4, n6);
 		setEdge(n4, n7);
-		setEdge(n5, n6);
-		setEdge(n5, n8);
-		setEdge(n5, n4);
-		setEdge(n5, n2);
-		setEdge(n7, n8);
-		setEdge(n7, n4);
-		setEdge(n6, n3);
-		setEdge(n6, n5);
-		setEdge(n6, n9);
-		setEdge(n8, n9);
-		setEdge(n8, n7);
-		setEdge(n8, n5);
+
+		setEdge(n5, n7);
+		setEdge(n3, n5);
 
 		return n1;
 
@@ -84,6 +77,8 @@ public class Graph {
 		source.adjacents.add(dest); // directed Graph // one way
 	}
 
+	// level by level
+	// application: shortest distance between two nodes.
 	public void bfs(Node start) {
 		Queue<Node> q = new LinkedList<Node>();
 		HashSet<Node> visited = new HashSet<Node>();
@@ -100,22 +95,35 @@ public class Graph {
 		}
 	}
 
-	HashSet<Node> set = new HashSet<Node>();
-
-	public void dfs(Node start) {
-		if (start == null)
-			return;
-		else {
-			if (!set.contains(start)) {
-				set.add(start);
-				System.out.print(start.key + " --> ");
-				for (Node node : start.adjacents) {
-					dfs(node);
-				}
-
+	public void bfs1(Node start) {
+		Queue<Node> q = new LinkedList<Node>();
+		HashSet<Node> visited = new HashSet<Node>();
+		q.add(start);
+		visited.add(start);
+		while (!q.isEmpty()) {
+			Node current = q.poll();
+			System.out.print(current.key + " --> ");
+			for (Node node : current.adjacents) {
+				if (!visited.contains(node)) {
+					visited.add(node);
+					q.add(node);
+					}
 			}
 		}
-
 	}
 
+	HashSet<Node> set = new HashSet<Node>();
+
+	// practice
+	public void dfs1(Node start) {
+		if (start == null)
+			return;
+		System.out.print(start.key + ",");
+		set.add(start);
+		for (Node ref : start.adjacents) {
+			if (!set.contains(ref)) {
+				dfs1(ref);
+			}
+		}
+	}
 }

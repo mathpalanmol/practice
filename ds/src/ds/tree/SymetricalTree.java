@@ -123,6 +123,7 @@ public class SymetricalTree {
 		return isSymmetric(root, root);
 	}
     // we are checking mirror image.. just make sure
+	// remember to check root element.
 	private boolean isSymmetric(TreeNode root1, TreeNode root2) {
 		if (root1 == null && root2 == null)
 			return true;

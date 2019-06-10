@@ -89,7 +89,7 @@ public class BstNodeSwap {
 			return;
 
 		fixBst(root.left);
-		if (pre != null && root.data < pre.data) {
+		if (pre != null && pre.data > root.data ) {
 			if (n1 == null) {
 				n1 = pre;
 				mid = root;

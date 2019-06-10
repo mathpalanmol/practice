@@ -1,0 +1,11 @@
+
+xsquid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ˆƒŠÖHÜRMAJORZ
+CODE_SMELL
+e
+squid:S106"9Replace this use of System.out or System.err by a logger.(‘Ó¥½HÝRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLine'"<This block of commented-out lines of code should be removed.(úé–‰ûÿÿÿÿHÞRMAJORZ
+CODE_SMELL
+lsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€HßRMAJORZBUG
+Xsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿHàRMINORZVULNERABILITY
+[squid:S2446"0"notify" may not wake up the appropriate thread.(ÙØŽüÿÿÿÿHáRMAJORZBUG

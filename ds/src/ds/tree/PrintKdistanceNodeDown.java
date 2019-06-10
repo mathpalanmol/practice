@@ -35,12 +35,12 @@ public class PrintKdistanceNodeDown
 
  void printKDistant(Node1 Node1, int k) 
  {
-     if (Node1 == null)
+     if (Node1 == null || k < 0)
          return;
      if (k == 0) 
      {
          System.out.print(Node1.data + " ");
-         return;
+         return; //imp
      } 
      else
      {

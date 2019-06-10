@@ -46,10 +46,14 @@ public class ShortestPath2DArrayBfs {
 		bolAry[sr][sc] = true;
 		q.add(null);
 		while (!q.isEmpty()) {
-			Node nod = q.poll();//root element is poped and count is 1 by default, it didn't seems right at first place but it's all about in which level we are traversing after popping beacause if we find element there we need to return the count and no time to increment as per below logic. ie poped node.children which are if any one step ahead. that's why count = 1; 
+			Node nod = q.poll();//root element is popped and count is 1 by default, 
+			//it didn't seems right at first place but it's all about in which level we are traversing after popping because 
+			//if we find element there we need to return the count and no time to increment as per below logic. 
+			//ie poped node.children which are if any one step ahead. that's why count = 1; 
 			if (nod == null){//level end; Imp#; here we increment the level after traversing, that's why we marked count = 1;
 				q.add(null);//add end to the q; this null will be added after the neighbours of level just ended.
-				count++;//count will be advanced before moving to next level. so that if we find target element, we need not to increment the count. first level is considered zero and it's logically correct. if you are at source coordinates then the level should be zero.
+				count++;//count will be advanced before moving to next level. so that if we find target element, we need not to increment the count. 
+				//first level is considered zero and it's logically correct. if you are at source coordinates then the level should be zero.
 				continue;
 				
 			}else {

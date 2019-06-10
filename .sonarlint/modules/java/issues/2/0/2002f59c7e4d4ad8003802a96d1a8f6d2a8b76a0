@@ -1,0 +1,39 @@
+
+„squid:CommentedOutCodeLine,"<This block of commented-out lines of code should be removed.(×æ€ÿÿÿÿÿ8¸°»Æð,H¼RMAJORZ
+CODE_SMELL
+Osquid:S2189*""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿH“RBLOCKERZBUG
+Osquid:S2189""Add an end condition to this loop.(˜ïˆžÿÿÿÿÿH‘RBLOCKERZBUG
+squid:CommentedOutCodeLineK"<This block of commented-out lines of code should be removed.(Ÿ•¿8¸°»Æð,H¾RMAJORZ
+CODE_SMELL
+lsquid:S21425"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€H¥RMAJORZBUG
+Xsquid:S1148""#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿHRMINORZVULNERABILITY
+„squid:CommentedOutCodeLineH"<This block of commented-out lines of code should be removed.(ÝÃ¾öùÿÿÿÿ8¸°»Æð,H½RMAJORZ
+CODE_SMELL
+squid:CommentedOutCodeLineM"<This block of commented-out lines of code should be removed.(©«š‘8¸°»Æð,H¿RMAJORZ
+CODE_SMELL
+½%squid:RedundantThrowsDeclarationCheckC"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(º™Ú7H¢RMINORZ
+CODE_SMELL
+„squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(ë§ç¶ûÿÿÿÿ8¸°»Æð,HºRMAJORZ
+CODE_SMELL
+jsquid:S11356"2Complete the task associated to this TODO comment.(ÕÌ®þÿÿÿÿ8¸°»Æð,HÁRINFOZ
+CODE_SMELL
+„squid:CommentedOutCodeLine0"<This block of commented-out lines of code should be removed.(×æ€ÿÿÿÿÿ8¸°»Æð,H»RMAJORZ
+CODE_SMELL
+squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(«•ŒÑ8¸°»Æð,H¸RMAJORZ
+CODE_SMELL
+e
+squid:S106+"9Replace this use of System.out or System.err by a logger.(îÕë°H¤RMAJORZ
+CODE_SMELL
+jsquid:S1135!"2Complete the task associated to this TODO comment.(ÕÌ®þÿÿÿÿ8¸°»Æð,HÀRINFOZ
+CODE_SMELL
+vsquid:S2094="BRemove this empty class, write its code or make it an "interface".(‹çÜº8¸°»Æð,H·RMINORZ
+CODE_SMELL
+Vsquid:S2446"0"notify" may not wake up the appropriate thread.(éÊîƒHñRMAJORZBUG
+lsquid:S2142 "FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€HžRMAJORZBUG
+Xsquid:S11487"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿH’RMINORZVULNERABILITY
+j
+squid:S106"9Replace this use of System.out or System.err by a logger.(‡”×æýÿÿÿÿH›RMAJORZ
+CODE_SMELL
+squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(íùÝ©8¸°»Æð,H¹RMAJORZ
+CODE_SMELL
+rsquid:S22763"CReplace the call to "Thread.sleep(...)" with a call to "wait(...)".(¯ú™ú8¨óÙÊð,HòRBLOCKERZBUG

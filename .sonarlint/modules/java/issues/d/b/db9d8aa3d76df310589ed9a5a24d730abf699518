@@ -1,0 +1,16 @@
+
+msquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€Hñ„RMAJORZBUG
+jsquid:S2274":Remove this call to "wait" or move it into a "while" loop.(ç£ŠMHò„RCRITICALZ
+CODE_SMELL
+\squid:S2446"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿHó„RMAJORZBUG
+f
+squid:S106
+"9Replace this use of System.out or System.err by a logger.(Ëøì¸Hô„RMAJORZ
+CODE_SMELL
+Vsquid:S1604#"(Make this anonymous inner class a lambda(£¬‘òHõ„RMAJORZ
+CODE_SMELL
+_squid:S1264	",Replace this "for" loop with a "while" loop.(»˜Õ™ûÿÿÿÿHö„RMINORZ
+CODE_SMELL
+Usquid:S1604"(Make this anonymous inner class a lambda(£·®H÷„RMAJORZ
+CODE_SMELL
+Ysquid:S1148"#Use a logger to log this exception.(€ÉÔ…ýÿÿÿÿHø„RMINORZVULNERABILITY

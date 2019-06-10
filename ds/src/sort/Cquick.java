@@ -1,5 +1,7 @@
 package sort;
 
+
+//98765432    1 : o(n2)
 import java.util.Arrays;
 
 //The Quick Sort is normally the fastest sorting algorithm
@@ -11,7 +13,7 @@ import java.util.Arrays;
 
 public class Cquick {
 
-	private static int[] theArray = { 1, 25, 3, 4, 5 };
+	private static int[] theArray = { 1, 3, 4, 5, 25 };
 
 	private static int arraySize;
 
@@ -27,7 +29,7 @@ public class Cquick {
 
 	public static void quickSort(int left, int right) {
 
-		if (right - left <= 0)//left>=right
+		if (left>=right)//left>=right
 			return; // Everything is sorted
 
 		else {
@@ -47,16 +49,18 @@ public class Cquick {
 	public static int partitionArray(int left, int right, int pivot) {//pivot is the last elment in the array, left-->0,
 		//right -->pointer to the last element;
 
-		int leftPointer = left - 1;
+		int leftPointer = left;
 
-		int rightPointer = right;
+		int rightPointer = right-1;
 
 		while (true) {
 
-			while (theArray[++leftPointer] < pivot)
+			while (theArray[leftPointer] < pivot)
+				leftPointer++;
 				;
 
-			while (rightPointer > 0 && theArray[--rightPointer] > pivot)
+			while (rightPointer > 0 && theArray[rightPointer] > pivot)
+				rightPointer--;
 				;
 
 			if (leftPointer >= rightPointer) {

@@ -1,0 +1,57 @@
+
+Ÿ squid:ForLoopCounterChangedCheck<"XRefactor the code in order to not assign to this loop counter from within the loop body.(ĞŒøŒúÿÿÿÿHøERMAJORZ
+CODE_SMELL
+½%squid:RedundantThrowsDeclarationCheck	"wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(º™Ú7HùERMINORZ
+CODE_SMELL
+}squid:CommentedOutCodeLineC"<This block of commented-out lines of code should be removed.(Ç’şƒøÿÿÿÿHúERMAJORZ
+CODE_SMELL
+xsquid:CommentedOutCodeLineI"<This block of commented-out lines of code should be removed.(†€éˆHûERMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLineQ"<This block of commented-out lines of code should be removed.(áíüÈùÿÿÿÿHüERMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLineS"<This block of commented-out lines of code should be removed.(¸³ÛÿÿÿÿÿHıERMAJORZ
+CODE_SMELL
+xsquid:CommentedOutCodeLinee"<This block of commented-out lines of code should be removed.(†€éˆHşERMAJORZ
+CODE_SMELL
+xsquid:CommentedOutCodeLinen"<This block of commented-out lines of code should be removed.(öØ®¿HÿERMAJORZ
+CODE_SMELL
+xsquid:CommentedOutCodeLinep"<This block of commented-out lines of code should be removed.(†€éˆH€FRMAJORZ
+CODE_SMELL
+}squid:CommentedOutCodeLinew"<This block of commented-out lines of code should be removed.(éØ»ÚûÿÿÿÿHFRMAJORZ
+CODE_SMELL
+e
+squid:S106
+"9Replace this use of System.out or System.err by a logger.(¹ÏßH‚FRMAJORZ
+CODE_SMELL
+j
+squid:S1061"9Replace this use of System.out or System.err by a logger.(›Óğ°şÿÿÿÿHƒFRMAJORZ
+CODE_SMELL
+csquid:S1135"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿH„FRINFOZ
+CODE_SMELL
+csquid:S11356"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿH…FRINFOZ
+CODE_SMELL
+csquid:S1135@"2Complete the task associated to this TODO comment.(ÕÌ®şÿÿÿÿH†FRINFOZ
+CODE_SMELL
+^squid:S1135H"2Complete the task associated to this TODO comment.(ÉÚõÎH‡FRINFOZ
+CODE_SMELL
+^squid:S1135d"2Complete the task associated to this TODO comment.(ÉÚõÎHˆFRINFOZ
+CODE_SMELL
+^squid:S1135o"2Complete the task associated to this TODO comment.(ÉÚõÎH‰FRINFOZ
+CODE_SMELL
+Usquid:S2446K"0"notify" may not wake up the appropriate thread.(ƒ’«LHŠFRMAJORZBUG
+‚squid:S3776,"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(“–ışH‹FRCRITICALZ
+CODE_SMELL
+lsquid:S2142"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€HŒFRMAJORZBUG
+lsquid:S21425"FEither re-interrupt this method or rethrow the "InterruptedException".(ä ¹€HFRMAJORZBUG
+lsquid:S2142?"FEither re-interrupt this method or rethrow the "InterruptedException".(‘í†HFRMAJORZBUG
+jsquid:S22744":Remove this call to "wait" or move it into a "while" loop.(ŠäHFRCRITICALZ
+CODE_SMELL
+jsquid:S2274>":Remove this call to "wait" or move it into a "while" loop.(ŠäHFRCRITICALZ
+CODE_SMELL
+qsquid:S33582"DExtract this nested ternary operation into an independent statement.(Œõù¤H‘FRMAJORZ
+CODE_SMELL
+Xsquid:S1148"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿH’FRMINORZVULNERABILITY
+Xsquid:S11487"#Use a logger to log this exception.(€ÉÔ…ıÿÿÿÿH“FRMINORZVULNERABILITY
+Xsquid:S1148A"#Use a logger to log this exception.(ÂşÿâûÿÿÿÿH”FRMINORZVULNERABILITY
+gsquid:S1161":Add the "@Override" annotation above this method signature(“–ışH•FRMAJORZ
+CODE_SMELL

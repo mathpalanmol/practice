@@ -5,7 +5,7 @@ import java.util.concurrent.BlockingQueue;
 public class PoolThread extends Thread {
 
     private BlockingQueue<Runnable> taskQueue = null;
-    private boolean       isStopped = false;
+    private boolean isStopped = false;
 
     public PoolThread(BlockingQueue<Runnable> queue){
         taskQueue = queue;

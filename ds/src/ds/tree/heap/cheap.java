@@ -1,5 +1,5 @@
 package ds.tree.heap;
-
+// http://www.techiedelight.com/min-heap-max-heap-implementation-in-java/
 public class cheap {
 
 	static int[] ary = { 1, 7, 3, 4, 3, 6, 2, 9, 10 };

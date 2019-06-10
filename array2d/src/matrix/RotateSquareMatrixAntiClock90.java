@@ -28,7 +28,7 @@ package matrix;
 // the swapping order... for clock-wise do the swapping in clock-wise order.
 //http://javabypatel.blogspot.com/2016/11/rotate-matrix-by-90-degrees-inplace.html
 
-public class RotateMatrixAntiClock90 {
+public class RotateSquareMatrixAntiClock90 {
 
 	// An Inplace function to rotate a N x N matrix
 	// by 90 degrees in anti-clockwise direction

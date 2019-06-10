@@ -27,7 +27,7 @@ Replace 'n' with 'r', insert t, insert a
 *Procedure:
 *1. Arrange given two string characters in row and column. 'null' will point to first row and column.
 *2. if characters match take copy diagonal value to the given cell else take min of adjacent 3 cells and add 1 just 
-*remember the direction for which you are taking min. (-->)insert, (down arrow)remove, (horizontal arrow) replace.
+*remember the direction for which you are taking min. (-->)insert, (down arrow)remove, (diagonal) replace.
 *second step is similar to max1square
 */
 

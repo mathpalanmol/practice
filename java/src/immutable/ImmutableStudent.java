@@ -3,8 +3,9 @@ package immutable;
 // For immutability mark class as final.
 // mark variables as private and don't provide public setter method.
 
-//Advantage:
+// Advantage:
 // Immutable objects are thread safe.
+// Immutable objects are very useful in multithreaded applications because they can be shared between threads without synchronization.
 
 public final class ImmutableStudent {
 	private final int id;
@@ -18,11 +19,10 @@ public final class ImmutableStudent {
 	public ImmutableStudent(int id, String name, Age age) {
 		this.name = name;
 		this.id = id;
-		Age cloneAge = new Age();
-		cloneAge.setDay(age.getDay());
-		cloneAge.setMonth(age.getMonth());
-		cloneAge.setYear(age.getYear());
-		this.age = cloneAge;
+		this.age = new Age(); // to achive deep copy
+		age.setDay(age.getDay());
+		age.setMonth(age.getMonth());
+		age.setYear(age.getYear());
 	}
 
 	public int getId() {

@@ -1,0 +1,15 @@
+
+osquid:S1126("AReplace this if-then-else statement by a single return statement.(ûÅŸHÎ„RMINORZ
+CODE_SMELL
+f
+squid:S106"9Replace this use of System.out or System.err by a logger.(¡»›ÍHÏ„RMAJORZ
+CODE_SMELL
+esquid:S2589("7Remove this expression which always evaluates to "true"(ûÅŸHĞ„RMAJORZ
+CODE_SMELL
+k
+squid:S106"9Replace this use of System.out or System.err by a logger.(ÆÎ§øÿÿÿÿHÑ„RMAJORZ
+CODE_SMELL
+Hsquid:S1220""Move this file to a named package.HÒ„RMINORZ
+CODE_SMELL
+Wsquid:S1125(")Remove the literal "false" boolean value.(ûÅŸHÓ„RMINORZ
+CODE_SMELL

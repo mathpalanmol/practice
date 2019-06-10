@@ -1,7 +1,6 @@
 package ds.graph;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -16,7 +15,7 @@ public class DAG {
 	public class Vertex<k> {
 		public k key;
 		public int inDegree = 0; // For DAG; 0: no incoming 
-		int OutDegree = 0;// For DAG; 0: no outgoing  // in this example we are not updating outdegree.
+//		int outDegree = 0;// For DAG; 0: no outgoing  // in this example we are not updating outdegree.
 		List<Vertex> adjList = new ArrayList<Vertex>();
 
 		Vertex(k key) {

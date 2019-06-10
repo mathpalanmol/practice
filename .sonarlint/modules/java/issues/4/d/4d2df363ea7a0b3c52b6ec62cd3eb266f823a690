@@ -1,0 +1,13 @@
+
+csquid:S2446"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿ8Ã›€â,H…RMAJORZBUG
+l
+squid:S106"9Replace this use of System.out or System.err by a logger.(½ÿŒ[8¶İ€â,H‚…RMAJORZ
+CODE_SMELL
+qsquid:S2274":Remove this call to "wait" or move it into a "while" loop.(ç£ŠM8·ÏĞ€â,Hƒ…RCRITICALZ
+CODE_SMELL
+csquid:S2446"0"notify" may not wake up the appropriate thread.(óÄ£¶øÿÿÿÿ8Ã›€â,H„…RMAJORZBUG
+qsquid:S2274":Remove this call to "wait" or move it into a "while" loop.(ç£ŠM8ô”€â,H……RCRITICALZ
+CODE_SMELL
+l
+squid:S106"9Replace this use of System.out or System.err by a logger.(½ÿŒ[8Ã›€â,H†…RMAJORZ
+CODE_SMELL

@@ -1,0 +1,21 @@
+
+~squid:CommentedOutCodeLine	"<This block of commented-out lines of code should be removed.(ªÝéùÿÿÿÿH·„RMAJORZ
+CODE_SMELL
+Hsquid:S1220""Move this file to a named package.H±„RMINORZ
+CODE_SMELL
+~squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(Û”þÿÿÿÿH¸„RMAJORZ
+CODE_SMELL
+…squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¥ªÖÌúÿÿÿÿ8Å¯Å¢ä,H»„RMAJORZ
+CODE_SMELL
+~squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(³·¥öÿÿÿÿÿHµ„RMAJORZ
+CODE_SMELL
+squid:S00101"MRename this class name to match the regular expression '^[A-Z][a-zA-Z0-9]*$'.(³áô¯úÿÿÿÿH¹„RMINORZ
+CODE_SMELL
+€squid:CommentedOutCodeLine."<This block of commented-out lines of code should be removed.(Èû£ã8¢ŠÉ¢ä,H¿„RMAJORZ
+CODE_SMELL
+~squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(õŠÀ¾ÿÿÿÿÿH²„RMAJORZ
+CODE_SMELL
+zsquid:S001126"FDefine and throw a dedicated exception instead of using a generic one.(÷ÖÇ÷ýÿÿÿÿH¶„RMAJORZ
+CODE_SMELL
+bsquid:S2157"%Add a "clone()" method to this class.(³áô¯úÿÿÿÿ8¦ÛÊ¢ä,HÆ„RCRITICALZ
+CODE_SMELL

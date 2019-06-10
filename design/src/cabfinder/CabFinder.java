@@ -1,6 +1,5 @@
 package cabfinder;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -177,3 +176,67 @@ class Trip {
 	}
 
 }
+
+
+/*
+
+Restaurant
+1. List<Table> small
+2. List<Table> medium
+3. List<Table> large
+4. long openTime;
+5. long closeTime;
+
+
+Table
+1. tableId
+2. capacity
+3. Map<date,List<Slot>>
+
+Slot
+1. byte to  // 0 to 23
+2. byte from // 0 to 23
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

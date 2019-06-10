@@ -2,7 +2,7 @@ package ary;
 
 import java.util.Scanner;
 
-/// 1011010101001 divisibley by n(any no) if yes return true. It will be stream of bytes.
+/// 1011010101001 divisible  by n(any no) if yes return true. It will be stream of bytes.
 public class BinaryStreamDivisibility {
 	static int rem = 0;
 
