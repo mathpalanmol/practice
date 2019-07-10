@@ -71,4 +71,3 @@ public class PrintKdistanceNodeDown
  }
 }
 
-//This code has been contributed by Mayank Jaiswal

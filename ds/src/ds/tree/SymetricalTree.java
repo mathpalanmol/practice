@@ -204,7 +204,7 @@ public class SymetricalTree {
   
         // Return the sum of values of nodes in left and right subtrees
         // and old_value of this node
-        return node.value + old_val;
+        return node.value + old_val; // good one; return total value so far.
     }
 	// use 2 stack 
 	void printZigZagTraversal(TreeNode rootNode) {

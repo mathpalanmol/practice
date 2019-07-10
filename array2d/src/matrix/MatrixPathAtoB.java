@@ -16,7 +16,7 @@ public class MatrixPathAtoB {
 		int index = 0;
 		printPath(matrix, bary, ary, index, sRow, sCol, dRow, dCol);
 	}
-
+//not considering diagonal moves
 	private static void printPath(int[][] matrix, boolean[][] bary, int[] ary, int index, int sRow, int sCol, int dRow,
 			int dCol) {
 		if (sRow < 0 || sCol < 0 || sRow >= matrix.length || sCol >= matrix[0].length || bary[sRow][sCol])

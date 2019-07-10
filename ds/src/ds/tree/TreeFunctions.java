@@ -2,7 +2,6 @@ package ds.tree;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 // BASIC operations
 // Traversals - DFS AND BFS
@@ -11,8 +10,6 @@ import java.util.List;
 // Lca
 // Path
 // Symmetrical
-
-import ds.tree.SymetricalTree.TreeNode;
 
 public class TreeFunctions {
 
@@ -25,31 +22,31 @@ public class TreeFunctions {
 		int hRightSub = heightOfTree(root.right);
 		return Math.max(hLeftSub, hRightSub) + 1;
 	}
-	int diameter(Node root)
-    {
-        /* base case if tree is empty */
-        if (root == null)
-            return 0;
- 
-        /* get the height of left and right sub trees */
-        int lheight = heightOfTree(root.left);
-        int rheight = heightOfTree(root.right);
- 
-        /* get the diameter of left and right subtrees */
-        int ldiameter = diameter(root.left);
-        int rdiameter = diameter(root.right);
- 
-        /* Return max of following three
-          1) Diameter of left subtree
-         2) Diameter of right subtree
-         3) Height of left subtree + height of right subtree + 1 is the diameter of root 
-         4) Basically we are getting max out of root,leftsubtree and right subtree diameters.
-         */
-         
-        return Math.max(lheight + rheight + 1,
-                        Math.max(ldiameter, rdiameter));
- 
-    }
+
+	int diameter(Node root) {
+		/* base case if tree is empty */
+		if (root == null)
+			return 0;
+
+		/* get the height of left and right sub trees */
+		int lheight = heightOfTree(root.left);
+		int rheight = heightOfTree(root.right);
+
+		/* get the diameter of left and right subtrees */
+		int ldiameter = diameter(root.left);
+		int rdiameter = diameter(root.right);
+
+		/*
+		 * Return max of following three 1) Diameter of left subtree 2) Diameter of
+		 * right subtree 3) Height of left subtree + height of right subtree + 1 is the
+		 * diameter of root 4) Basically we are getting max out of root,leftsubtree and
+		 * right subtree diameters.
+		 */
+
+		return Math.max(lheight + rheight + 1, Math.max(ldiameter, rdiameter));
+
+	}
+
 	// root to leaf
 	private static int nPath;
 
@@ -106,15 +103,15 @@ public class TreeFunctions {
 			}
 			return false;
 		}
-		//OR condition. else we can call both left and right seperatly.
-		//ultimately we need to return OR of both left and right recursive call
-		
+		// OR condition. else we can call both left and right seperatly.
+		// ultimately we need to return OR of both left and right recursive call
+
 		return sumInRoot2LeafPath(root.left, path, index, sum) || sumInRoot2LeafPath(root.right, path, index, sum);
 	}
 
 	// LCA
 	public static Node lca(Node root, Node node1, Node node2) {
-		if (null == root) {
+		if (null == root) { // this is logical if both nodes are null it means root is lca.
 			return root;
 		}
 		if (root == node1 || root == node2) {
@@ -143,7 +140,7 @@ public class TreeFunctions {
 		if (root1 == null || root2 == null)
 			return false;
 
-		if (root1.data == root2.data) {//first check the root. left-->right and right-->left should be same.
+		if (root1.data == root2.data) {// first check the root. left-->right and right-->left should be same.
 			return checkSymetrical(root1.left, root2.right) && checkSymetrical(root1.right, root2.left);
 		}
 
@@ -214,12 +211,11 @@ public class TreeFunctions {
 		printleafNodes(root.left);
 		printleafNodes(root.right);
 	}
-	
 
 	private void printleftSide(Node root) {
 		if (root == null)
 			return;
-		if (!(root.left == null && root.right == null)) // to avoid printing leaf nodes. 
+		if (!(root.left == null && root.right == null)) // to avoid printing leaf nodes.
 			System.out.println(root.data);
 		if (root.left != null) {
 			printleftSide(root.left);
@@ -228,7 +224,7 @@ public class TreeFunctions {
 		}
 
 	}
-	
+
 	private void printrightSide(Node root) {
 		if (root == null)
 			return;
@@ -242,13 +238,11 @@ public class TreeFunctions {
 
 	}
 
-	
-
 	// With given count n how many possible BST can be generated.
 	// This problem can be solved using Dynamic Programming.
-	//        n
+	// n
 	// t(n) = E t(i-1)t(n-i) --> n is total no of nodes t(0)==t(1)==1
-	//        i=1
+	// i=1
 	int countTreesRec(int numKeys) {
 		if (numKeys <= 1) {
 			return (1);
@@ -284,32 +278,41 @@ public class TreeFunctions {
 	public static void main(String[] args) {
 		TreeFunctions tree = new TreeFunctions();
 		Node root = tree.createTree();
-//		tree.boundaryTraverse(root);
+		// tree.boundaryTraverse(root);
 		tree.serialDeserialTree(root);
 	}
-	
-	
-	
 
-private void serialDeserialTree(Node root) {
-	    //Serialize
-	     List<Integer> inOrder = inOrder(root);
-	     List<Integer> preOrder = preOrder(root);
-	    
-	     Integer[] inOrderAry = (Integer[])inOrder.toArray();
-	     Object[] preOrderAry = preOrder.toArray();
-	     //Deserialize
-	     deserialize(inOrder,preOrder, 0, preOrderAry.length-1);
-	     
-	     }
+	private void serialDeserialTree(Node root) {
+		// Serialize
+		List<Integer> inOrder = inOrder(root);
+		List<Integer> preOrder = preOrder(root);
 
-private void deserialize(List<Integer> inOrder, List<Integer> preOrder, int i, int j) {
-	
-}
+		Integer[] inOrderAry = (Integer[]) inOrder.toArray();
+		Object[] preOrderAry = preOrder.toArray();
+		// Deserialize
+		deserialize(inOrder, preOrder, 0, preOrderAry.length - 1, 0);
 
-//  Program to store in order traversal
-	
-	static List<Integer> inOrderList  = new ArrayList<Integer>();
+	}
+
+	Node root1 = null;
+// not tested.
+	private Node deserialize(List<Integer> inOrder, List<Integer> preOrder, int l, int h, int index) {
+		if (l > h)
+			return null;
+		int indx = getIndex(preOrder, index++);
+		Node newNode = new Node(preOrder.get(indx));
+		newNode.left = deserialize(inOrder, preOrder, l, indx-1, index);
+		newNode.right = deserialize(inOrder, preOrder, indx+1, h, index);
+		return newNode;
+	}
+
+	private int getIndex(List<Integer> preOrder, int val) {
+		return preOrder.indexOf(val);
+	}
+	// Program to store in order traversal
+
+	static List<Integer> inOrderList = new ArrayList<Integer>();
+
 	List<Integer> inOrder(Node root) {
 		if (root == null)
 			return null;
@@ -318,9 +321,10 @@ private void deserialize(List<Integer> inOrder, List<Integer> preOrder, int i, i
 		inOrder(root.right);
 		return inOrderList;
 	}
-	
-//  Program to store pre order traversal - root, left, right
-	static List<Integer> preOrderList  = new ArrayList<Integer>();
+
+	// Program to store pre order traversal - root, left, right
+	static List<Integer> preOrderList = new ArrayList<Integer>();
+
 	List<Integer> preOrder(Node root) {
 		if (root == null)
 			return null;
@@ -329,7 +333,7 @@ private void deserialize(List<Integer> inOrder, List<Integer> preOrder, int i, i
 		preOrder(root.right);
 		return preOrderList;
 	}
-	
+
 	private Node createTree() {
 		this.root = new Node(100);
 		Node n10 = new Node(10);

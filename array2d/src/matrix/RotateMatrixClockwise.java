@@ -35,7 +35,7 @@ public class RotateMatrixClockwise {
 		}
 		
 	}
-
+//clockwise
 	private static int[][] rotateAntiClock(int[][] matrix) {
 		int rowmin = 0;
 		int rowmax = matrix.length-1;

@@ -53,7 +53,7 @@ public class MatrixSpiraltraversal {
 				System.out.print(x + ", ");
 			}
 			colmin++;
-		}// while end
+		}	// while end
 		
 		//if columns are of odd count then mid element exist otherwise not. 
 		if ((matrix[0].length % 2 == 1)) {

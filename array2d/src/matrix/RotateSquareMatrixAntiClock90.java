@@ -39,7 +39,7 @@ public class RotateSquareMatrixAntiClock90 {
 			// current square
 			// Easy way is to save all values in multiple temp variable and then swap based on given order.clock or anti.
 			for (int y = x; y < N - x - 1; y++) {// ideally y has to be less then y<n-x-x-1 
-				//  because y start with x.. so left cols already eliminated so decrement only for right i.e n-x : -1 for 0 based inding
+				//  because y start with x.. so left cols already eliminated so decrement only for right i.e n-x : -1 for 0 based indexing
 				// store current cell in temp variable
 				int temp = mat[x][y];
 
