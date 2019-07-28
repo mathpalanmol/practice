@@ -63,7 +63,7 @@ public class WordLadder {
 		Queue<Node> q = new LinkedList<Node>(); // BFS
 		Map<String, Integer> map = new HashMap<String, Integer>(); // key: word; value: level // NOT required for printing path
 		map.put(beginWord, 1);
-		Node pre = new Node(beginWord, null);
+		Node pre = new Node(beginWord, null);	
 		q.offer(pre);
 		words.remove(beginWord);
 //		System.out.println("NewWord: " + beginWord);
@@ -85,11 +85,11 @@ public class WordLadder {
 						if (newNode.word.equals(endWord))
 							return newNode;
 						q.offer(newNode);
-						map.put(newWord, currentLevel + 1);
+						map.put(newWord, currentLevel + 1);		
 						words.remove(newWord);// remove is must. otherwise it might create cycle.
                         pre = newNode;
 					}
-					ary = word.toCharArray();
+					ary = word.toCharArray();		
 
 				}
 			}

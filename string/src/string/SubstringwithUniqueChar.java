@@ -1,5 +1,9 @@
 package string;
 
+
+//Count number of substrings with exactly k distinct characters
+//Given a string of lowercase alphabets, count all possible substrings (not necessarily distinct) that has exactly k distinct characters.
+
 import java.util.Arrays;
 
 // Count number of substrings with exactly k distinct characters.

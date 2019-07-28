@@ -3,7 +3,7 @@ import java.util.Comparator;
 import java.util.PriorityQueue;
 
 // Using heap and trie
-// This can be achived using Hashmap as well.
+// This can be achieved using Hashmap as well.
 public class KFrequentWords {
 
 	public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class KFrequentWords {
 			System.out.println(node.word);
 		}
 	}
- // word by word we add element in trie.
+    // word by word we add element in trie.
 	// for every word inserted in trie occurance will be incremeted.
 	// for every inserted below checks will be performed in heap
 	// if element already exist in q... fetch it ... remove it and add it.. as occurance is increased by 1.
