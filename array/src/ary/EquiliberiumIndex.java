@@ -54,6 +54,7 @@ public class EquiliberiumIndex
     //Time Complexity: O(n)
     int equilibrium1(int arr[], int n)
     {
+
         int sum = 0;      // initialize sum of whole array
         int leftsum = 0; // initialize leftsum
  
