@@ -13,36 +13,39 @@ public class BstNodeSwap {
 		}
 	}
 
-	// void correctBST( Node root )
-	// {
-	// // Initialize pointers needed
-	// // for correctBSTUtil()
-	// first = middle = last = prev = null;
-	//
-	// // Set the poiters to find out
-	// // two nodes
-	// correctBSTUtil( root );
-	//
-	// // Fix (or correct) the tree
-	// if( first != null && last != null )
-	// {
-	// int temp = first.data;
-	// first.data = last.data;
-	// last.data = temp;
-	// }
-	// // Adjacent nodes swapped
-	// else if( first != null && middle !=
-	// null )
-	// {
-	// int temp = first.data;
-	// first.data = middle.data;
-	// middle.data = temp;
-	// }
-	//
-	// // else nodes have not been swapped,
-	// // passed tree is really BST.
-	// }
-
+	
+	
+//	 void correctBST( Node root ) 
+//	    { 
+//	        // Initialize pointers needed  
+//	        // for correctBSTUtil() 
+//	        first = middle = last = prev = null; 
+//	  
+//	        // Set the poiters to find out  
+//	        // two nodes 
+//	        correctBSTUtil( root ); 
+//	  
+//	        // Fix (or correct) the tree 
+//	        if( first != null && last != null ) 
+//	        { 
+//	            int temp = first.data; 
+//	            first.data = last.data; 
+//	            last.data = temp;  
+//	        } 
+//	        // Adjacent nodes swapped 
+//	        else if( first != null && middle != 
+//	                                    null )  
+//	        { 
+//	            int temp = first.data; 
+//	            first.data = middle.data; 
+//	            middle.data = temp; 
+//	        } 
+//	  
+//	        // else nodes have not been swapped, 
+//	        // passed tree is really BST. 
+//	    }
+	
+	
 	Node<Integer> root = null;
 
 	public static void main(String[] args) {
@@ -51,26 +54,10 @@ public class BstNodeSwap {
 		ref.inOrder(ref.root);
 		ref.fixBst(ref.root);
 		System.out.println();
-		Node n1 = null;
-		Node n2 = null;
-		if (ref.n1 != null) {
-			n1 = ref.n1;
-			if (ref.n2 == null)
-				n2 = ref.mid;
+		if (ref.n1 != null)
 			System.out.println(ref.n1.data);
-		}
-		if (ref.n2 != null) {
-			n2 = ref.n2;
+		if (ref.n2 != null)
 			System.out.println(ref.n2.data);
-		}
-		swapData(n1, n2);
-	}
-
-	private static void swapData(Node<Integer> n12, Node<Integer> n22) {
-		int temp = n12.data;
-		n12.data = n22.data;
-		n22.data = temp;
-
 	}
 
 	// do the inorder scan. while doing so keep track of previous element.
@@ -102,7 +89,7 @@ public class BstNodeSwap {
 			return;
 
 		fixBst(root.left);
-		if (pre != null && pre.data > root.data) {
+		if (pre != null && pre.data > root.data ) {
 			if (n1 == null) {
 				n1 = pre;
 				mid = root;
@@ -112,20 +99,6 @@ public class BstNodeSwap {
 		pre = root; // correct location to track previous
 		fixBst(root.right);
 
-	}
-
-	void fix(Node<Integer> root) {
-		if (root == null)
-			return;
-		fix(root.left);
-		if (pre != null && pre.data > root.data) {
-			if (n1 == null) {
-				n1 = pre;
-				mid = root;
-			} else
-				n2 = root;
-		}
-		fix(root.right);
 	}
 
 	// orignal tree;

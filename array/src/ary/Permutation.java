@@ -22,7 +22,7 @@ public class Permutation {
 			}
 		}
 
-	}  
+	}
 
 	private static List<String> permuation(char[] chAry, int low, int high, ArrayList<String> list) {
 		if (low >= high) {

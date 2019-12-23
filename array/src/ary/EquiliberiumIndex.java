@@ -10,7 +10,7 @@ package ary;
 //
 //6 is also an equilibrium index, 
 //because sum of zero elements is zero, i.e., A[0] + A[1] + A[2] + A[3] + A[4] + A[5]=0
-//time-complixity: O(n)*(O(n)+O(n)) ~ O(n2)
+
 public class EquiliberiumIndex 
 {
     int equilibrium(int arr[], int n) 

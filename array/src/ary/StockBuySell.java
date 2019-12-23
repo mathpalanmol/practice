@@ -13,9 +13,9 @@ public class StockBuySell {
 		int i = 0;
 		while (i < ary.length - 1) {
 			boolean temp = false;
-			while (ary[i] > ary[i + 1]) { 
+			while (ary[i] > ary[i + 1]) {
 				i++;
-				if (i == ary.length - 1){//terminating condition required.
+				if (i == ary.length - 1){
 					temp = true;
 					break;}
 			}
