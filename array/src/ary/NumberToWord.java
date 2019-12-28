@@ -1,102 +1,81 @@
 package ary;
 
-public class NumberToWord  
+import java.util.Random;
 
-{
-    private static final String[] specialNames = {
-        "",
-        " thousand",
-        " million",
-        " billion",
-        " trillion",
-        " quadrillion",
-        " quintillion"
+public class NumberToWord {
+    private static final String[] units = {
+            "", "one", "two", "three", "four", "five", "six", "seven",
+            "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen",
+            "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"
     };
-    
-    private static final String[] tensNames = {
-        "",
-        " ten",
-        " twenty",
-        " thirty",
-        " forty",
-        " fifty",
-        " sixty",
-        " seventy",
-        " eighty",
-        " ninety"
-    };
-    
-    private static final String[] numNames = {
-        "",
-        " one",
-        " two",
-        " three",
-        " four",
-        " five",
-        " six",
-        " seven",
-        " eight",
-        " nine",
-        " ten",
-        " eleven",
-        " twelve",
-        " thirteen",
-        " fourteen",
-        " fifteen",
-        " sixteen",
-        " seventeen",
-        " eighteen",
-        " nineteen"
-    };
-    
-    private String convertLessThanOneThousand(int number) {
-        String current;
-        
-        if (number % 100 < 20){
-            current = numNames[number % 100];
-            number /= 100;
-        }
-        else {
-            current = numNames[number % 10];
-            number /= 10;
-            
-            current = tensNames[number % 10] + current;
-            number /= 10;
-        }
-        if (number == 0) return current;
-        return numNames[number] + " hundred" + current;
-    }
-    
-    public String convert(int number) {
 
-        if (number == 0) { return "zero"; }
-        
-        String prefix = "";
-        
-        if (number < 0) {
-            number = -number;
-            prefix = "negative";
+    private static final String[] tens = {
+            "",        // 0
+            "",        // 1
+            "twenty",  // 2
+            "thirty",  // 3
+            "forty",   // 4
+            "fifty",   // 5
+            "sixty",   // 6
+            "seventy", // 7
+            "eighty",  // 8
+            "ninety"   // 9
+    };
+
+    public static String convert(final int n) {
+        if (n < 0) {
+            return "minus " + convert(n);
         }
-        
-        String current = "";
-        int place = 0;
-        
-        do {
-            int n = number % 1000;
-            if (n != 0){
-                String s = convertLessThanOneThousand(n);
-                current = s + specialNames[place] + current;
-            }
-            place++;
-            number /= 1000;
-        } while (number > 0);
-        
-        return (prefix + current).trim();
+
+        if (n < 20) {
+            return units[n];
+        }
+
+        if (n < 100) {
+            return tens[n / 10] + ((n % 10 != 0) ? " " : "") + units[n % 10];
+        }
+
+        if (n < 1000) {
+            return units[n / 100] + " hundred" + ((n % 100 != 0) ? " " : "") + convert(n % 100);
+        }
+
+        if (n < 1000000) {
+            return convert(n / 1000) + " thousand" + ((n % 1000 != 0) ? " " : "") + convert(n % 1000);
+        }
+
+        if (n < 1000000000) {
+            return convert(n / 1000000) + " million" + ((n % 1000000 != 0) ? " " : "") + convert(n % 1000000);
+        }
+
+        return convert(n / 1000000000) + " billion" + ((n % 1000000000 != 0) ? " " : "") + convert(n % 1000000000);
     }
-    
-    public static void main(String[] args) {
-        NumberToWord obj = new NumberToWord();
-        System.out.println("*** " + obj.convert(767));
-        System.out.println("*** " + obj.convert(-55));
+
+    public static void main(final String[] args) {
+        final Random generator = new Random();
+
+        int n;
+        for (int i = 0; i < 20; i++) {
+            n = generator.nextInt(Integer.MAX_VALUE);
+
+            System.out.printf("%10d = '%s'%n", n, convert(n));
+        }
+
+        n = 1000;
+        System.out.printf("%10d = '%s'%n", n, convert(n));
+
+        n = 2000;
+        System.out.printf("%10d = '%s'%n", n, convert(n));
+
+        n = 10000;
+        System.out.printf("%10d = '%s'%n", n, convert(n));
+
+        n = 11000;
+        System.out.printf("%10d = '%s'%n", n, convert(n));
+
+        n = 999999999;
+        System.out.printf("%10d = '%s'%n", n, convert(n));
+
+        n = Integer.MAX_VALUE;
+        System.out.printf("%10d = '%s'%n", n, convert(n));
     }
 }

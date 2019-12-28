@@ -59,9 +59,9 @@ public class EquiliberiumIndex
         int leftsum = 0; // initialize leftsum
  
         /* Find sum of the whole array */
-        for (int i = 0; i < n; ++i)
+              for (int i = 0; i < n; ++i)
             sum += arr[i];
- 
+
         for (int i = 0; i < n; ++i)
         {
             sum -= arr[i]; // sum is now right sum for index i

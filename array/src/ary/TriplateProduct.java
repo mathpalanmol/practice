@@ -42,7 +42,8 @@ public class TriplateProduct {
 			productMax = productMax * value;
 		}
 		int productMin = 1;
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 2; i++) { // product of first two and last, to accomodate negative
+			// use-cases.
 			int value = minQ.poll();
 			productMin = productMin * value;
 		}
