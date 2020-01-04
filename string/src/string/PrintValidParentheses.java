@@ -42,7 +42,6 @@ public class PrintValidParentheses {
 	}
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		int n = 2; //string len will be 4, n=2 is two pairs
 		printParentheses(n);
 	}

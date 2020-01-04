@@ -51,7 +51,7 @@ public class ConsistentHashing {
 		SortedMap<String, Node> tailMap = ring.tailMap(hashkey);
 		String key = null;
 		if (!tailMap.isEmpty())
-			key = tailMap.firstKey();
+			key = tailMap.firstKey(); // This or above key.
 		else
 			key = ring.firstKey();
 
