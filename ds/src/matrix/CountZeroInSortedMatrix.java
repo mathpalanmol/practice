@@ -1,6 +1,6 @@
 package matrix;
 
-//Approach 3:
+//        Approach 3:
 //        In this approach, we will start our search by looking at Right most element of first row.
 //        If Current Element =  1, it means, no need to look down as all element down will be greater than 1 since columns are also sorted. move to next column (decrement column--).
 //        If Current Element = 0, It means all element on left will surely be 0 and without traversing on left side directly add them all together by looking at column index and move to next row (increment row++).
