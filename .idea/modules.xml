@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CabService/CabService.iml" filepath="$PROJECT_DIR$/CabService/CabService.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Concurency/Concurency.iml" filepath="$PROJECT_DIR$/Concurency/Concurency.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Sonar_Java_Project/Sonar_Java_Project.iml" filepath="$PROJECT_DIR$/Sonar_Java_Project/Sonar_Java_Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test/Test.iml" filepath="$PROJECT_DIR$/Test/Test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Test1/Test1.iml" filepath="$PROJECT_DIR$/Test1/Test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/array/array.iml" filepath="$PROJECT_DIR$/array/array.iml" />
+      <module fileurl="file://$PROJECT_DIR$/bestpractice/bestpractice.iml" filepath="$PROJECT_DIR$/bestpractice/bestpractice.iml" />
+      <module fileurl="file://$PROJECT_DIR$/design/design.iml" filepath="$PROJECT_DIR$/design/design.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dp/dp.iml" filepath="$PROJECT_DIR$/dp/dp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ds/ds.iml" filepath="$PROJECT_DIR$/ds/ds.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dummy/dummy.iml" filepath="$PROJECT_DIR$/dummy/dummy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exam/exam.iml" filepath="$PROJECT_DIR$/exam/exam.iml" />
+      <module fileurl="file://$PROJECT_DIR$/flipkart_test/flipkart_test.iml" filepath="$PROJECT_DIR$/flipkart_test/flipkart_test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/geoip/geoip.iml" filepath="$PROJECT_DIR$/geoip/geoip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AsyncClient/src/main/main.iml" filepath="$PROJECT_DIR$/AsyncClient/src/main/main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AsyncService/src/main/main1.iml" filepath="$PROJECT_DIR$/AsyncService/src/main/main1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prac/prac.iml" filepath="$PROJECT_DIR$/prac/prac.iml" />
+      <module fileurl="file://$PROJECT_DIR$/java/prac-new.iml" filepath="$PROJECT_DIR$/java/prac-new.iml" />
+      <module fileurl="file://$PROJECT_DIR$/prac-new1.iml" filepath="$PROJECT_DIR$/prac-new1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/practicesets/practicesets.iml" filepath="$PROJECT_DIR$/practicesets/practicesets.iml" />
+      <module fileurl="file://$PROJECT_DIR$/recursion/recursion.iml" filepath="$PROJECT_DIR$/recursion/recursion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/string/string.iml" filepath="$PROJECT_DIR$/string/string.iml" />
+      <module fileurl="file://$PROJECT_DIR$/taxiBookingSystem/taxiBookingSystem.iml" filepath="$PROJECT_DIR$/taxiBookingSystem/taxiBookingSystem.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AsyncService/src/test/test.iml" filepath="$PROJECT_DIR$/AsyncService/src/test/test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/AsyncClient/src/test/test1.iml" filepath="$PROJECT_DIR$/AsyncClient/src/test/test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/writerReader/writerReader.iml" filepath="$PROJECT_DIR$/writerReader/writerReader.iml" />
+    </modules>
+  </component>
+</project>
