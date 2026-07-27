@@ -5,3 +5,13 @@ build/
 *.class
 out/
 .DS_Store
+
+# Eclipse
+.metadata/
+.project
+.classpath
+.settings/
+.factorypath
+.buildpath
+RemoteSystemsTempFiles/
+bin/
