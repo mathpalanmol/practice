@@ -1,83 +1,114 @@
-package ds.list.linkedList;
+package com.practice.prepare;
 
-//
-//Example:
-//Inputs:  1->2->3->4->5->6->7->8->NULL and k = 3 
-//Output:  3->2->1->6->5->4->8->7->NULL. 
+/**
+ * Reverse Nodes in k-Group (LeetCode #25)
+ *
+ * <p>Reverse the list k nodes at a time. If remaining nodes &lt; k, leave them unchanged.
+ *
+ * <p>Example: [1,2,3,4,5], k=2 → [2,1,4,3,5]
+ */
+public class ReverseNodesInKGroup {
 
-public class ReverseInGroups {
+    public static class ListNode {
+        int val;
+        ListNode next;
 
+        ListNode(int val) {
+            this.val = val;
+        }
+    }
 
-	public static void main(String[] args) {
-		Link start = getLinkedList();
-		print(start);
-		Link rstart = reverseKLinks(start, 3);
-	    print(rstart);
+    public ListNode reverseKGroup(ListNode head, int k) {
+        // Step 0: handle edge cases
+        if (head == null || k <= 1) {
+            return head;
+        }
 
-	}
+        // Step 1: count total nodes to know when to stop
+        int remaining = countNodes(head);
+        ListNode beforeGroup = null; // node just before the current group (null for first group)
 
-	private static void print(Link start) {
-		Link current = start;
-		while(current != null) {
-			System.out.print(current.key + " ");
-			current = current.next;
-		}
-		System.out.println("\n\n");
-	}
+        // Step 2: process each full group of k nodes
+        while (remaining >= k) {
+            // Step 2a: mark the first node of this group
+            ListNode groupStart = (beforeGroup == null) ? head : beforeGroup.next;
+            ListNode curr = groupStart;
+            ListNode prev = null;
 
-	private static Link reverseKLinks(Link start, int k) {
-		if(start == null)
-			return null;
-		Link current = start;
-		int count = 0;
-		Link pre = null;
-		//this loop should run three times as we have to get reach till 4 to get next ,ie 1,2,3,4
-		while(current != null && count < k) {
-			Link temp = current.next;
-			current.next = pre;
-			pre = current;
-			current = temp;
-			count++;
-		}
-		if(start != null)
-		start.next = current;
-		
-		if(current!=null) {
-			start.next= reverseKLinks(current, k);
-		}
-		
-		return pre; // always return previous.
-	}
+            // Step 2b: reverse k nodes (standard iterative reverse)
+            for (int i = 0; i < k; i++) {
+                ListNode next = curr.next; // save next before rewiring
+                curr.next = prev;          // reverse pointer
+                prev = curr;               // prev moves forward
+                curr = next;               // curr moves forward
+            }
+            // after loop: prev = new head, groupStart = new tail, curr = node after group
 
-	private static Link getLinkedList() {
-		Link l1 = new Link(1);
-		Link l2 = new Link(2);
-		Link l3 = new Link(3);
-		Link l4 = new Link(4);
-		Link l5 = new Link(5);
-		Link l6 = new Link(6);
-		Link l7 = new Link(7);
-		Link l8 = new Link(8);
-		Link l9 = new Link(9);
-		l1.next = l2;
-		l2.next = l3;
-		l3.next = l4;
-		l4.next = l5;
-		l5.next = l6;
-		l6.next = l7;
-		l7.next = l8;
-		l8.next = l9;
-	
-		return l1;
-	}
+            // Step 2c: reconnect reversed group to the rest of the list
+            groupStart.next = curr; // tail of group -> remaining list (plug in back)
+            if (beforeGroup == null) {
+                head = prev; // first group: list head -> new head of group (plug in front)
+            } else {
+                beforeGroup.next = prev; // later groups: previous tail -> new head of group (plug in front)
+            }
+            // after reversal, groupStart is the tail of this group — use it as
+            // the node before the NEXT group (so next iteration can do beforeGroup.next = ...)
+            beforeGroup = groupStart;
 
-	static class Link {
-		int key;
-		Link next;
+            // Step 2d: fewer nodes left to process
+            remaining -= k;
+        }
 
-		public Link(int key) {
-			this.key = key;
-		}
-	}
+        // Step 3: return updated head
+        return head;
+    }
 
+    /**
+     * Recursive version:
+     * 1. If fewer than k nodes remain, return start unchanged.
+     * 2. Reverse k nodes in a while loop.
+     * 3. Connect tail (start) to recursive result on the rest.
+     * 4. Return pre (new head of reversed group).
+     */
+    public ListNode reverseKGroupRecursive(ListNode start, int k) {
+        if (start == null || k <= 1) {
+            return start;
+        }
+
+        // check k nodes exist before reversing — avoids mutating a partial tail group
+        ListNode node = start;
+        for (int i = 0; i < k; i++) {
+            if (node == null) {
+                return start;
+            }
+            node = node.next;
+        }
+
+        ListNode current = start;
+        int count = 0;
+        ListNode pre = null;
+
+        // reverse k nodes: for k=3 on 1->2->3->4->5, loop runs 3 times and current lands on 4
+        while (current != null && count < k) {
+            ListNode temp = current.next;
+            current.next = pre;
+            pre = current;
+            current = temp;
+            count++;
+        }
+
+        // start is now the tail of the reversed group; connect it to the rest
+        start.next = reverseKGroupRecursive(current, k);
+
+        return pre;
+    }
+
+    private int countNodes(ListNode head) {
+        int count = 0;
+        while (head != null) {
+            count++;
+            head = head.next;
+        }
+        return count;
+    }
 }
