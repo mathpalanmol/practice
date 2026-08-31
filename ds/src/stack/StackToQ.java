@@ -1,4 +1,4 @@
-package test;
+package stack;
 //10
 //1 42
 //2

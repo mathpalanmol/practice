@@ -1,4 +1,4 @@
-package test;
+package stack;
 
 import java.util.Stack;
 /* Insert element in stack after x elements using recursion
