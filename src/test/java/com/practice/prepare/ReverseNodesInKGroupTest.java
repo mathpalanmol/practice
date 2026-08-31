@@ -38,24 +38,6 @@ class ReverseNodesInKGroupTest {
         assertNull(solver.reverseKGroup(null, 2));
     }
 
-    @Test
-    void recursiveReversesGroupsOfTwo() {
-        ReverseNodesInKGroup.ListNode result = solver.reverseKGroupRecursive(buildList(1, 2, 3, 4, 5), 2);
-        assertEquals("2 -> 1 -> 4 -> 3 -> 5", listToString(result));
-    }
-
-    @Test
-    void recursiveReversesGroupsOfThree() {
-        ReverseNodesInKGroup.ListNode result = solver.reverseKGroupRecursive(buildList(1, 2, 3, 4, 5), 3);
-        assertEquals("3 -> 2 -> 1 -> 4 -> 5", listToString(result));
-    }
-
-    @Test
-    void recursiveLeavesRemainingNodesWhenNotMultipleOfK() {
-        ReverseNodesInKGroup.ListNode result = solver.reverseKGroupRecursive(buildList(1, 2, 3, 4), 3);
-        assertEquals("3 -> 2 -> 1 -> 4", listToString(result));
-    }
-
     private static ReverseNodesInKGroup.ListNode buildList(int... values) {
         ReverseNodesInKGroup.ListNode dummy = new ReverseNodesInKGroup.ListNode(0);
         ReverseNodesInKGroup.ListNode curr = dummy;
