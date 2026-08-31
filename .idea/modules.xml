@@ -27,6 +27,7 @@
       <module fileurl="file://$PROJECT_DIR$/taxiBookingSystem/taxiBookingSystem.iml" filepath="$PROJECT_DIR$/taxiBookingSystem/taxiBookingSystem.iml" />
       <module fileurl="file://$PROJECT_DIR$/AsyncService/src/test/test.iml" filepath="$PROJECT_DIR$/AsyncService/src/test/test.iml" />
       <module fileurl="file://$PROJECT_DIR$/AsyncClient/src/test/test1.iml" filepath="$PROJECT_DIR$/AsyncClient/src/test/test1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/design/testc/testc.iml" filepath="$PROJECT_DIR$/design/testc/testc.iml" />
       <module fileurl="file://$PROJECT_DIR$/writerReader/writerReader.iml" filepath="$PROJECT_DIR$/writerReader/writerReader.iml" />
     </modules>
   </component>
