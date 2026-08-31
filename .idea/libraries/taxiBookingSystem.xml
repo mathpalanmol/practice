@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="taxiBookingSystem">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/taxiBookingSystem.zip!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
