@@ -1,13 +1,12 @@
 # Practice
 
-Java practice repository for data structures, algorithms, and object-oriented design problems.
+Java practice repository for data structures and algorithms.
 
 ## Structure
 
 ```
 practice/
-├── ds/       # Data structures & algorithms
-└── design/   # System design & OOP patterns
+└── ds/       # Data structures & algorithms
 ```
 
 ## `ds` — Data Structures & Algorithms
@@ -27,33 +26,9 @@ Source lives under `ds/src/`.
 | `sort` | Merge sort, quick sort, insertion sort, topological sort |
 | `patternmatch` | KMP, Boyer-Moore, Rabin-Karp |
 
-## `design` — System Design & OOP
-
-Source lives under `design/src/`.
-
-| Module | Topics |
-|--------|--------|
-| `atm` | ATM machine design |
-| `banking` | Banking system |
-| `battleship` | Battleship game |
-| `cabfinder` | Cab / ride finder |
-| `fileSystem` | File system design |
-| `lift` | Elevator system |
-| `restaurant` | Restaurant ordering |
-| `snakeLadder` | Snake and ladder game |
-| `ticktactoe` | Tic-tac-toe |
-| `twitter` | Twitter-like feed |
-| `urlShortner` | URL shortener |
-| `ProducerConsumer` | Producer-consumer pattern |
-| `MessageBrocker` | Message broker |
-| `Proxy` | Proxy pattern |
-| `hashing` | Hashing utilities |
-| `tsp` | Traveling salesman |
-| `game` | Game implementations |
-
 ## Running
 
-Open the project in IntelliJ IDEA and mark `ds/src` and `design/src` as source roots, or compile individual files with `javac`:
+Open the project in IntelliJ IDEA and mark `ds/src` as a source root, or compile individual files with `javac`:
 
 ```bash
 cd ds/src
