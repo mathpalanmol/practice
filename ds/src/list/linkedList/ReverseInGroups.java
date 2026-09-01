@@ -7,36 +7,73 @@ package list.linkedList;
  *
  * <p>Example: [1,2,3,4,5], k=2 → [2,1,4,3,5]
  */
+public class ReverseInGroups {
 
-
-class ReverseNodesInKGroup {
-    public ListNode reverseKGroup(ListNode head, int k) {
-        ListNode node = head;
+    /**
+     * Same pattern as {@link ReverseInPairs}:
+     * reverse this group first, then attach tail directly to recursive result.
+     */
+    public static Link reverseKGroup(Link head, int k) {
+        Link node = head;
         int count = 0;
 
-        // Check if there are at least k nodes remaining
-        while (node != null && count < k) {
+        while (node != null) {
             node = node.next;
             count++;
+            if (count == k) {
+                break;
+            }
         }
 
         if (count < k) {
-            return head; // fewer than k nodes left, don't reverse
+            return head;
         }
 
-        // node now points to the (k+1)-th node — start of the next group
-        ListNode newHead = reverseKGroup(node, k);
-
-        // Reverse current group of k nodes
-        ListNode prev = newHead;
-        ListNode curr = head;
+        // reverse k nodes: prev = new head, head = tail, node = start of rest
+        Link prev = null;
+        Link curr = head;
         for (int i = 0; i < k; i++) {
-            ListNode next = curr.next;
+            Link next = curr.next;
             curr.next = prev;
             prev = curr;
             curr = next;
         }
 
-        return prev; // new head of this group
+        // direct attach — like ReverseInPairs: tail.next = recursive head
+        head.next = reverseKGroup(node, k);
+
+        return prev;
+    }
+
+    private static Link buildList(int... values) {
+        Link dummy = new Link(0);
+        Link curr = dummy;
+        for (int value : values) {
+            curr.next = new Link(value);
+            curr = curr.next;
+        }
+        return dummy.next;
+    }
+
+    private static void printList(Link head) {
+        while (head != null) {
+            System.out.print(head.key);
+            if (head.next != null) {
+                System.out.print(" -> ");
+            }
+            head = head.next;
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        System.out.print("k=2: ");
+        printList(reverseKGroup(buildList(1, 2, 3, 4, 5), 2));
+
+        System.out.print("k=3: ");
+        printList(reverseKGroup(buildList(1, 2, 3, 4, 5), 3));
+
+        System.out.print("k=3 (odd tail): ");
+        printList(reverseKGroup(buildList(1, 2, 3, 4), 3));
     }
 }

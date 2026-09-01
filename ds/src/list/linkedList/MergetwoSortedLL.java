@@ -40,45 +40,75 @@ public class MergetwoSortedLL {
 			return list2;
 		}
 	}
-	/* Iterative */
 
-	static Link mergeIterative(Link link1, Link link2) {
-		Link start = null;
-		Link current = null;
-		while (link1 != null && link2 != null) {
-			if (link1.key <= link2.key) {
-				if (start == null) {
-					start = link1;
-					current = link1;
-				} else {
-					current.next = link1;
-					current = current.next;
-				}
-				link1 = link1.next;
+	/**
+	 * Iterative merge of two sorted linked lists.
+	 *
+	 * Example:
+	 * list1: 5 -> 7 -> 9 -> 12
+	 * list2: 6 -> 8 -> 10
+	 * result: 5 -> 6 -> 7 -> 8 -> 9 -> 10 -> 12
+	 */
+	static Link mergeIterative(Link list1, Link list2) {
+		// dummy node avoids special-casing the merged list head
+		Link dummy = new Link(0);
+		// tail always points to the last node in the merged list so far
+		Link tail = dummy;
+
+		// compare both heads and pick the smaller node each time
+		while (list1 != null && list2 != null) {
+			if (list1.key <= list2.key) {
+				tail.next = list1;      // attach smaller node from list1
+				list1 = list1.next;     // move list1 forward
 			} else {
-				if (start == null) {
-					start = link2;
-					current = link2;
-				} else {
-					current.next = link2;
-					current = current.next;
-				}
-				link2 = link2.next;
+				tail.next = list2;      // attach smaller node from list2
+				list2 = list2.next;     // move list2 forward
 			}
-			
-		} // same approach we use while merging
-		if (link1 != null) {
-			current.next = link1;
-			link1 = link1.next;
-			current = current.next;
-		}
-		if (link2 != null) {
-			current.next = link2;
-			link2 = link2.next;
-			current = current.next;
+			tail = tail.next;           // advance tail to the node just added
 		}
 
-		return start;
+		// one list is finished — plug in the remaining nodes from the other list
+		tail.next = (list1 != null) ? list1 : list2;
+
+		// dummy.next is the real head of the merged list
+		return dummy.next;
+	}
+
+	/**
+	 * Iterative merge without a dummy node.
+	 * Pick the smaller head first, then attach remaining nodes with a tail pointer.
+	 */
+	static Link mergeListsIterative(Link list1, Link list2) {
+		if (list1 == null)
+			return list2;
+		if (list2 == null)
+			return list1;
+
+		// choose the smaller head as the start of the merged list
+		Link head;
+		if (list1.key <= list2.key) {
+			head = list1;
+			list1 = list1.next;
+		} else {
+			head = list2;
+			list2 = list2.next;
+		}
+
+		Link tail = head;
+
+		while (list1 != null && list2 != null) {
+			if (list1.key <= list2.key) {
+				tail.next = list1;
+				list1 = list1.next;
+			} else {
+				tail.next = list2;
+				list2 = list2.next;
+			}
+			tail = tail.next;
+		}
+
+		tail.next = (list1 != null) ? list1 : list2;
+		return head;
 	}
 
 }
