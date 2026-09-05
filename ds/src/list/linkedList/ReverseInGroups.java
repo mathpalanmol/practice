@@ -29,7 +29,7 @@ public class ReverseInGroups {
             return head;
         }
 
-        // reverse k nodes: prev = new head, head = tail, node = start of rest
+        // reverse k nodes: prev = new head, head = tail, curr = start of rest
         Link prev = null;
         Link curr = head;
         for (int i = 0; i < k; i++) {
@@ -39,8 +39,8 @@ public class ReverseInGroups {
             curr = next;
         }
 
-        // direct attach — like ReverseInPairs: tail.next = recursive head
-        head.next = reverseKGroup(node, k);
+        // curr is same as node after k steps — start of remaining list
+        head.next = reverseKGroup(curr, k);
 
         return prev;
     }
