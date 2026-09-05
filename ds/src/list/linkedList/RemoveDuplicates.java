@@ -1,16 +1,20 @@
 package list.linkedList;
 
 import java.util.HashSet;
-/*
- * II method:
- * 1)	Sort the elements using Merge Sort. O(nLogn)
-   2)	Remove duplicates in linear time using the algorithm for removing duplicates in sorted Linked List. O(n)
 
-Please note that this method doesn’t preserve the original order of elements.
-
-Time Complexity: O(nLogn)
- * 
- * */
+/**
+ * Remove duplicates from an unsorted linked list.
+ *
+ * <p>Approach (this file): HashSet of seen values while walking the list.
+ * If the current value was seen before, unlink the node; otherwise keep it and
+ * add the value to the set.
+ *
+ * <p>Time: O(n), Space: O(n). Original order is preserved.
+ *
+ * <p>Alternate (not implemented here): sort the list O(n log n), then remove
+ * adjacent duplicates in O(n). That uses less extra space but does not keep
+ * the original order.
+ */
 public class RemoveDuplicates 
 {
     static class node 
@@ -24,32 +28,60 @@ public class RemoveDuplicates
         }
     }
      
-    /* Function to remove duplicates from a
-       unsorted linked list 
-       O(n)
-       */
-    static void removeDuplicate(node head) 
+    /**
+     * Remove duplicate values from an unsorted list using a HashSet.
+     * Time: O(n). Returns the (possibly new) head.
+     */
+    static node removeDuplicate(node head) 
     {
-        // Hash to store seen values
-        HashSet<Integer> hs = new HashSet<>(); // or save link itself.
-     
-        /* Pick elements one by one */
+        HashSet<Integer> hs = new HashSet<>();
+
         node current = head;
         node prev = null;
         while (current != null) 
         {
             int curval = current.val;
-             
-             // If current value is seen before
+
             if (hs.contains(curval)) {
-                prev.next = current.next;
+                // duplicate — unlink current (safe even if removing head)
+                if (prev == null) {
+                    head = current.next;
+                } else {
+                    prev.next = current.next;
+                }
             } else {
                 hs.add(curval);
                 prev = current;
             }
             current = current.next;
         }
- 
+        return head;
+    }
+
+    /**
+     * Same HashSet approach with a dummy node.
+     * {@code prev} always starts at dummy, so no null check when unlinking.
+     */
+    static node removeDuplicateWithDummy(node head) {
+        node dummy = new node(0);
+        dummy.next = head;
+
+        HashSet<Integer> hs = new HashSet<>();
+        node prev = dummy;
+        node current = head;
+
+        while (current != null) {
+            if (hs.contains(current.val)) {
+                // unlink current; prev stays put
+                prev.next = current.next;
+            } else {
+                hs.add(current.val);
+                prev = current;
+            }
+            current = current.next;
+        }
+
+        return dummy.next;
     }
      
     /* Function to print nodes in a given linked list */
@@ -64,22 +96,31 @@ public class RemoveDuplicates
  
     public static void main(String[] args) 
     {
-        /* The constructed linked list is:
-         10->12->11->11->12->11->10*/
-        node start = new node(10);
-        start.next = new node(12);
-        start.next.next = new node(11);
-        start.next.next.next = new node(11);
-        start.next.next.next.next = new node(12);
-        start.next.next.next.next.next = new node(11);
-        start.next.next.next.next.next.next = new node(10);
- 
+        node start = buildList(10, 12, 11, 11, 12, 11, 10);
+
         System.out.println("Linked list before removing duplicates :");
         printList(start);
- 
-        removeDuplicate(start);
- 
-        System.out.println("\nLinked list after removing duplicates :");
+
+        start = removeDuplicate(start);
+        System.out.println("\nAfter removeDuplicate :");
         printList(start);
+
+        node start2 = buildList(10, 12, 11, 11, 12, 11, 10);
+        System.out.println("\n\nBefore removeDuplicateWithDummy :");
+        printList(start2);
+
+        start2 = removeDuplicateWithDummy(start2);
+        System.out.println("\nAfter removeDuplicateWithDummy :");
+        printList(start2);
+    }
+
+    private static node buildList(int... values) {
+        node dummy = new node(0);
+        node tail = dummy;
+        for (int value : values) {
+            tail.next = new node(value);
+            tail = tail.next;
+        }
+        return dummy.next;
     }
 }
