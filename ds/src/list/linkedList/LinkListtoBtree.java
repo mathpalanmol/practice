@@ -1,116 +1,116 @@
 package list.linkedList;
 
+/**
+ * Convert Sorted List to Binary Search Tree (LeetCode #109)
+ *
+ * <p>Given the head of a singly linked list where elements are sorted in ascending order,
+ * convert it to a height-balanced BST.
+ *
+ * <p>Example:
+ * <pre>
+ * -10 -> 0 -> 5 -> 9  =>       0
+ *                            /     \
+ *                          -10      9
+ *                            \
+ *                             5
+ * </pre>
+ */
 public class LinkListtoBtree {
-	// Definition for singly-linked list.
-	class ListNode {
+
+	static class ListNode {
 		int val;
 		ListNode next;
 
-		ListNode(int x) {
-			val = x;
-			next = null;
+		ListNode(int val) {
+			this.val = val;
 		}
 	}
 
-	// Definition for binary tree
-	class TreeNode {
+	static class TreeNode {
 		int val;
 		TreeNode left;
 		TreeNode right;
 
-		TreeNode(int x) {
-			val = x;
+		TreeNode(int val) {
+			this.val = val;
 		}
 	}
 
-	public class Solution {
-		ListNode h;
+	private ListNode current;
 
-		public TreeNode sortedListToBST(ListNode head) {
-			if (head == null)
-				return null;
-
-			h = head;
-			int len = getLength(head);
-			return sortedListToBST(0, len - 1);
+	/**
+	 * Build a balanced BST by treating the sorted list like an in-order traversal:
+	 * left subtree, root, right subtree.
+	 */
+	public TreeNode sortedListToBST(ListNode head) {
+		int length = 0;
+		ListNode node = head;
+		while (node != null) {
+			length++;
+			node = node.next;
 		}
 
-		int getLength(ListNode head) {
-			ListNode slow = head;
-			ListNode fast = head;
-			int mid = 0;
-			while (fast != null && fast.next != null) {
-				fast = fast.next;
-				if (fast == null)
-					return mid;
-				slow = slow.next;
-				mid++;
-			}
-			return mid;
+		current = head;
+		return buildBST(0, length - 1);
+	}
+
+	private TreeNode buildBST(int start, int end) {
+		if (start > end) {
+			return null;
 		}
 
-		// build tree bottom-up
-		public TreeNode sortedListToBST(int start, int end) {
-			if (start > end)
-				return null;
+		int mid = start + (end - start) / 2;
 
-			// mid
-			int mid = (start + end) / 2;
+		TreeNode left = buildBST(start, mid - 1);
+		TreeNode root = new TreeNode(current.val);
+		current = current.next;
+		TreeNode right = buildBST(mid + 1, end);
 
-			TreeNode left = sortedListToBST(start, mid - 1);
-			TreeNode root = new TreeNode(h.val);
-			h = h.next;
-			System.out.println("mid: " + mid);
-			TreeNode right = sortedListToBST(mid + 1, end);
+		root.left = left;
+		root.right = right;
+		return root;
+	}
 
-			root.left = left;
-			root.right = right;
-
-			return root;
+	private static ListNode buildList(int... values) {
+		ListNode dummy = new ListNode(0);
+		ListNode tail = dummy;
+		for (int value : values) {
+			tail.next = new ListNode(value);
+			tail = tail.next;
 		}
+		return dummy.next;
+	}
 
-		// second approach
-
-		// working fine
-		// len is actual length of linkedlist.
-		public TreeNode linkToBinary(Link start, int len) {
-			if (len == 0 || start == null)
-				return null;
-			int mid = len / 2;
-			// find middlelink: pass start node and len
-			// length will be reduced all the times
-			Link middleLink = getMiddle(start, len);
-			TreeNode root = new TreeNode(middleLink.key);
-			Link temp = middleLink.next;
-			middleLink.next = null;
-
-			// start will end at middleLink. but we've to exclude middleLink, that'sy
-			// len-mid-1
-			// example len = 5 - actual length
-			// mid = 5/2= 2
-			// len-mid-1 = 5-2-1 = 2 nodes on left
-			// mid = 2 = 2 nodes on right
-
-			TreeNode linkToBinary = linkToBinary(start, len - mid - 1);// len-mid-1 --> actual length
-			root.left = linkToBinary;
-			TreeNode linkToBinary2 = linkToBinary(temp, mid); // 6/2 or 7/2 = 3(len) towards right
-			root.right = linkToBinary2;
-
-			return root;
+	private static void inOrder(TreeNode root) {
+		if (root == null) {
+			return;
 		}
+		inOrder(root.left);
+		System.out.print(root.val + " ");
+		inOrder(root.right);
+	}
 
-		private Link getMiddle(Link start, int len) {
-			Link slow = start;
-			Link fast = start;
-			int counter = 0;
-			while (counter < len && fast != null && fast.next != null) {
-				fast = fast.next.next;
-				if (fast == null)
-					break;
-				slow = slow.next;
-			}
-			return slow;
+	private static void preOrder(TreeNode root) {
+		if (root == null) {
+			return;
 		}
+		System.out.print(root.val + " ");
+		preOrder(root.left);
+		preOrder(root.right);
+	}
 
+	public static void main(String[] args) {
+		LinkListtoBtree solver = new LinkListtoBtree();
+
+		ListNode list = buildList(-10, -3, 0, 5, 9);
+		TreeNode root = solver.sortedListToBST(list);
+
+		System.out.print("In-order (should match sorted list): ");
+		inOrder(root);
+		System.out.println();
+
+		System.out.print("Pre-order: ");
+		preOrder(root);
+		System.out.println();
 	}
 }

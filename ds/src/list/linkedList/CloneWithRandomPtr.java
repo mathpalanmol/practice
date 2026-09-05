@@ -1,101 +1,133 @@
 package list.linkedList;
 
-import java.util.LinkedHashMap;
-import java.util.Map.Entry;
+import java.util.HashMap;
+import java.util.Map;
 
+/**
+ * Copy List with Random Pointer (LeetCode #138)
+ *
+ * <p>A linked list of length n where each node has an extra {@code random} pointer
+ * that can point to any node in the list or null.
+ *
+ * <p>Create a deep copy of the list: new nodes with the same values, and
+ * {@code next}/{@code random} pointing to the corresponding new nodes (not the originals).
+ *
+ * <p>Example:
+ * <pre>
+ * Original:  1 → 2 → 3 → 4 → 5
+ * Random:    1→4, 2→5, 3→5, 4→1, 5→3
+ *
+ * Clone:     1' → 2' → 3' → 4' → 5'
+ * Random:    same structure, all pointers to cloned nodes
+ * </pre>
+ */
 public class CloneWithRandomPtr {
-	static LinkedHashMap<Link, Link> map = new LinkedHashMap<Link, Link>();
 
-	// map key: orignal link ; value: clone link [created with next pointer and all
-	// values contain rdptr as null]
+    static class Node {
+        int val;
+        Node next;
+        Node random;
 
-	public static void main(String[] args) {
-		Link listwithRandomPtr = getLinkedList();
-		print(listwithRandomPtr);
-		Link clonedList = clone(listwithRandomPtr);
-		print(clonedList);
-	}
+        Node(int val) {
+            this.val = val;
+        }
+    }
 
-	private static Link clone(Link listwithRandomPtr) {
-		Link listnextptr = createListwithnextPointer(listwithRandomPtr);
-		Link listnextptrHead = listnextptr;
-		print(listnextptr);
-		for (Entry<Link, Link> entry : map.entrySet()) {// to update random pointer
-			Link orignal = entry.getKey();
-			Link orignalRptr = orignal.rdPtr;
-			Link rptr = map.get(orignalRptr);
-			listnextptr.rdPtr = rptr;
-			listnextptr = listnextptr.next;
-		}
-		return listnextptrHead;
-	}
-    // create newList using next pointer
-	// populate map; Key: orignal LinkedList node, value: newNode
-	private static Link createListwithnextPointer(Link listwithRandomPtr) {
-		Link head = null;
-		Link current = null;
-		while (listwithRandomPtr != null) {
-			Link newLink = new Link(listwithRandomPtr.key);
-			if (head == null) {
-				head = newLink;
-				current = head;
-				map.put(listwithRandomPtr, newLink);
-				listwithRandomPtr = listwithRandomPtr.next;
-				continue;
-			} else
-				current.next = newLink;
+    /**
+     * Deep copy using a HashMap: original node → cloned node.
+     *
+     * <p>Pass 1: create every clone and wire {@code next}.
+     * Pass 2: set each clone's {@code random} via the map.
+     */
+    public static Node copyRandomList(Node head) {
+        if (head == null) {
+            return null;
+        }
 
-			map.put(listwithRandomPtr, newLink);
-			current = current.next;
-			listwithRandomPtr = listwithRandomPtr.next;
-		}
+        // original → clone
+        Map<Node, Node> map = new HashMap<>();
 
-		return head;
-	}
+        // Pass 1: clone nodes and link next pointers
+        Node curr = head;
+        Node cloneHead = null;
+        Node cloneTail = null;
 
-	private static void print(Link start) {
-		Link current = start;
-		while (current != null) {
-			System.out.print(current.key + " ");
-			current = current.next;
-		}
-		System.out.println("\n\n");
-	}
+        while (curr != null) {
+            Node clone = new Node(curr.val);
+            map.put(curr, clone);
 
-	private static Link getLinkedList() {
-		Link l1 = new Link(1);
-		Link l2 = new Link(2);
-		Link l3 = new Link(3);
-		Link l4 = new Link(4);
-		Link l5 = new Link(5);
-		l1.next = l2;
-		l2.next = l3;
-		l3.next = l4;
-		l4.next = l5;
+            if (cloneHead == null) {
+                cloneHead = clone;
+                cloneTail = clone;
+            } else {
+                cloneTail.next = clone;
+                cloneTail = clone;
+            }
+            curr = curr.next;
+        }
 
-		l1.rdPtr = l4;
-		l2.rdPtr = l5;
-		l3.rdPtr = l5;
-		l4.rdPtr = l1;
-		l5.rdPtr = l3;
+        // Pass 2: wire random pointers using the map
+        curr = head;
+        Node cloneCurr = cloneHead;
+        while (curr != null) {
+            // if original.random is null, clone.random stays null
+            if (curr.random != null) {
+                cloneCurr.random = map.get(curr.random);
+            }
+            curr = curr.next;
+            cloneCurr = cloneCurr.next;
+        }
 
-		return l1;
-	}
+        return cloneHead;
+    }
 
-	static class Link {
-		int key;
-		Link next;
-		Link rdPtr; // random Pointer
+    private static void printList(Node head) {
+        Node curr = head;
+        while (curr != null) {
+            String randomVal = (curr.random == null) ? "null" : String.valueOf(curr.random.val);
+            System.out.print("[" + curr.val + ", random=" + randomVal + "]");
+            if (curr.next != null) {
+                System.out.print(" -> ");
+            }
+            curr = curr.next;
+        }
+        System.out.println();
+    }
 
-		public Link(int key) {
-			this.key = key;
-		}
+    /** Build: 1→2→3→4→5 with random 1→4, 2→5, 3→5, 4→1, 5→3 */
+    private static Node buildSampleList() {
+        Node n1 = new Node(1);
+        Node n2 = new Node(2);
+        Node n3 = new Node(3);
+        Node n4 = new Node(4);
+        Node n5 = new Node(5);
 
-		@Override
-		public String toString() {
-			return "Link [key=" + key + ", next=" + next + ", rdPtr=" + rdPtr + "]";
-		}
+        n1.next = n2;
+        n2.next = n3;
+        n3.next = n4;
+        n4.next = n5;
 
-	}
+        n1.random = n4;
+        n2.random = n5;
+        n3.random = n5;
+        n4.random = n1;
+        n5.random = n3;
 
+        return n1;
+    }
+
+    public static void main(String[] args) {
+        Node original = buildSampleList();
+        System.out.print("Original: ");
+        printList(original);
+
+        Node clone = copyRandomList(original);
+        System.out.print("Clone:    ");
+        printList(clone);
+
+        // prove deep copy: changing clone does not change original
+        clone.val = 99;
+        System.out.print("After clone.val=99, original: ");
+        printList(original);
+    }
 }

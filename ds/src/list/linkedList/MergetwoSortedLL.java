@@ -2,12 +2,12 @@ package list.linkedList;
 
 public class MergetwoSortedLL {
 	public static void main(String[] args) {
-		LinkList list1 = new LinkList();
+		SinglyLinkedList list1 = new SinglyLinkedList();
 		list1.insertElement(5); /* Insertion */
 		list1.insertElement(7);
 		list1.insertElement(9);
 
-		LinkList list2 = new LinkList();
+		SinglyLinkedList list2 = new SinglyLinkedList();
 		list2.insertElement(6); /* Insertion */
 		list2.insertElement(8);
 		list2.insertElement(10);
