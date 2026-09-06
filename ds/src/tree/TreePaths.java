@@ -1,12 +1,15 @@
 package tree;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
- * Binary tree path problems (interview section).
+ * Binary tree path / DFS problems (interview section).
  *
- * <p>Covers: root-to-leaf paths, path sum, max path sum, LCA, distance between nodes.
+ * <p>Covers: root-to-leaf paths, path sum I/II/III, sum root-to-leaf numbers,
+ * max path sum, flatten to linked list, House Robber III, LCA, distance.
  *
  * <pre>
  * Sample tree used in {@link #main}:
@@ -109,6 +112,128 @@ public class TreePaths {
     }
 
     /**
+     * Path Sum III (LeetCode #437)
+     *
+     * <p>Count the number of paths where the sum of node values equals {@code target}.
+     * A path can start and end at any nodes, but must go downward (parent → child only).
+     *
+     * <p>Approach: prefix-sum DFS. If {@code currSum - target} was seen as a prefix,
+     * there is a downward path ending at the current node with sum {@code target}.
+     * Backtrack the prefix map when leaving a node.
+     */
+    public static int pathSumIII(TreeNode root, int target) {
+        Map<Long, Integer> prefix = new HashMap<>();
+        prefix.put(0L, 1); // empty prefix → one way to have sum 0
+        return pathSumIII(root, 0L, target, prefix);
+    }
+
+    private static int pathSumIII(TreeNode node, long currSum, int target,
+                                  Map<Long, Integer> prefix) {
+        if (node == null) {
+            return 0;
+        }
+        currSum += node.val;
+        int count = prefix.getOrDefault(currSum - target, 0);
+        prefix.put(currSum, prefix.getOrDefault(currSum, 0) + 1);
+        count += pathSumIII(node.left, currSum, target, prefix);
+        count += pathSumIII(node.right, currSum, target, prefix);
+        prefix.put(currSum, prefix.get(currSum) - 1); // backtrack
+        return count;
+    }
+
+    /**
+     * Sum Root to Leaf Numbers (LeetCode #129)
+     *
+     * <p>Each root-to-leaf path forms a number (e.g. 1→2→4 → 124).
+     * Return the sum of all such numbers.
+     *
+     * <p>Approach: DFS carrying {@code curr = curr * 10 + node.val}; at a leaf, return curr.
+     */
+    public static int sumNumbers(TreeNode root) {
+        return sumNumbers(root, 0);
+    }
+
+    private static int sumNumbers(TreeNode node, int curr) {
+        if (node == null) {
+            return 0;
+        }
+        curr = curr * 10 + node.val;
+        if (node.left == null && node.right == null) {
+            return curr;
+        }
+        return sumNumbers(node.left, curr) + sumNumbers(node.right, curr);
+    }
+
+    /**
+     * Flatten Binary Tree to Linked List (LeetCode #114)
+     *
+     * <p>Flatten the tree into a "linked list" in-place using the right pointer
+     * (left always null). Order must be the same as preorder.
+     *
+     * <pre>
+     * Before:          After (right spine):
+     *     1               1
+     *    / \               \
+     *   2   5               2
+     *  / \   \               \
+     * 3   4   6               3
+     *                          \
+     *                           4
+     *                            \
+     *                             5
+     *                              \
+     *                               6
+     * </pre>
+     *
+     * <p>Approach: reverse-preorder (right, left, root). Link each visited node
+     * so {@code node.right = previous}, {@code node.left = null}.
+     */
+    public static void flatten(TreeNode root) {
+        TreeNode[] prev = {null};
+        flatten(root, prev);
+    }
+
+    private static void flatten(TreeNode node, TreeNode[] prev) {
+        if (node == null) {
+            return;
+        }
+        flatten(node.right, prev);
+        flatten(node.left, prev);
+        node.right = prev[0];
+        node.left = null;
+        prev[0] = node;
+    }
+
+    /**
+     * House Robber III (LeetCode #337)
+     *
+     * <p>Each node is a house with money {@code val}. Adjacent houses (parent–child)
+     * cannot both be robbed. Return the maximum amount.
+     *
+     * <p>Approach: tree DP. For each node return {@code [robThis, skipThis]}:
+     * <ul>
+     *   <li>robThis = node.val + skip(left) + skip(right)</li>
+     *   <li>skipThis = max(rob, skip) of left + max(rob, skip) of right</li>
+     * </ul>
+     */
+    public static int houseRobberIII(TreeNode root) {
+        int[] res = rob(root);
+        return Math.max(res[0], res[1]);
+    }
+
+    /** @return {@code [robThis, skipThis]} */
+    private static int[] rob(TreeNode node) {
+        if (node == null) {
+            return new int[]{0, 0};
+        }
+        int[] left = rob(node.left);
+        int[] right = rob(node.right);
+        int robThis = node.val + left[1] + right[1];
+        int skipThis = Math.max(left[0], left[1]) + Math.max(right[0], right[1]);
+        return new int[]{robThis, skipThis};
+    }
+
+    /**
      * Binary Tree Maximum Path Sum (LeetCode #124)
      *
      * <p>A path is any sequence of connected nodes (need not pass through root).
@@ -208,10 +333,25 @@ public class TreePaths {
         System.out.println("Root-to-leaf paths: " + rootToLeafPaths(root));
         System.out.println("Has path sum 8 (1-2-5): " + hasPathSum(root, 8));
         System.out.println("All path sums = 8: " + pathSumAll(root, 8));
+        System.out.println("Path Sum III target 7: " + pathSumIII(root, 7)
+                + " (paths: 1-2-4, 2-5, 7)");
+        System.out.println("Sum root-to-leaf numbers: " + sumNumbers(root)
+                + " (124+125+136+137)");
         System.out.println("Max path sum: " + maxPathSum(root));
+        System.out.println("House Robber III: " + houseRobberIII(root));
         System.out.println("LCA(4,5).val: " + lowestCommonAncestor(root, n4, n5).val);
         System.out.println("LCA(4,7).val: " + lowestCommonAncestor(root, n4, n7).val);
         System.out.println("Distance(4,5): " + distance(root, n4, n5));
         System.out.println("Distance(4,7): " + distance(root, n4, n7));
+
+        TreeNode flat = buildSampleTree();
+        flatten(flat);
+        System.out.print("Flattened right spine: ");
+        TreeNode curr = flat;
+        while (curr != null) {
+            System.out.print(curr.val + (curr.right != null ? " -> " : ""));
+            curr = curr.right;
+        }
+        System.out.println();
     }
 }

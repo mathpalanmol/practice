@@ -31,6 +31,8 @@ import java.util.TreeMap;
  *   <li>Zigzag:    [1] [3 2] [4 5 6 7]</li>
  *   <li>Boundary:  1 2 4 5 6 7 3</li>
  *   <li>Vertical:  [4] [2] [1 5 6] [3] [7]</li>
+ *   <li>Top view:  4 2 1 3 7 · Bottom: 4 2 6 3 7</li>
+ *   <li>Left/Right view: 1 2 4 / 1 3 7</li>
  * </ul>
  */
 public class TreeTraversal {
@@ -327,6 +329,274 @@ public class TreeTraversal {
         return result;
     }
 
+    // -------------------- Top / Bottom view --------------------
+
+    /**
+     * Top View of Binary Tree (GFG / common interview)
+     *
+     * <p>Nodes visible when looking from above: the first node encountered
+     * at each horizontal distance (column), left to right.
+     *
+     * <p>Approach: BFS with column index (same as vertical order). Record a
+     * column only the first time it is seen so the topmost node wins.
+     *
+     * <p>Sample: 4 2 1 3 7
+     */
+    public static List<Integer> topView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Map<Integer, Integer> columns = new TreeMap<>();
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<Integer> colQueue = new LinkedList<>();
+        nodeQueue.offer(root);
+        colQueue.offer(0);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.poll();
+            int col = colQueue.poll();
+            columns.putIfAbsent(col, node.val); // first = topmost
+
+            if (node.left != null) {
+                nodeQueue.offer(node.left);
+                colQueue.offer(col - 1);
+            }
+            if (node.right != null) {
+                nodeQueue.offer(node.right);
+                colQueue.offer(col + 1);
+            }
+        }
+        result.addAll(columns.values());
+        return result;
+    }
+
+    /**
+     * Bottom View of Binary Tree (GFG / common interview)
+     *
+     * <p>Nodes visible when looking from below: the last node at each
+     * horizontal distance. If two nodes share a column, the deeper (or later
+     * in BFS at same depth) overwrites.
+     *
+     * <p>Approach: same BFS as {@link #topView}, but always overwrite the column.
+     *
+     * <p>Sample: 4 2 6 3 7 (5 and 6 share col 0 with 1; last wins → 6)
+     */
+    public static List<Integer> bottomView(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Map<Integer, Integer> columns = new TreeMap<>();
+        Queue<TreeNode> nodeQueue = new LinkedList<>();
+        Queue<Integer> colQueue = new LinkedList<>();
+        nodeQueue.offer(root);
+        colQueue.offer(0);
+
+        while (!nodeQueue.isEmpty()) {
+            TreeNode node = nodeQueue.poll();
+            int col = colQueue.poll();
+            columns.put(col, node.val); // last = bottommost
+
+            if (node.left != null) {
+                nodeQueue.offer(node.left);
+                colQueue.offer(col - 1);
+            }
+            if (node.right != null) {
+                nodeQueue.offer(node.right);
+                colQueue.offer(col + 1);
+            }
+        }
+        result.addAll(columns.values());
+        return result;
+    }
+
+    // -------------------- Level aggregates --------------------
+
+    /**
+     * Average of Levels in Binary Tree (LeetCode #637)
+     *
+     * <p>Return the average value of nodes on each level, top to bottom.
+     *
+     * <p>Approach: BFS by levels; sum / count for each level (use double).
+     */
+    public static List<Double> averageOfLevels(TreeNode root) {
+        List<Double> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            double sum = 0;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                sum += node.val;
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            result.add(sum / size);
+        }
+        return result;
+    }
+
+    /**
+     * Find Largest Value in Each Tree Row (LeetCode #515)
+     *
+     * <p>Return the largest value in each level of the tree.
+     *
+     * <p>Approach: BFS by levels; track max while processing each level.
+     */
+    public static List<Integer> largestValues(TreeNode root) {
+        List<Integer> result = new ArrayList<>();
+        if (root == null) {
+            return result;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            int max = Integer.MIN_VALUE;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                max = Math.max(max, node.val);
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+            result.add(max);
+        }
+        return result;
+    }
+
+    // -------------------- Next right pointers --------------------
+
+    /**
+     * Node with a {@code next} pointer for "populate next right" problems.
+     */
+    public static class NextNode {
+        int val;
+        NextNode left;
+        NextNode right;
+        NextNode next;
+
+        NextNode(int val) {
+            this.val = val;
+        }
+    }
+
+    /**
+     * Populating Next Right Pointers in Each Node (LeetCode #116 / #117)
+     *
+     * <p>Connect each node's {@code next} to the next node on the same level
+     * (rightward). The rightmost node's {@code next} is null.
+     *
+     * <p>#116 assumes a perfect binary tree; #117 is the general case.
+     * This BFS solution works for both.
+     *
+     * <p>Approach: level-order BFS; link consecutive nodes in the same level.
+     *
+     * <pre>
+     *     1                1 → null
+     *    / \              / \
+     *   2   3            2 → 3 → null
+     *  / \ / \          / \ / \
+     * 4  5 6  7        4→5→6→7 → null
+     * </pre>
+     */
+    public static NextNode connect(NextNode root) {
+        if (root == null) {
+            return null;
+        }
+
+        Queue<NextNode> queue = new LinkedList<>();
+        queue.offer(root);
+        while (!queue.isEmpty()) {
+            int size = queue.size();
+            NextNode prev = null;
+            for (int i = 0; i < size; i++) {
+                NextNode node = queue.poll();
+                if (prev != null) {
+                    prev.next = node;
+                }
+                prev = node;
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+        return root;
+    }
+
+    /**
+     * Perfect-tree O(1)-extra-space connect (LeetCode #116 only).
+     *
+     * <p>Use already-established {@code next} links on the current level to
+     * wire the children on the next level — no queue needed.
+     */
+    public static NextNode connectPerfect(NextNode root) {
+        if (root == null) {
+            return null;
+        }
+        NextNode leftmost = root;
+        while (leftmost.left != null) {
+            NextNode head = leftmost;
+            while (head != null) {
+                head.left.next = head.right;
+                if (head.next != null) {
+                    head.right.next = head.next.left;
+                }
+                head = head.next;
+            }
+            leftmost = leftmost.left;
+        }
+        return root;
+    }
+
+    /** Build a perfect tree of depth 3 for next-pointer demos (values 1..7). */
+    public static NextNode buildSampleNextTree() {
+        NextNode root = new NextNode(1);
+        root.left = new NextNode(2);
+        root.right = new NextNode(3);
+        root.left.left = new NextNode(4);
+        root.left.right = new NextNode(5);
+        root.right.left = new NextNode(6);
+        root.right.right = new NextNode(7);
+        return root;
+    }
+
+    /** Print levels using {@code next} links (one line per level starting at leftmost). */
+    private static void printNextLevels(NextNode root) {
+        NextNode leftmost = root;
+        while (leftmost != null) {
+            NextNode curr = leftmost;
+            while (curr != null) {
+                System.out.print(curr.val);
+                if (curr.next != null) {
+                    System.out.print(" → ");
+                }
+                curr = curr.next;
+            }
+            System.out.println(" → null");
+            leftmost = leftmost.left; // perfect tree: leftmost of next level
+        }
+    }
+
     // -------------------- Other common traversals --------------------
 
     /**
@@ -479,8 +749,17 @@ public class TreeTraversal {
         System.out.println("Zigzag:          " + zigzagLevelOrder(root));
         System.out.println("Boundary:        " + boundaryTraversal(root));
         System.out.println("Vertical:        " + verticalOrder(root));
+        System.out.println("Top view:        " + topView(root));
+        System.out.println("Bottom view:     " + bottomView(root));
+        System.out.println("Avg of levels:   " + averageOfLevels(root));
+        System.out.println("Max per level:   " + largestValues(root));
         System.out.println("Left view:       " + leftView(root));
         System.out.println("Right view:      " + rightView(root));
         System.out.println("Height:          " + height(root));
+
+        System.out.println("Next pointers (BFS #116/#117):");
+        printNextLevels(connect(buildSampleNextTree()));
+        System.out.println("Next pointers (O(1) perfect #116):");
+        printNextLevels(connectPerfect(buildSampleNextTree()));
     }
 }
