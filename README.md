@@ -17,7 +17,7 @@ Source lives under `ds/src/`.
 |---------|--------|
 | `graph` | DAG, Dijkstra, MST (Kruskal, Prim), topological sort, islands |
 | `list` | Linked lists, doubly linked lists, stacks/queues on lists, reversal, merge, cycle detection |
-| `tree` | BST, AVL, heap, suffix tree, serialization, traversal |
+| `tree` | TreeTraversal, TreeProperties, TreePaths, TreeConstruction, BinarySearchTree, heap |
 | `trie` | Trie implementation |
 | `map` | Custom hash map |
 | `matrix` | 2D grid problems, rotation, spiral traversal, BFS |
