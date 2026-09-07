@@ -35,6 +35,16 @@ public class TreeProperties {
      * <p>Height = number of nodes on the longest root-to-leaf path.
      * Empty tree has height 0.
      *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 3
+     * </pre>
+     *
      * <p>Approach: 1 + max(height(left), height(right)).
      */
     public static int height(TreeNode root) {
@@ -52,6 +62,16 @@ public class TreeProperties {
      *
      * <p>This implementation returns the number of <em>nodes</em> on that path
      * (some problems ask for edge count = nodes - 1).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 5 (e.g. path 4-2-1-3-7)
+     * </pre>
      *
      * <p>Approach: at each node, candidate = leftHeight + rightHeight + 1;
      * track the global max while returning height upward.
@@ -77,6 +97,16 @@ public class TreeProperties {
      * Count Complete Tree Nodes / Count Nodes (related to LeetCode #222)
      *
      * <p>Return the total number of nodes in the tree.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 7
+     * </pre>
      */
     public static int countNodes(TreeNode root) {
         if (root == null) {
@@ -89,6 +119,16 @@ public class TreeProperties {
      * Count Leaf Nodes
      *
      * <p>A leaf is a node with no left and no right child.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 4
+     * </pre>
      */
     public static int countLeaves(TreeNode root) {
         if (root == null) {
@@ -105,6 +145,16 @@ public class TreeProperties {
      *
      * <p>A tree is height-balanced if for <em>every</em> node,
      * |height(left) - height(right)| &lt;= 1.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: true
+     * </pre>
      *
      * <p>Approach: post-order check; return -1 as a sentinel if unbalanced,
      * otherwise return height. Avoids recomputing height separately.
@@ -138,13 +188,24 @@ public class TreeProperties {
      * <p>Check whether the tree is a mirror of itself
      * (left subtree mirrors right subtree).
      *
-     * <p>Example (symmetric):
      * <pre>
+     * Sample (not symmetric):
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: false
+     *
+     * Symmetric example:
      *       1
      *      / \
      *     2   2
      *    / \ / \
      *   3  4 4  3
+     *
+     * Expected: true
      * </pre>
      *
      * <p>Approach: compare pairs (left.left vs right.right) and
@@ -174,6 +235,16 @@ public class TreeProperties {
      *
      * <p>Two trees are identical if they have the same structure and
      * the same node values at corresponding positions.
+     *
+     * <pre>
+     *           1                  1
+     *         /   \              /   \
+     *        2     3            2     3
+     *       / \   / \          / \   / \
+     *      4   5 6   7        4   5 6   7
+     *
+     * Expected: true (comparing two copies of sample)
+     * </pre>
      */
     public static boolean isIdentical(TreeNode a, TreeNode b) {
         if (a == null && b == null) {
@@ -193,12 +264,14 @@ public class TreeProperties {
      * <p>Mirror the tree by swapping left and right children at every node.
      *
      * <pre>
-     * Before:          After:
-     *     1               1
-     *    / \             / \
-     *   2   3           3   2
-     *  / \ / \         / \ / \
-     * 4  5 6  7       7  6 5  4
+     * Before:              After:
+     *           1                   1
+     *         /   \               /   \
+     *        2     3             3     2
+     *       / \   / \           / \   / \
+     *      4   5 6   7         7   6 5   4
+     *
+     * Expected: after invert, root.left.val = 3
      * </pre>
      */
     public static TreeNode invert(TreeNode root) {
@@ -211,7 +284,19 @@ public class TreeProperties {
         return root;
     }
 
-    /** Builds the sample tree shown in the class javadoc. */
+    /**
+     * Builds the sample tree shown in the class javadoc.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: tree with values 1..7 as shown
+     * </pre>
+     */
     public static TreeNode buildSampleTree() {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);

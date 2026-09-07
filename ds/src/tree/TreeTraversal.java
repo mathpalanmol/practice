@@ -24,9 +24,9 @@ import java.util.TreeMap;
  *
  * <p>Quick reference (on that sample):
  * <ul>
- *   <li>Inorder:   4 2 5 1 6 3 7</li>
- *   <li>Preorder:  1 2 4 5 3 6 7</li>
- *   <li>Postorder: 4 5 2 6 7 3 1</li>
+ *   <li>Inorder left->root->right:   4 2 5 1 6 3 7</li>
+ *   <li>Preorder root->left->right:  1 2 4 5 3 6 7</li>
+ *   <li>Postorder left->right->root: 4 5 2 6 7 3 1</li>
  *   <li>Level:     1 2 3 4 5 6 7</li>
  *   <li>Zigzag:    [1] [3 2] [4 5 6 7]</li>
  *   <li>Boundary:  1 2 4 5 6 7 3</li>
@@ -51,7 +51,19 @@ public class TreeTraversal {
     // -------------------- In-order: Left → Root → Right --------------------
     // Useful for BSTs: inorder visits keys in sorted order.
 
-    /** Inorder DFS (recursive). */
+    /**
+     * Inorder DFS (recursive). Left → Root → Right.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [4, 2, 5, 1, 6, 3, 7]
+     * </pre>
+     */
     public static List<Integer> inorderRecursive(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         inorderRecursive(root, result);
@@ -68,8 +80,18 @@ public class TreeTraversal {
     }
 
     /**
-     * Inorder DFS (iterative) using a stack.
+     * Inorder DFS (iterative) using a stack. Left → Root → Right.
      * Go as left as possible (pushing), then pop/visit, then go right.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [4, 2, 5, 1, 6, 3, 7]
+     * </pre>
      */
     public static List<Integer> inorderIterative(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -92,7 +114,19 @@ public class TreeTraversal {
     // -------------------- Pre-order: Root → Left → Right --------------------
     // Useful for cloning a tree / prefix expression of the structure.
 
-    /** Preorder DFS (recursive). */
+    /**
+     * Preorder DFS (recursive). Root → Left → Right.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 2, 4, 5, 3, 6, 7]
+     * </pre>
+     */
     public static List<Integer> preorderRecursive(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         preorderRecursive(root, result);
@@ -109,8 +143,18 @@ public class TreeTraversal {
     }
 
     /**
-     * Preorder DFS (iterative).
+     * Preorder DFS (iterative). Root → Left → Right.
      * Stack is LIFO: push right before left so left is processed next.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 2, 4, 5, 3, 6, 7]
+     * </pre>
      */
     public static List<Integer> preorderIterative(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -137,7 +181,19 @@ public class TreeTraversal {
     // -------------------- Post-order: Left → Right → Root --------------------
     // Useful for deleting a tree / evaluating expression trees (children first).
 
-    /** Postorder DFS (recursive). */
+    /**
+     * Postorder DFS (recursive). Left → Right → Root.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [4, 5, 2, 6, 7, 3, 1]
+     * </pre>
+     */
     public static List<Integer> postorderRecursive(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         postorderRecursive(root, result);
@@ -156,6 +212,16 @@ public class TreeTraversal {
     /**
      * Postorder DFS (iterative) via reverse of (root → right → left).
      * Collect root-right-left, then reverse the list → left-right-root.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [4, 5, 2, 6, 7, 3, 1]
+     * </pre>
      */
     public static List<Integer> postorderIterative(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -186,6 +252,16 @@ public class TreeTraversal {
     /**
      * BFS / level-order as a flat list.
      * Queue: process front, enqueue its children at the back.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 2, 3, 4, 5, 6, 7]
+     * </pre>
      */
     public static List<Integer> levelOrder(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -209,8 +285,24 @@ public class TreeTraversal {
     }
 
     /**
-     * BFS grouped by level, e.g. [[1], [2, 3], [4, 5, 6, 7]].
-     * Process exactly {@code queue.size()} nodes per level.
+     * Binary Tree Level Order Traversal (LeetCode #102)
+     *
+     * <p>Return the node values level by level, left to right, as a list of lists.
+     * Level 0 is the root; each next list is one deeper level.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [[1], [2, 3], [4, 5, 6, 7]]
+     * </pre>
+     *
+     * <p>Approach: BFS with a queue. At the start of each level, {@code queue.size()}
+     * is exactly the number of nodes on that level — process that many, enqueueing
+     * their children for the next level.
      */
     public static List<List<Integer>> levelOrderByLevels(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
@@ -237,13 +329,25 @@ public class TreeTraversal {
         }
         return result;
     }
+    
 
     // -------------------- Zigzag / spiral --------------------
 
     /**
-     * Zigzag (spiral) level order:
-     * even levels left→right, odd levels right→left.
+     * Binary Tree Zigzag Level Order Traversal (LeetCode #103)
+     *
+     * <p>Zigzag (spiral) level order: even levels left→right, odd levels right→left.
      * Same BFS as level order; only the order of adding into {@code level} changes.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [[1], [3, 2], [4, 5, 6, 7]]
+     * </pre>
      */
     public static List<List<Integer>> zigzagLevelOrder(TreeNode root) {
         List<List<Integer>> result = new ArrayList<>();
@@ -284,15 +388,20 @@ public class TreeTraversal {
     /**
      * Vertical order traversal (top to bottom, left to right within a column).
      *
-     * <p>Assign each node a column index (horizontal distance):
-     * root = 0, left child = col - 1, right child = col + 1.
-     * Use BFS so nodes higher in the tree appear before lower ones in the same column.
-     * TreeMap keeps columns sorted from leftmost to rightmost.
+     * <p>Give each node a column: root = 0, left = col - 1, right = col + 1.
+     * BFS visits top nodes first; TreeMap keeps columns left → right.
      *
-     * <p>Sample:
      * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
      * col: -2  -1   0   1   2
      *       4   2  1,5,6  3   7
+     *
+     * Expected: [[4], [2], [1, 5, 6], [3], [7]]
      * </pre>
      */
     public static List<List<Integer>> verticalOrder(TreeNode root) {
@@ -301,31 +410,39 @@ public class TreeTraversal {
             return result;
         }
 
-        // column index → nodes in that column (top to bottom)
+        // col → values in that column (top to bottom)
         Map<Integer, List<Integer>> columns = new TreeMap<>();
-        Queue<TreeNode> nodeQueue = new LinkedList<>();
-        Queue<Integer> colQueue = new LinkedList<>();
 
-        nodeQueue.offer(root);
-        colQueue.offer(0);
+        Queue<TreeNode> nodes = new LinkedList<>();
+        Queue<Integer> cols = new LinkedList<>();
+        nodes.add(root);
+        cols.add(0); // root starts at column 0
 
-        while (!nodeQueue.isEmpty()) {
-            TreeNode node = nodeQueue.poll();
-            int col = colQueue.poll();
+        while (!nodes.isEmpty()) {
+            TreeNode node = nodes.poll();
+            int col = cols.poll();
 
-            columns.computeIfAbsent(col, c -> new ArrayList<>()).add(node.val);
+            // add this node to its column list
+            if (!columns.containsKey(col)) {
+                columns.put(col, new ArrayList<>());
+            }
+            columns.get(col).add(node.val);
 
+            // left child goes one column left, right one column right
             if (node.left != null) {
-                nodeQueue.offer(node.left);
-                colQueue.offer(col - 1); // left column
+                nodes.add(node.left);
+                cols.add(col - 1);
             }
             if (node.right != null) {
-                nodeQueue.offer(node.right);
-                colQueue.offer(col + 1); // right column
+                nodes.add(node.right);
+                cols.add(col + 1);
             }
         }
 
-        result.addAll(columns.values());
+        // TreeMap is already sorted by column
+        for (List<Integer> column : columns.values()) {
+            result.add(column);
+        }
         return result;
     }
 
@@ -337,10 +454,18 @@ public class TreeTraversal {
      * <p>Nodes visible when looking from above: the first node encountered
      * at each horizontal distance (column), left to right.
      *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [4, 2, 1, 3, 7]
+     * </pre>
+     *
      * <p>Approach: BFS with column index (same as vertical order). Record a
      * column only the first time it is seen so the topmost node wins.
-     *
-     * <p>Sample: 4 2 1 3 7
      */
     public static List<Integer> topView(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -377,11 +502,19 @@ public class TreeTraversal {
      *
      * <p>Nodes visible when looking from below: the last node at each
      * horizontal distance. If two nodes share a column, the deeper (or later
-     * in BFS at same depth) overwrites.
+     * in BFS at same depth) overwrites. (5 and 6 share col 0 with 1; last wins → 6)
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [4, 2, 6, 3, 7]
+     * </pre>
      *
      * <p>Approach: same BFS as {@link #topView}, but always overwrite the column.
-     *
-     * <p>Sample: 4 2 6 3 7 (5 and 6 share col 0 with 1; last wins → 6)
      */
     public static List<Integer> bottomView(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -413,45 +546,22 @@ public class TreeTraversal {
         return result;
     }
 
-    // -------------------- Level aggregates --------------------
-
-    /**
-     * Average of Levels in Binary Tree (LeetCode #637)
-     *
-     * <p>Return the average value of nodes on each level, top to bottom.
-     *
-     * <p>Approach: BFS by levels; sum / count for each level (use double).
-     */
-    public static List<Double> averageOfLevels(TreeNode root) {
-        List<Double> result = new ArrayList<>();
-        if (root == null) {
-            return result;
-        }
-
-        Queue<TreeNode> queue = new LinkedList<>();
-        queue.offer(root);
-        while (!queue.isEmpty()) {
-            int size = queue.size();
-            double sum = 0;
-            for (int i = 0; i < size; i++) {
-                TreeNode node = queue.poll();
-                sum += node.val;
-                if (node.left != null) {
-                    queue.offer(node.left);
-                }
-                if (node.right != null) {
-                    queue.offer(node.right);
-                }
-            }
-            result.add(sum / size);
-        }
-        return result;
-    }
+    
 
     /**
      * Find Largest Value in Each Tree Row (LeetCode #515)
      *
      * <p>Return the largest value in each level of the tree.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 3, 7]
+     * </pre>
      *
      * <p>Approach: BFS by levels; track max while processing each level.
      */
@@ -506,15 +616,18 @@ public class TreeTraversal {
      * <p>#116 assumes a perfect binary tree; #117 is the general case.
      * This BFS solution works for both.
      *
-     * <p>Approach: level-order BFS; link consecutive nodes in the same level.
-     *
      * <pre>
+     * Before:              After:
      *     1                1 → null
      *    / \              / \
      *   2   3            2 → 3 → null
      *  / \ / \          / \ / \
      * 4  5 6  7        4→5→6→7 → null
+     *
+     * Expected: levels 1→null; 2→3→null; 4→5→6→7→null
      * </pre>
+     *
+     * <p>Approach: level-order BFS; link consecutive nodes in the same level.
      */
     public static NextNode connect(NextNode root) {
         if (root == null) {
@@ -548,6 +661,17 @@ public class TreeTraversal {
      *
      * <p>Use already-established {@code next} links on the current level to
      * wire the children on the next level — no queue needed.
+     *
+     * <pre>
+     * Before:              After:
+     *     1                1 → null
+     *    / \              / \
+     *   2   3            2 → 3 → null
+     *  / \ / \          / \ / \
+     * 4  5 6  7        4→5→6→7 → null
+     *
+     * Expected: levels 1→null; 2→3→null; 4→5→6→7→null
+     * </pre>
      */
     public static NextNode connectPerfect(NextNode root) {
         if (root == null) {
@@ -568,7 +692,19 @@ public class TreeTraversal {
         return root;
     }
 
-    /** Build a perfect tree of depth 3 for next-pointer demos (values 1..7). */
+    /**
+     * Build a perfect tree of depth 3 for next-pointer demos (values 1..7).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: perfect tree with values 1..7 (next pointers unset)
+     * </pre>
+     */
     public static NextNode buildSampleNextTree() {
         NextNode root = new NextNode(1);
         root.left = new NextNode(2);
@@ -604,7 +740,15 @@ public class TreeTraversal {
      * root → left boundary (top-down, no leaves) → all leaves (left to right)
      * → right boundary (bottom-up, no leaves).
      *
-     * <p>Sample: 1 → 2 → 4 → 5 → 6 → 7 → 3
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 2, 4, 5, 6, 7, 3]
+     * </pre>
      */
     public static List<Integer> boundaryTraversal(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -663,6 +807,16 @@ public class TreeTraversal {
     /**
      * Left view: first node visible when looking from the left
      * (first node of each depth / level).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 2, 4]
+     * </pre>
      */
     public static List<Integer> leftView(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -685,6 +839,16 @@ public class TreeTraversal {
     /**
      * Right view: first node visible from the right
      * (rightmost node of each depth).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [1, 3, 7]
+     * </pre>
      */
     public static List<Integer> rightView(TreeNode root) {
         List<Integer> result = new ArrayList<>();
@@ -704,24 +868,87 @@ public class TreeTraversal {
         rightView(node.left, depth + 1, result);
     }
 
-    /** Number of nodes on the longest root-to-leaf path. */
-    public static int height(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
-        return 1 + Math.max(height(root.left), height(root.right));
-    }
-
-    // -------------------- Sample tree + demo --------------------
-
     /**
-     * Build the sample tree used by {@code main}:
+     * Maximum depth / height (recursive).
+     * Number of nodes on the longest root-to-leaf path.
+     *
      * <pre>
      *           1
      *         /   \
      *        2     3
      *       / \   / \
      *      4   5 6   7
+     *
+     * Expected: 3
+     * </pre>
+     */
+    public static int heightRecursive(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return 1 + Math.max(heightRecursive(root.left), heightRecursive(root.right));
+    }
+
+    /**
+     * Maximum depth / height (iterative).
+     * Same as {@link #heightRecursive} — count BFS levels.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 3
+     * </pre>
+     *
+     * <p>Approach: level-order BFS. Each time the queue has nodes, that is one level;
+     * increment a counter until the queue is empty.
+     */
+    public static int heightIterative(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+        int height = 0;
+
+        while (!queue.isEmpty()) {
+            int size = queue.size(); // nodes on this level
+            height++;
+            for (int i = 0; i < size; i++) {
+                TreeNode node = queue.poll();
+                if (node.left != null) {
+                    queue.offer(node.left);
+                }
+                if (node.right != null) {
+                    queue.offer(node.right);
+                }
+            }
+        }
+        return height;
+    }
+
+    /** Same as {@link #heightRecursive}; kept as a short alias. */
+    public static int height(TreeNode root) {
+        return heightRecursive(root);
+    }
+
+    // -------------------- Sample tree + demo --------------------
+
+    /**
+     * Build the sample tree used by {@code main}.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: tree with values 1..7 as shown
      * </pre>
      */
     public static TreeNode buildSampleTree() {
@@ -751,11 +978,11 @@ public class TreeTraversal {
         System.out.println("Vertical:        " + verticalOrder(root));
         System.out.println("Top view:        " + topView(root));
         System.out.println("Bottom view:     " + bottomView(root));
-        System.out.println("Avg of levels:   " + averageOfLevels(root));
         System.out.println("Max per level:   " + largestValues(root));
         System.out.println("Left view:       " + leftView(root));
         System.out.println("Right view:      " + rightView(root));
-        System.out.println("Height:          " + height(root));
+        System.out.println("Height (rec):    " + heightRecursive(root));
+        System.out.println("Height (itr):    " + heightIterative(root));
 
         System.out.println("Next pointers (BFS #116/#117):");
         printNextLevels(connect(buildSampleNextTree()));

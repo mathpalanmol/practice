@@ -40,6 +40,16 @@ public class TreePaths {
      *
      * <p>Return all root-to-leaf paths. A leaf has no children.
      *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: [[1, 2, 4], [1, 2, 5], [1, 3, 6], [1, 3, 7]]
+     * </pre>
+     *
      * <p>Approach: DFS with a shared path list; add a copy when a leaf is reached,
      * then backtrack (remove last value) before exploring siblings.
      */
@@ -68,7 +78,15 @@ public class TreePaths {
      *
      * <p>Return true if the tree has a root-to-leaf path whose values sum to {@code target}.
      *
-     * <p>Example: path 1→2→5 sums to 8 → true for target 8.
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: hasPathSum(target=8) → true (path 1-2-5)
+     * </pre>
      *
      * <p>Approach: subtract current value and recurse; at a leaf, check equality.
      */
@@ -87,6 +105,16 @@ public class TreePaths {
      * Path Sum II (LeetCode #113)
      *
      * <p>Return <em>all</em> root-to-leaf paths whose values sum to {@code target}.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: pathSumAll(target=8) → [[1, 2, 5]]
+     * </pre>
      *
      * <p>Same backtracking pattern as {@link #rootToLeafPaths}, with a remaining-sum check.
      */
@@ -116,6 +144,16 @@ public class TreePaths {
      *
      * <p>Count the number of paths where the sum of node values equals {@code target}.
      * A path can start and end at any nodes, but must go downward (parent → child only).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: pathSumIII(target=7) → 3 (paths 1-2-4, 2-5, 7)
+     * </pre>
      *
      * <p>Approach: prefix-sum DFS. If {@code currSum - target} was seen as a prefix,
      * there is a downward path ending at the current node with sum {@code target}.
@@ -147,6 +185,16 @@ public class TreePaths {
      * <p>Each root-to-leaf path forms a number (e.g. 1→2→4 → 124).
      * Return the sum of all such numbers.
      *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 522 (124+125+136+137)
+     * </pre>
+     *
      * <p>Approach: DFS carrying {@code curr = curr * 10 + node.val}; at a leaf, return curr.
      */
     public static int sumNumbers(TreeNode root) {
@@ -171,18 +219,22 @@ public class TreePaths {
      * (left always null). Order must be the same as preorder.
      *
      * <pre>
-     * Before:          After (right spine):
-     *     1               1
-     *    / \               \
-     *   2   5               2
-     *  / \   \               \
-     * 3   4   6               3
-     *                          \
-     *                           4
-     *                            \
-     *                             5
-     *                              \
-     *                               6
+     * Before (sample):         After (right spine):
+     *           1                   1
+     *         /   \                  \
+     *        2     3                  2
+     *       / \   / \                  \
+     *      4   5 6   7                  4
+     *                                    \
+     *                                     5
+     *                                      \
+     *                                       3
+     *                                        \
+     *                                         6
+     *                                          \
+     *                                           7
+     *
+     * Expected: 1→2→4→5→3→6→7
      * </pre>
      *
      * <p>Approach: reverse-preorder (right, left, root). Link each visited node
@@ -209,6 +261,16 @@ public class TreePaths {
      *
      * <p>Each node is a house with money {@code val}. Adjacent houses (parent–child)
      * cannot both be robbed. Return the maximum amount.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 23
+     * </pre>
      *
      * <p>Approach: tree DP. For each node return {@code [robThis, skipThis]}:
      * <ul>
@@ -240,6 +302,16 @@ public class TreePaths {
      * Find the path with the maximum sum of node values.
      * Node values may be negative.
      *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 18 (e.g. 4-2-5 or 5-2-1-3-7)
+     * </pre>
+     *
      * <p>Approach: at each node, the best path <em>through</em> this node is
      * {@code node + max(0, leftGain) + max(0, rightGain)}. Track a global max.
      * Return upward only one branch: {@code node + max(0, left, right)} —
@@ -269,6 +341,16 @@ public class TreePaths {
      * ancestor — the deepest node that has both as descendants (a node is a
      * descendant of itself).
      *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4*  5* 6   7*
+     *
+     * Expected: LCA(4,5)=2; LCA(4,7)=1
+     * </pre>
+     *
      * <p>Approach: recurse left and right. If root is p or q, return root.
      * If both sides return non-null, root is the split point → LCA.
      * Otherwise return the non-null side.
@@ -289,6 +371,16 @@ public class TreePaths {
      * Distance Between Two Nodes
      *
      * <p>Return the number of <em>edges</em> on the path between p and q.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4*  5* 6   7*
+     *
+     * Expected: distance(4,5)=2; distance(4,7)=4
+     * </pre>
      *
      * <p>Approach: dist(p, q) = depth(LCA, p) + depth(LCA, q).
      */
@@ -312,7 +404,19 @@ public class TreePaths {
         return depth(root.right, target, d + 1);
     }
 
-    /** Builds the sample tree shown in the class javadoc. */
+    /**
+     * Builds the sample tree shown in the class javadoc.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: tree with values 1..7 as shown
+     * </pre>
+     */
     public static TreeNode buildSampleTree() {
         TreeNode root = new TreeNode(1);
         root.left = new TreeNode(2);

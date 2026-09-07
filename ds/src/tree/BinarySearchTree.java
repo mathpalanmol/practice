@@ -41,6 +41,16 @@ public class BinarySearchTree {
      *
      * <p>Return the node with value {@code key}, or null if not present.
      *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2   4 6
+     *
+     * Expected: search(4) → node 4 (true)
+     * </pre>
+     *
      * <p>Approach: walk left if key &lt; current, right if key &gt; current.
      * O(h) time where h is tree height.
      */
@@ -56,6 +66,17 @@ public class BinarySearchTree {
      *
      * <p>Insert {@code key} as a new leaf while preserving the BST property.
      * Duplicate keys are ignored (no insert).
+     *
+     * <pre>
+     * Before:              After insert(8):
+     *           5                   5
+     *         /   \               /   \
+     *        3     7             3     7
+     *       / \   /             / \   / \
+     *      2   4 6             2   4 6   8
+     *
+     * Expected: inorder [2, 3, 4, 5, 6, 7, 8]
+     * </pre>
      *
      * <p>Approach: recurse left/right until a null child slot is found.
      */
@@ -83,6 +104,18 @@ public class BinarySearchTree {
      *   <li>Two children → copy inorder successor (min of right subtree) into
      *       this node, then delete that successor from the right subtree</li>
      * </ul>
+     *
+     * <pre>
+     * Delete 3 from sample (two children → successor 4 replaces 3):
+     *           5
+     *         /   \
+     *        4     7
+     *       /     /
+     *      2     6
+     *
+     * Main also does insert(8) then delete(3) → inorder [2, 4, 5, 6, 7, 8]
+     * Expected: inorder [2, 4, 5, 6, 7] (from original sample)
+     * </pre>
      */
     public static TreeNode delete(TreeNode root, int key) {
         if (root == null) {
@@ -119,6 +152,16 @@ public class BinarySearchTree {
      *
      * <p>Return true if the tree is a valid BST (strict inequalities).
      *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2   4 6
+     *
+     * Expected: true
+     * </pre>
+     *
      * <p>Approach: each node must lie in an open range (min, max).
      * Left child gets (min, root.val); right child gets (root.val, max).
      * Use long bounds to avoid int overflow at Integer.MIN/MAX_VALUE.
@@ -144,6 +187,16 @@ public class BinarySearchTree {
      * <p>Return the k-th smallest value (1-based). Inorder of a BST is sorted,
      * so the k-th visited node in inorder is the answer.
      *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2   4 6
+     *
+     * Expected: kthSmallest(k=3) → 4
+     * </pre>
+     *
      * <p>Approach: iterative inorder with a stack; decrement k on each visit.
      */
     public static int kthSmallest(TreeNode root, int k) {
@@ -168,6 +221,16 @@ public class BinarySearchTree {
      *
      * <p>Find LCA of nodes p and q. Unlike a general binary tree, BST ordering
      * lets us walk from the root without recursion on both sides.
+     *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2*  4* 6
+     *
+     * Expected: LCA(2,4) → 3
+     * </pre>
      *
      * <p>Approach: while both keys are on the same side of root, go that way.
      * The first node that sits between (or equals) p and q is the LCA.
@@ -198,6 +261,16 @@ public class BinarySearchTree {
      *   <li>Otherwise walk from root: whenever we go left, remember that ancestor
      *       as a candidate successor</li>
      * </ul>
+     *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2   4* 6
+     *
+     * Expected: inorderSuccessor(4) → 5
+     * </pre>
      */
     public static TreeNode inorderSuccessor(TreeNode root, TreeNode node) {
         if (node.right != null) {
@@ -222,6 +295,17 @@ public class BinarySearchTree {
      *
      * <p>Exactly two nodes in the BST were swapped by mistake. Recover the tree
      * without changing its structure (swap the two values back).
+     *
+     * <pre>
+     * Broken (swap 2 and 7):     Recovered:
+     *           5                     5
+     *         /   \                 /   \
+     *        3     2               3     7
+     *       / \   /               / \   /
+     *      7   4 6               2   4 6
+     *
+     * Expected: broken inorder [7, 3, 4, 5, 6, 2] → recovered [2, 3, 4, 5, 6, 7]
+     * </pre>
      *
      * <p>Approach: inorder should be strictly increasing. Find the violation(s):
      * <ul>
@@ -255,7 +339,19 @@ public class BinarySearchTree {
         recoverInorder(root.right, nodes);
     }
 
-    /** Helper: inorder values (sorted order for a valid BST). */
+    /**
+     * Helper: inorder values (sorted order for a valid BST).
+     *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2   4 6
+     *
+     * Expected: [2, 3, 4, 5, 6, 7]
+     * </pre>
+     */
     public static List<Integer> inorder(TreeNode root) {
         List<Integer> result = new ArrayList<>();
         inorder(root, result);
@@ -271,7 +367,19 @@ public class BinarySearchTree {
         inorder(root.right, result);
     }
 
-    /** Builds the sample BST shown in the class javadoc. */
+    /**
+     * Builds the sample BST shown in the class javadoc.
+     *
+     * <pre>
+     *           5
+     *         /   \
+     *        3     7
+     *       / \   /
+     *      2   4 6
+     *
+     * Expected: BST with inorder [2, 3, 4, 5, 6, 7]
+     * </pre>
+     */
     public static TreeNode buildSampleBST() {
         TreeNode root = new TreeNode(5);
         root.left = new TreeNode(3);
