@@ -45,13 +45,26 @@ public class TreeProperties {
      * Expected: 3
      * </pre>
      *
-     * <p>Approach: 1 + max(height(left), height(right)).
+     * <p>Approach: recursively find depth of left and right; current depth is
+     * {@code 1 + max(leftDepth, rightDepth)}.
      */
     public static int height(TreeNode root) {
+        return maxDepth(root);
+    }
+
+    /** LeetCode #104 name — same as {@link #height}. */
+    public static int maxDepth(TreeNode root) {
+        // Base case: empty tree has depth 0
         if (root == null) {
             return 0;
         }
-        return 1 + Math.max(height(root.left), height(root.right));
+
+        // Recursively find the depth of left and right subtrees
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+
+        // Depth of current node = 1 + longer subtree
+        return 1 + Math.max(leftDepth, rightDepth);
     }
 
     /**
@@ -311,6 +324,7 @@ public class TreeProperties {
     public static void main(String[] args) {
         TreeNode root = buildSampleTree();
         System.out.println("Height:     " + height(root));
+        System.out.println("Max depth:  " + maxDepth(root));
         System.out.println("Diameter:   " + diameter(root));
         System.out.println("Nodes:      " + countNodes(root));
         System.out.println("Leaves:     " + countLeaves(root));

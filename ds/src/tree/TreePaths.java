@@ -9,7 +9,8 @@ import java.util.Map;
  * Binary tree path / DFS problems (interview section).
  *
  * <p>Covers: root-to-leaf paths, path sum I/II/III, sum root-to-leaf numbers,
- * max path sum, flatten to linked list, House Robber III, LCA, distance.
+ * max path sum, flatten to linked list, House Robber III, LCA, distance,
+ * path between two nodes, max depth.
  *
  * <pre>
  * Sample tree used in {@link #main}:
@@ -88,17 +89,30 @@ public class TreePaths {
      * Expected: hasPathSum(target=8) → true (path 1-2-5)
      * </pre>
      *
-     * <p>Approach: subtract current value and recurse; at a leaf, check equality.
+     * <p>Approach: walk down adding each node to a running sum.
+     * At a leaf, check if {@code sumSoFar == target}.
+     * If either left or right subtree finds a valid path, return true.
      */
     public static boolean hasPathSum(TreeNode root, int target) {
-        if (root == null) {
+        return hasPathSumHelper(root, 0, target);
+    }
+
+    /** @param sumSoFar sum of node values from root down to the parent of {@code node} */
+    private static boolean hasPathSumHelper(TreeNode node, int sumSoFar, int target) {
+        if (node == null) {
             return false;
         }
-        if (root.left == null && root.right == null) {
-            return root.val == target;
+
+        sumSoFar += node.val;
+
+        // leaf → check full path sum
+        if (node.left == null && node.right == null) {
+            return sumSoFar == target;
         }
-        int remaining = target - root.val;
-        return hasPathSum(root.left, remaining) || hasPathSum(root.right, remaining);
+
+        // try left or right subtree
+        return hasPathSumHelper(node.left, sumSoFar, target)
+                || hasPathSumHelper(node.right, sumSoFar, target);
     }
 
     /**
@@ -116,27 +130,35 @@ public class TreePaths {
      * Expected: pathSumAll(target=8) → [[1, 2, 5]]
      * </pre>
      *
-     * <p>Same backtracking pattern as {@link #rootToLeafPaths}, with a remaining-sum check.
+     * <p>Same idea as {@link #hasPathSum}, but collect every matching path.
+     * Walk down with a running sum; at a leaf, if sum equals target, save a copy of the path.
      */
     public static List<List<Integer>> pathSumAll(TreeNode root, int target) {
         List<List<Integer>> result = new ArrayList<>();
-        pathSumAll(root, target, new ArrayList<>(), result);
+        pathSumAllHelper(root, 0, target, new ArrayList<>(), result);
         return result;
     }
 
-    private static void pathSumAll(TreeNode node, int remaining, List<Integer> path,
-                                   List<List<Integer>> result) {
+    private static void pathSumAllHelper(TreeNode node, int sumSoFar, int target,
+                                         List<Integer> path, List<List<Integer>> result) {
         if (node == null) {
             return;
         }
+
         path.add(node.val);
-        if (node.left == null && node.right == null && remaining == node.val) {
-            result.add(new ArrayList<>(path));
+        sumSoFar += node.val;
+
+        // leaf with matching sum → save this path
+        if (node.left == null && node.right == null) {
+            if (sumSoFar == target) {
+                result.add(new ArrayList<>(path));
+            }
         } else {
-            pathSumAll(node.left, remaining - node.val, path, result);
-            pathSumAll(node.right, remaining - node.val, path, result);
+            pathSumAllHelper(node.left, sumSoFar, target, path, result);
+            pathSumAllHelper(node.right, sumSoFar, target, path, result);
         }
-        path.remove(path.size() - 1);
+
+        path.remove(path.size() - 1); // backtrack
     }
 
     /**
@@ -195,21 +217,30 @@ public class TreePaths {
      * Expected: 522 (124+125+136+137)
      * </pre>
      *
-     * <p>Approach: DFS carrying {@code curr = curr * 10 + node.val}; at a leaf, return curr.
+     * <p>Approach: walk down building a number digit by digit ({@code numberSoFar * 10 + val}).
+     * At a leaf, return that number. Otherwise add the totals from left and right subtrees.
      */
     public static int sumNumbers(TreeNode root) {
-        return sumNumbers(root, 0);
+        return sumNumbersHelper(root, 0);
     }
 
-    private static int sumNumbers(TreeNode node, int curr) {
+    /** @param numberSoFar number formed by values from root down to the parent of {@code node} */
+    private static int sumNumbersHelper(TreeNode node, int numberSoFar) {
         if (node == null) {
             return 0;
         }
-        curr = curr * 10 + node.val;
+
+        // append current digit: 12 → 124 when node.val is 4
+        numberSoFar = numberSoFar * 10 + node.val;
+
+        // leaf → this path forms one complete number
         if (node.left == null && node.right == null) {
-            return curr;
+            return numberSoFar;
         }
-        return sumNumbers(node.left, curr) + sumNumbers(node.right, curr);
+
+        int fromLeft = sumNumbersHelper(node.left, numberSoFar);
+        int fromRight = sumNumbersHelper(node.right, numberSoFar);
+        return fromLeft + fromRight;
     }
 
     /**
@@ -237,23 +268,36 @@ public class TreePaths {
      * Expected: 1→2→4→5→3→6→7
      * </pre>
      *
-     * <p>Approach: reverse-preorder (right, left, root). Link each visited node
-     * so {@code node.right = previous}, {@code node.left = null}.
+     * <p>Approach: reverse-preorder (right → left → root). We build the list backwards
+     * (last preorder node first), then hook each node in front via {@code node.right = prev}.
+     * Helper <em>returns</em> the new head of the chain (no array / static field needed).
      */
     public static void flatten(TreeNode root) {
-        TreeNode[] prev = {null};
-        flatten(root, prev);
+        flattenHelper(root, null);
     }
 
-    private static void flatten(TreeNode node, TreeNode[] prev) {
+    /**
+     * Visit right, then left, then wire current node.
+     * Visit order for sample tree: 7, 6, 3, 5, 4, 2, 1.
+     *
+     * @param prev head of the flattened chain built so far
+     * @return new head after placing {@code node} in front
+     */
+    private static TreeNode flattenHelper(TreeNode node, TreeNode prev) {
         if (node == null) {
-            return;
+            return prev; // nothing to add — keep existing head
         }
-        flatten(node.right, prev);
-        flatten(node.left, prev);
-        node.right = prev[0];
+
+        // reverse-preorder: right before left
+        prev = flattenHelper(node.right, prev);
+        prev = flattenHelper(node.left, prev);
+
+        // append already-built chain after this node
+        node.right = prev;
         node.left = null;
-        prev[0] = node;
+
+        // this node is the new front — return it to the caller
+        return node;
     }
 
     /**
@@ -386,22 +430,124 @@ public class TreePaths {
      */
     public static int distance(TreeNode root, TreeNode p, TreeNode q) {
         TreeNode lca = lowestCommonAncestor(root, p, q);
-        return depth(lca, p, 0) + depth(lca, q, 0);
+        return depth(lca, p) + depth(lca, q);
     }
 
-    /** Depth of {@code target} under {@code root}, or -1 if not found. */
-    private static int depth(TreeNode root, TreeNode target, int d) {
+    /**
+     * Number of edges from {@code root} down to {@code target}, or -1 if not found.
+     * No depth parameter — add 1 when returning from a successful subtree.
+     */
+    private static int depth(TreeNode root, TreeNode target) {
         if (root == null) {
             return -1;
         }
         if (root == target) {
-            return d;
+            return 0; // found at this node → 0 edges
         }
-        int left = depth(root.left, target, d + 1);
+
+        int left = depth(root.left, target);
         if (left != -1) {
-            return left;
+            return left + 1; // target is under left → one more edge up
         }
-        return depth(root.right, target, d + 1);
+
+        int right = depth(root.right, target);
+        if (right != -1) {
+            return right + 1; // target is under right
+        }
+
+        return -1; // not in this subtree
+    }
+
+    /**
+     * Path Between Two Nodes
+     *
+     * <p>Return the list of node values on the path from {@code p} to {@code q}
+     * (including both ends). Uses LCA: go from p up to LCA, then down to q.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4*  5* 6   7*
+     *
+     * Expected: path(4,5) → [4, 2, 5]
+     *           path(4,7) → [4, 2, 1, 3, 7]
+     * </pre>
+     *
+     * <p>Approach: find LCA; get path LCA→p and LCA→q; reverse LCA→p and append
+     * LCA→q without duplicating LCA.
+     */
+    public static List<Integer> pathBetween(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode lca = lowestCommonAncestor(root, p, q);
+        List<Integer> toP = pathDown(lca, p); // [lca, ..., p]
+        List<Integer> toQ = pathDown(lca, q); // [lca, ..., q]
+
+        List<Integer> result = new ArrayList<>();
+        // p → ... → lca
+        for (int i = toP.size() - 1; i >= 0; i--) {
+            result.add(toP.get(i));
+        }
+        // then ... → q (skip lca — already added)
+        for (int i = 1; i < toQ.size(); i++) {
+            result.add(toQ.get(i));
+        }
+        return result;
+    }
+
+    /** Path of values from {@code from} down to {@code target} (inclusive). */
+    private static List<Integer> pathDown(TreeNode from, TreeNode target) {
+        List<Integer> path = new ArrayList<>();
+        findPathDown(from, target, path);
+        return path;
+    }
+
+    private static boolean findPathDown(TreeNode node, TreeNode target, List<Integer> path) {
+        if (node == null) {
+            return false;
+        }
+        path.add(node.val);
+        if (node == target) {
+            return true;
+        }
+        if (findPathDown(node.left, target, path) || findPathDown(node.right, target, path)) {
+            return true;
+        }
+        path.remove(path.size() - 1); // backtrack
+        return false;
+    }
+
+    /**
+     * Maximum Depth of Binary Tree (LeetCode #104)
+     *
+     * <p>Depth = number of nodes on the longest root-to-leaf path.
+     * Empty tree has depth 0.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 3
+     * </pre>
+     *
+     * <p>Approach: recursively find depth of left and right; current depth is
+     * {@code 1 + max(leftDepth, rightDepth)}.
+     */
+    public static int maxDepth(TreeNode root) {
+        // Base case: empty tree has depth 0
+        if (root == null) {
+            return 0;
+        }
+
+        // Recursively find the depth of left and right subtrees
+        int leftDepth = maxDepth(root.left);
+        int rightDepth = maxDepth(root.right);
+
+        // Depth of current node = 1 + longer subtree
+        return 1 + Math.max(leftDepth, rightDepth);
     }
 
     /**
@@ -447,6 +593,9 @@ public class TreePaths {
         System.out.println("LCA(4,7).val: " + lowestCommonAncestor(root, n4, n7).val);
         System.out.println("Distance(4,5): " + distance(root, n4, n5));
         System.out.println("Distance(4,7): " + distance(root, n4, n7));
+        System.out.println("Path(4,5): " + pathBetween(root, n4, n5));
+        System.out.println("Path(4,7): " + pathBetween(root, n4, n7));
+        System.out.println("Max depth: " + maxDepth(root));
 
         TreeNode flat = buildSampleTree();
         flatten(flat);

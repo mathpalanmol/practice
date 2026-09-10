@@ -883,10 +883,17 @@ public class TreeTraversal {
      * </pre>
      */
     public static int heightRecursive(TreeNode root) {
+        // Base case: empty tree has depth 0
         if (root == null) {
             return 0;
         }
-        return 1 + Math.max(heightRecursive(root.left), heightRecursive(root.right));
+
+        // Recursively find the depth of left and right subtrees
+        int leftDepth = heightRecursive(root.left);
+        int rightDepth = heightRecursive(root.right);
+
+        // Depth of current node = 1 + longer subtree
+        return 1 + Math.max(leftDepth, rightDepth);
     }
 
     /**
