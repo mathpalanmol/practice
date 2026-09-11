@@ -15,6 +15,7 @@ Source lives under `ds/src/`.
 
 | Package | Topics |
 |---------|--------|
+| `array` | Sort 0/1, Sort 0/1/2 (Dutch National Flag), array problems |
 | `graph` | DAG, Dijkstra, MST (Kruskal, Prim), topological sort, islands |
 | `list` | Linked lists, doubly linked lists, stacks/queues on lists, reversal, merge, cycle detection |
 | `tree` | TreeTraversal, TreeProperties, TreePaths, TreeConstruction, BinarySearchTree, heap |
