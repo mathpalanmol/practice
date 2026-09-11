@@ -154,6 +154,92 @@ public class TreeProperties {
     }
 
     /**
+     * Sum of all nodes in the binary tree (version 1 — simple recursion).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 28 (1+2+3+4+5+6+7)
+     * </pre>
+     *
+     * <p>Approach: this node + sum(left) + sum(right).
+     */
+    public static int sumBT(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        return root.val + sumBT(root.left) + sumBT(root.right);
+    }
+
+    /**
+     * Sum of all nodes (version 2 — running sum in a shared box).
+     *
+     * <p>Same result as {@link #sumBT}. Uses {@code int[] sum} so every visit
+     * can add into one shared total (like {@code prev} in flatten).
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 28
+     * </pre>
+     */
+    public static int sumBTRunning(TreeNode root) {
+        int[] sum = {0};
+        sumBTRunning(root, sum);
+        return sum[0];
+    }
+
+    private static void sumBTRunning(TreeNode root, int[] sum) {
+        if (root == null) {
+            return; // add nothing
+        }
+        sum[0] += root.val;           // include this node once
+        sumBTRunning(root.left, sum);  // visit left
+        sumBTRunning(root.right, sum); // visit right
+    }
+
+    /**
+     * Sum of all nodes (version 3 — plain {@code int} as a static field).
+     *
+     * <p>Same result as {@link #sumBT}. A method parameter {@code int} cannot be
+     * shared across recursion (pass-by-value), so use a field and reset it each run.
+     *
+     * <pre>
+     *           1
+     *         /   \
+     *        2     3
+     *       / \   / \
+     *      4   5 6   7
+     *
+     * Expected: 28
+     * </pre>
+     */
+    private static int sumField;
+
+    public static int sumBTWithField(TreeNode root) {
+        sumField = 0; // reset so a previous run does not leak
+        addToSum(root);
+        return sumField;
+    }
+
+    private static void addToSum(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        sumField += root.val;
+        addToSum(root.left);
+        addToSum(root.right);
+    }
+
+    /**
      * Balanced Binary Tree (LeetCode #110)
      *
      * <p>A tree is height-balanced if for <em>every</em> node,
@@ -328,6 +414,9 @@ public class TreeProperties {
         System.out.println("Diameter:   " + diameter(root));
         System.out.println("Nodes:      " + countNodes(root));
         System.out.println("Leaves:     " + countLeaves(root));
+        System.out.println("Sum (v1):   " + sumBT(root));
+        System.out.println("Sum (v2):   " + sumBTRunning(root));
+        System.out.println("Sum (v3):   " + sumBTWithField(root));
         System.out.println("Balanced:   " + isBalanced(root));
         System.out.println("Symmetric:  " + isSymmetric(root));
 
