@@ -1,42 +1,33 @@
-package array;
+package array.twopointers;
 
 import java.util.Arrays;
 
 /**
- * Sort an array of 0s and 1s (binary array).
+ * Sort Binary Array (0s and 1s) — Dutch National Flag (two colors)
  *
- * <p>Dutch National Flag idea with two colors only — one pass, O(n) time, O(1) extra space.
+ * <p>Given an array containing only {@code 0} and {@code 1}, sort in-place so all 0s precede
+ * all 1s. Classic two-pointer variant of Sort Colors (LeetCode #75) with two values.
+ *
+ * <p>Constraints: in-place; O(n) time, O(1) extra space.
  *
  * <pre>
  * Input:  [0, 1, 1, 0, 1, 0, 0, 1]
+ * Step:   swap misplaced 1/0 pairs inward until left meets right
  * Output: [0, 0, 0, 0, 1, 1, 1, 1]
  * </pre>
  *
- * <p>Pointers:
- * <ul>
- *   <li>{@code left} — move until we find a 1 (wrong on the left)</li>
- *   <li>{@code right} — move until we find a 0 (wrong on the right)</li>
- * </ul>
- * Then swap; repeat until left and right meet.
+ * <h2>Algorithm</h2>
+ * <ol>
+ *   <li>Set {@code left = 0}, {@code right = n - 1}.</li>
+ *   <li>While {@code left &lt; right}: advance {@code left} while {@code a[left] == 0}.</li>
+ *   <li>Advance {@code right} while {@code a[right] == 1}.</li>
+ *   <li>If still {@code left &lt; right}, swap {@code a[left]} and {@code a[right]} (1 on left, 0 on right), then {@code left++}, {@code right--}.</li>
+ * </ol>
+ * <p>Invariant: {@code [0..left-1]} all 0s; {@code [right+1..n-1]} all 1s. Time: O(n), Space: O(1)
  */
 public class SortZeroOne {
 
-    /**
-     * Dutch National Flag (two colors) — one pass.
-     *
-     * <p>Algorithm:
-     * <ol>
-     *   <li>Advance {@code left} while {@code a[left] == 0}</li>
-     *   <li>Advance {@code right} while {@code a[right] == 1}</li>
-     *   <li>If still {@code left < right}, swap (left has 1, right has 0)</li>
-     * </ol>
-     *
-     * <p>Invariant:
-     * <pre>
-     *   [0 .. left-1]    → all 0s
-     *   [right+1 .. n-1] → all 1s
-     * </pre>
-     */
+    /** Dutch National Flag (two colors) — see class {@code Algorithm} section. */
     public static void sort01(int[] a) {
         if (a == null || a.length <= 1) {
             return;

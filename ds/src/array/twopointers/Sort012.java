@@ -1,18 +1,31 @@
-package array;
+package array.twopointers;
 
 import java.util.Arrays;
 
 /**
- * Sort an array of 0s, 1s and 2s (Dutch National Flag Problem).
+ * Sort Colors / Dutch National Flag (LeetCode #75)
  *
- * <p>One pass — O(n) time, O(1) extra space.
+ * <p>Given an array with values {@code 0}, {@code 1}, and {@code 2} only, sort it in-place
+ * in ascending order in one pass. Same as sorting an array of 0s, 1s, and 2s.
+ *
+ * <p>Constraints: {@code n == nums.length}, {@code 1 <= n <= 300}; each element is 0, 1, or 2.
  *
  * <pre>
  * Input:  [0, 1, 2, 0, 1, 2, 1, 0]
  * Output: [0, 0, 0, 1, 1, 1, 2, 2]
  * </pre>
  *
- * <h2>Algorithm (3 pointers)</h2>
+ * <h2>Algorithm</h2>
+ * <ol>
+ *   <li>Set {@code low = 0} (next slot for 0), {@code mid = 0} (current), {@code high = n - 1} (next slot for 2).</li>
+ *   <li>While {@code mid &lt;= high} (not {@code mid &lt; high} — one unknown may remain at {@code mid == high}):</li>
+ *   <li>If {@code a[mid] == 0}: swap {@code a[low]} and {@code a[mid]}, then {@code low++}, {@code mid++}.</li>
+ *   <li>If {@code a[mid] == 1}: {@code mid++} only.</li>
+ *   <li>If {@code a[mid] == 2}: swap {@code a[mid]} and {@code a[high]}, then {@code high--} (do not {@code mid++} — swapped-in value unprocessed).</li>
+ * </ol>
+ * <p>Time: O(n), Space: O(1)
+ *
+ * <h2>Pointer invariant</h2>
  *
  * <pre>
  *   low  — boundary of 0s (next place for a 0)
@@ -25,14 +38,6 @@ import java.util.Arrays;
  *   [mid .. high]    → unknown (still to process)
  *   [high+1 .. n-1]  → all 2s
  * </pre>
- *
- * <p>Rules while {@code mid <= high}:
- * <ul>
- *   <li>If {@code a[mid] == 0}: swap with {@code low}, then {@code low++}, {@code mid++}</li>
- *   <li>If {@code a[mid] == 1}: already in middle zone → {@code mid++} only</li>
- *   <li>If {@code a[mid] == 2}: swap with {@code high}, then {@code high--}
- *       (do <em>not</em> mid++ — the swapped-in value is unprocessed)</li>
- * </ul>
  *
  * <h2>Why {@code mid <= high} (not {@code mid < high})?</h2>
  *
